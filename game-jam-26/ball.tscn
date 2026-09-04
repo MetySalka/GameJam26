@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cuammqk3grw3p"]
+
+[ext_resource type="PackedScene" uid="uid://dhkcw7f5ebs65" path="res://Assets/Models/Ball.glb" id="1_x8fbi"]
+
+[node name="Ball" type="RigidBody3D" unique_id=781998470]
+
+[node name="Ball" parent="." unique_id=205087421 instance=ExtResource("1_x8fbi")]

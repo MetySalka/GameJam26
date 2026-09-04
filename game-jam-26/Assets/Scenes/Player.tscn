@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cdfbwhd0cxxlu"]
+
+[ext_resource type="Script" uid="uid://dm6ed1v08xvdw" path="res://Code/Player.cs" id="1_3e2tf"]
+
+[node name="player" type="CharacterBody3D" unique_id=2116048885]
+script = ExtResource("1_3e2tf")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2089664232]

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dnqn6bgppeisb"]
+
+[ext_resource type="PackedScene" uid="uid://ysw0iduufp1u" path="res://Assets/Scenes/Floor.tscn" id="1_friua"]
+[ext_resource type="PackedScene" uid="uid://0i66l8yepbtl" path="res://Assets/Scenes/Ball.tscn" id="2_ctw3a"]
+
+[node name="TestGround" type="Node3D" unique_id=1643020919]
+
+[node name="StaticBody3D" parent="." unique_id=1518566740 instance=ExtResource("1_friua")]
+transform = Transform3D(9.833387, 1.8178266, 0, -1.8178266, 9.833387, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="RigidBody3D" parent="." unique_id=1721430903 instance=ExtResource("2_ctw3a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.110893, 31.157578, 0)

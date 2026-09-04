@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ysw0iduufp1u"]
+
+[ext_resource type="PackedScene" uid="uid://ddvkwy14lcn0t" path="res://Assets/Models/Floor.glb" id="1_ke4b5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uraql"]
+size = Vector3(10.104919, 0.9996338, 10.008545)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1518566740]
+
+[node name="Floor" parent="." unique_id=881484061 instance=ExtResource("1_ke4b5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=868440780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028112411, -0.02840916, -0.006958008)
+shape = SubResource("BoxShape3D_uraql")

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://0i66l8yepbtl"]
+
+[ext_resource type="PackedScene" uid="uid://bkd8nooqe6yti" path="res://Assets/Models/Ball-col.glb" id="1_hxyjk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o55sr"]
+radius = 3.0
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=1721430903]
+
+[node name="Ball-col" parent="." unique_id=795666488 instance=ExtResource("1_hxyjk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=927357660]
+shape = SubResource("SphereShape3D_o55sr")
