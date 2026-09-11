@@ -9,7 +9,7 @@ public partial class Player : CharacterBody2D
 	public const float AccelFactor = 1.0f;
 
 	[Export] public Node2D Background { get; set; }
-	public Vector2I MovementArea = new Vector2I(384, 128);
+	public Vector2 MovementArea = new Vector2I(384, 128);
 	public const float JumpVelocity = -400.0f;
 	Rect2 Viewport;
 	Rect2 MoveRect;
@@ -51,7 +51,7 @@ private Vector2 ClampToRect(Vector2 position, Rect2 rect)
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-
+		MovementArea = Viewport.Size * 0.87f;
 		Viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		Vector2 center = Viewport.GetCenter();
 		Vector2 topLeft = center - (Vector2)MovementArea / 2f;
