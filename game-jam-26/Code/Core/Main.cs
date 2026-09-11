@@ -11,22 +11,31 @@ public partial class Main : Node
 
 
 
-	public void makeSomeFood(PackedScene foodScene)
+	public void generateFood(PackedScene foodScene)
 	{
 		Fishfood food = foodScene.Instantiate<Fishfood>();
         food.Position = new Vector2(Viewport.Size.X * _rng.RandfRange(0,1), Viewport.Size.Y * _rng.RandfRange(0,1));
 		food.MoveVector = new Vector2(_rng.RandfRange(-0.1f,0.1f),_rng.RandfRange(-0.1f,0.1f));
         AddChild(food);
 	}
+ 
+	public void ExactFood(PackedScene foodScene, Vector2 FoodPos)
+	{
+		Fishfood food = foodScene.Instantiate<Fishfood>();
+		food.Position = FoodPos;
+		food.MoveVector = new Vector2(_rng.RandfRange(-0.05f,0.05f),_rng.RandfRange(-0.05f,0.05f));
+		AddChild(food);
+	}
 
 	public override void _Ready()
 	{
+		prepareLevel();
 	}
 
 	public void prepareLevel()
 	{
 		for(int i = 0; i < 1200; i++) {
-			makeSomeFood(foodScene);
+			generateFood(foodScene);
 		}
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,8 +59,8 @@ public partial class Main : Node
 
 				if(!Viewport.HasPoint(food.GlobalPosition))
 				{
+					ExactFood(foodScene, food.Position);
 					food.Consume(false);
-					makeSomeFood(foodScene);
 				}
 				
 
