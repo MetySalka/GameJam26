@@ -29,10 +29,13 @@ public partial class Main : Node
 
 	public override void _Ready()
 	{
+		Viewport = new Rect2(new Vector2(0,0), GetViewport().GetVisibleRect().Size);
+
 	}
 
 	public void prepareLevel()
 	{
+		GD.Print(Viewport);
 		for(int i = 0; i < 1200; i++) {
 			generateFood(foodScene);
 		}
