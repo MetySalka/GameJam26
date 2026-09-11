@@ -1,15 +1,59 @@
 [gd_scene format=3 uid="uid://dtn54nq4lmoom"]
 
 [ext_resource type="Script" uid="uid://tti25d17stg1" path="res://Code/Player/Player.cs" id="1_uvnfx"]
-[ext_resource type="Texture2D" uid="uid://fy8vis0dlbjj" path="res://Assets/Sprites/Creatures/TestFish.png" id="2_a3d8c"]
 [ext_resource type="Script" uid="uid://ctamrepniap05" path="res://Code/Player/FoodPickup.cs" id="3_xpcdj"]
+[ext_resource type="Texture2D" uid="uid://kt4lbybup0gp" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0001.png" id="4_0u5uq"]
+[ext_resource type="Texture2D" uid="uid://bu2c2ykjursdg" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0001.png" id="4_74mp2"]
+[ext_resource type="Texture2D" uid="uid://csn2bl8mtnv8k" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0002.png" id="5_jlvik"]
+[ext_resource type="Texture2D" uid="uid://btokgwvi4eith" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0002.png" id="5_oikmp"]
+[ext_resource type="Texture2D" uid="uid://cl4vweflk7kcm" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0003.png" id="6_06tpx"]
+[ext_resource type="Texture2D" uid="uid://dmv5fw1gdkwgf" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0003.png" id="6_gk6dx"]
+[ext_resource type="Texture2D" uid="uid://bhhaokpu7uk" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0004.png" id="7_7g0yx"]
+[ext_resource type="Texture2D" uid="uid://c53lfet446inx" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0004.png" id="7_jhyir"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvnfx"]
-radius = 21.0
-height = 58.0
+radius = 7.0
+height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
-size = Vector2(34, 26)
+size = Vector2(12, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_74mp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oikmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_06tpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7g0yx")
+}],
+"loop": 1,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0u5uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jlvik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gk6dx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jhyir")
+}],
+"loop": 1,
+"name": &"Right",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D" unique_id=442189289]
 script = ExtResource("1_uvnfx")
@@ -18,14 +62,20 @@ script = ExtResource("1_uvnfx")
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_uvnfx")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=728747852]
-position = Vector2(0, 5)
-texture = ExtResource("2_a3d8c")
-
 [node name="PickupRadius" type="Area2D" parent="." unique_id=56065100]
 collision_mask = 4
 script = ExtResource("3_xpcdj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRadius" unique_id=1421534460]
-position = Vector2(19, 2)
+[node name="MouthLeft" type="CollisionShape2D" parent="PickupRadius" unique_id=1421534460]
+position = Vector2(-10, 1)
 shape = SubResource("RectangleShape2D_c8p22")
+
+[node name="MouthRight" type="CollisionShape2D" parent="PickupRadius" unique_id=523997331]
+position = Vector2(10, 1)
+shape = SubResource("RectangleShape2D_c8p22")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1118745982]
+sprite_frames = SubResource("SpriteFrames_uraql")
+animation = &"Left"
+frame = 2
+frame_progress = 0.92810863
