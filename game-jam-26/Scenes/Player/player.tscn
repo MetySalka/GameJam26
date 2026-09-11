@@ -26,6 +26,12 @@ height = 26.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
 size = Vector2(12, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qc0h"]
+size = Vector2(15.125, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnuln"]
+size = Vector2(14.75, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
 animations = [{
 "frames": [{
@@ -104,9 +110,10 @@ script = ExtResource("1_uvnfx")
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_uvnfx")
 
-[node name="PickupRadius" type="Area2D" parent="." unique_id=56065100]
+[node name="PickupRadius" type="Area2D" parent="." unique_id=56065100 node_paths=PackedStringArray("_player")]
 collision_mask = 4
 script = ExtResource("3_xpcdj")
+_player = NodePath("..")
 
 [node name="MouthLeft" type="CollisionShape2D" parent="PickupRadius" unique_id=1421534460]
 position = Vector2(-10, 1)
@@ -115,6 +122,14 @@ shape = SubResource("RectangleShape2D_c8p22")
 [node name="MouthRight" type="CollisionShape2D" parent="PickupRadius" unique_id=523997331]
 position = Vector2(10, 1)
 shape = SubResource("RectangleShape2D_c8p22")
+
+[node name="MouthUp" type="CollisionShape2D" parent="PickupRadius" unique_id=1431762199]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_4qc0h")
+
+[node name="MouthDown" type="CollisionShape2D" parent="PickupRadius" unique_id=1191523009]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_hnuln")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1118745982]
 position = Vector2(0, 2)

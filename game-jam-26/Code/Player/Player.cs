@@ -14,6 +14,8 @@ public partial class Player : CharacterBody2D
 
 	private AnimatedSprite2D _sprite;
 
+	private FoodPickup _pickupArea;
+
 	private void ScrollBackgroundAtMovementEdge()
 	{
 		Vector2 clampedPosition = Helpers.ClampToRect(Position, _movementBounds);
@@ -29,13 +31,15 @@ public partial class Player : CharacterBody2D
 		{
 			Background.Position -= overflow;
 		}
+
+
 	}
 
 	public override void _Ready()
 	{
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-
+		_pickupArea = GetNode<FoodPickup>("PickupRadius");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -72,21 +76,28 @@ public partial class Player : CharacterBody2D
 
 		if (velocity.Y >= 0.2)
 		{
-			_sprite.Play("Up");
+			_sprite.Play("Down");
+			_pickupArea.SetMouthDir(0);
 		}
 		else if (velocity.Y <= -0.2)
 		{
-			_sprite.Play("Down");
+			_sprite.Play("Up");
+			_pickupArea.SetMouthDir(1);
+
 		}
 
 
 		if (velocity.X >= 0.2)
 		{
 			_sprite.Play("Right");
+			_pickupArea.SetMouthDir(2);
+
 		}
 		else if (velocity.X <= -0.2)
 		{
 			_sprite.Play("Left");
+			_pickupArea.SetMouthDir(3);
+
 		}
 
 

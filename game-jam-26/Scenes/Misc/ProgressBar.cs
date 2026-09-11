@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics.Metrics;
 
 public partial class ProgressBar : Node2D
 {
@@ -9,9 +10,15 @@ public partial class ProgressBar : Node2D
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	float Counter = 0.0f;
 	public override void _Process(double delta)
 	{
+
+		Counter += 5;
 		var bar = GetNode<TextureProgressBar>("TextureProgressBar");
 		GD.Print(bar.Value);
+
+
+		bar.Value = (Math.Sin(Counter / 1000) + 1) * 100;
 	}
 }
