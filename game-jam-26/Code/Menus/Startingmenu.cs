@@ -8,20 +8,20 @@ public partial class Startingmenu : Control
 	
 	private TextureButton _startButton;
 	private TextureButton _exitButton;
+
 	public override void _Ready()
 	{
-
-	
-		//var zoom = 5f;
-		//var lookAt = new Vector2(0, 0);
-		//var half = GetViewportRect().Size / 2f;
-
-		//Scale = new Vector2(zoom, zoom);
-		//Position = half - lookAt * zoom;
-
+		var main = GetParent();
+		main.GetNode<CanvasItem>("Background").Hide();
+		ProcessMode = Node.ProcessModeEnum.WhenPaused;
+		GetTree().Paused = true;
 	}
 	public void OnClickButtonStart()
 	{
+	var main =  GetParent();	
+	main.GetNode<CanvasItem>("Background").Show();
+	GetTree().Paused = false;
+	GetParent().Call("prepareLevel");
 	Hide();
 	}
 
