@@ -29,7 +29,6 @@ public partial class Main : Node
 
 	public override void _Ready()
 	{
-		prepareLevel();
 	}
 
 	public void prepareLevel()
