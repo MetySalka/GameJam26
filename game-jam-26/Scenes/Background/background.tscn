@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ckw4h670084le"]
+
+[ext_resource type="Script" uid="uid://bp5nkdq18dsyj" path="res://Code/Background/Background.cs" id="1_xgg7f"]
+
+[node name="Background" type="Node2D" unique_id=1858228470]
+script = ExtResource("1_xgg7f")
