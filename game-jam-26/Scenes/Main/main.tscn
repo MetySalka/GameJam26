@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bahy3v7doolsw" path="res://Code/Core/Main.cs" id="1_1r6ip"]
 [ext_resource type="PackedScene" uid="uid://ckw4h670084le" path="res://Scenes/Background/background.tscn" id="2_5yls4"]
+[ext_resource type="PackedScene" uid="uid://d36l82tk6f6kw" path="res://Scenes/Misc/fishfood.tscn" id="2_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/Menus/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 
 [node name="Main" type="Node" unique_id=372516350]
 script = ExtResource("1_1r6ip")
 
+[node name="FishFood" parent="." unique_id=1708707678 instance=ExtResource("2_p6jpk")]
+position = Vector2(174, 21)
+
 [node name="Background" parent="." unique_id=1858228470 instance=ExtResource("2_5yls4")]
+z_index = -1
 
 [node name="StartingMenu" parent="." unique_id=1066928608 instance=ExtResource("3_p6jpk")]
 
