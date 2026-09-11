@@ -15,6 +15,7 @@ offset_right = 61.6
 offset_bottom = 47.519997
 
 [node name="ProgressBar" parent="." unique_id=551622491 instance=ExtResource("5_p6jpk")]
+z_index = 1
 
 [node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("Background") instance=ExtResource("4_2a143")]
 position = Vector2(188, 144)

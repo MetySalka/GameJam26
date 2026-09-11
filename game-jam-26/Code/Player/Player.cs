@@ -12,6 +12,8 @@ public partial class Player : CharacterBody2D
 	private Rect2 _viewport;
 	private Rect2 _movementBounds;
 
+	private AnimatedSprite2D _sprite;
+
 	private void ScrollBackgroundAtMovementEdge()
 	{
 		Vector2 clampedPosition = Helpers.ClampToRect(Position, _movementBounds);
@@ -32,6 +34,8 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
+		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -53,8 +57,40 @@ public partial class Player : CharacterBody2D
 		// Ease toward the requested swimming speed on each axis.
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 
+
+
+
+
+
 		velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Speed / DecelFactor);
 		velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);
+
+
+
+
+
+
+		if (velocity.Y >= 0.2)
+		{
+			_sprite.Play("Up");
+		}
+		else if (velocity.Y <= -0.2)
+		{
+			_sprite.Play("Down");
+		}
+
+
+		if (velocity.X >= 0.2)
+		{
+			_sprite.Play("Right");
+		}
+		else if (velocity.X <= -0.2)
+		{
+			_sprite.Play("Left");
+		}
+
+
+
 
 		Velocity = velocity;
 		MoveAndSlide();
