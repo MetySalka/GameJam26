@@ -15,10 +15,12 @@ public partial class Fishfood : Area2D
 
 
 	public override void _Process(double delta)
-	{
-	}
+    {
+
+    }
 
     private bool _consumed = false;
+    public Vector2 MoveVector {get; set;}
 
     public void Consume()
     {
