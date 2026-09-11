@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://tti25d17stg1" path="res://Code/Player/Player.cs" id="1_uvnfx"]
 [ext_resource type="Texture2D" uid="uid://fy8vis0dlbjj" path="res://Assets/Sprites/Creatures/TestFish.png" id="2_a3d8c"]
+[ext_resource type="Script" uid="uid://ctamrepniap05" path="res://Code/Player/FoodPickup.cs" id="3_xpcdj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvnfx"]
 radius = 21.0
 height = 58.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
+size = Vector2(34, 26)
 
 [node name="Player" type="CharacterBody2D" unique_id=442189289]
 script = ExtResource("1_uvnfx")
@@ -17,3 +21,11 @@ shape = SubResource("CapsuleShape2D_uvnfx")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=728747852]
 position = Vector2(0, 5)
 texture = ExtResource("2_a3d8c")
+
+[node name="PickupRadius" type="Area2D" parent="." unique_id=56065100]
+collision_mask = 4
+script = ExtResource("3_xpcdj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRadius" unique_id=1421534460]
+position = Vector2(19, 2)
+shape = SubResource("RectangleShape2D_c8p22")

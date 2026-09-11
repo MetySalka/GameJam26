@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d36l82tk6f6kw"]
+
+[ext_resource type="Script" uid="uid://b7hcewpd1hsoy" path="res://Code/Misc/Fishfood.cs" id="1_e1506"]
+[ext_resource type="Texture2D" uid="uid://coppngsxf0da" path="res://Assets/Sprites/Misc/fish food.png" id="1_ohe0b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uraql"]
+radius = 4.1231055
+
+[node name="FishFood" type="Area2D" unique_id=1622472229]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_e1506")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=684635245]
+texture = ExtResource("1_ohe0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818271321]
+shape = SubResource("CircleShape2D_uraql")
