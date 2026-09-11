@@ -13,3 +13,6 @@ script = ExtResource("1_1r6ip")
 [node name="StartingMenu" parent="." unique_id=1066928608 instance=ExtResource("3_p6jpk")]
 
 [node name="Player" parent="." unique_id=442189289 instance=ExtResource("4_2a143")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1456443767]
+position = Vector2(579, 285)
