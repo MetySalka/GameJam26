@@ -15,12 +15,14 @@ public partial class Fishfood : Area2D
 
 
 	public override void _Process(double delta)
-	{
-	}
+    {
+
+    }
 
     private bool _consumed = false;
+    public Vector2 MoveVector {get; set;}
 
-    public void Consume()
+    public void Consume(bool Do = true)
     {
         // Guard against being eaten twice in the same frame
         // (e.g. multiple overlap checks before QueueFree() actually removes it)
