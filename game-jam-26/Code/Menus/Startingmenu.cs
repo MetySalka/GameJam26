@@ -16,6 +16,8 @@ public partial class Startingmenu : Control
 		ProcessMode = Node.ProcessModeEnum.WhenPaused;
 		GetTree().Paused = true;
 		GetNode<Node2D>("../Player").Hide();
+		GetNode<Node2D>("../ProgressBar").Hide();
+		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
 	}
 	public void OnClickButtonStart()
 	{
@@ -24,6 +26,7 @@ public partial class Startingmenu : Control
 	GetTree().Paused = false;
 	GetParent().Call("prepareLevel");
 	GetNode<Node2D>("../Player").Show();
+	GetNode<Node2D>("../ProgressBar").Show();
 	Hide();
 	}
 

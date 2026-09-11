@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://csxqenyycsk2b"]
+
+[ext_resource type="Texture2D" uid="uid://c8ax0cgbqiqg7" path="res://Assets/Sprites/Misc/bar.png" id="1_cobfb"]
+[ext_resource type="Script" uid="uid://ddm7cgc0gl30x" path="res://Scenes/Misc/ProgressBar.cs" id="1_iwlb4"]
+[ext_resource type="Texture2D" uid="uid://4wybddva7dv2" path="res://Assets/Sprites/Misc/bar_fill.png" id="3_edw7m"]
+
+[node name="ProgressBar" type="Node2D" unique_id=551622491]
+script = ExtResource("1_iwlb4")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1863472084]
+offset_left = 171.0
+offset_top = 323.0
+offset_right = 671.0
+offset_bottom = 373.0
+scale = Vector2(0.6, 0.6)
+texture_under = ExtResource("1_cobfb")
+texture_progress = ExtResource("3_edw7m")
