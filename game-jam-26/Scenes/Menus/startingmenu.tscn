@@ -29,8 +29,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xmky5")
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=771787135]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1913057736]
 layout_mode = 0
+offset_right = 176.0
+offset_bottom = 118.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1968361024]
+size = Vector2i(150, 100)
+
+[node name="TextureButton" type="TextureButton" parent="SubViewportContainer/SubViewport" unique_id=771787135]
 offset_left = 6.0
 offset_top = 3.0
 offset_right = 61.0
@@ -38,11 +45,14 @@ offset_bottom = 33.0
 texture_normal = SubResource("AtlasTexture_4jq5w")
 texture_hover = SubResource("AtlasTexture_bqubg")
 
-[node name="TextureButton2" type="TextureButton" parent="." unique_id=645863309]
-layout_mode = 0
+[node name="TextureButton2" type="TextureButton" parent="SubViewportContainer/SubViewport" unique_id=645863309]
 offset_left = 10.0
 offset_top = 35.0
 offset_right = 58.0
 offset_bottom = 61.0
 texture_normal = SubResource("AtlasTexture_plrnn")
 texture_hover = SubResource("AtlasTexture_tc0ol")
+
+[connection signal="hidden" from="SubViewportContainer/SubViewport/TextureButton" to="." method="HideStartButton"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/TextureButton" to="." method="OnClickButtonStart"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/TextureButton2" to="." method="OnClickButtonExit"]
