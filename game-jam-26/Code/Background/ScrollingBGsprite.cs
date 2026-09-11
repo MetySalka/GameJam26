@@ -10,7 +10,6 @@ public partial class ScrollingBGsprite : Sprite2D
 
     public override void _Ready()
     {
-		GD.Print("Ready called!");
         RegionEnabled = true;
         TextureRepeat = CanvasItem.TextureRepeatEnum.Enabled;
         _textureHeight = Texture.GetSize().Y;
@@ -20,7 +19,6 @@ public partial class ScrollingBGsprite : Sprite2D
     public override void _Process(double delta)
     {
 
-					GD.Print("hello world");
 
         _offsetY += ScrollSpeed * -(float)delta;
         _offsetY %= _textureHeight;
