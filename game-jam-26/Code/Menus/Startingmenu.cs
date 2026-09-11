@@ -12,12 +12,12 @@ public partial class Startingmenu : Control
 	{
 
 	
-		var zoom = 5f;
-		var lookAt = new Vector2(15, 15);
-		var half = GetViewportRect().Size / 2f;
+		//var zoom = 5f;
+		//var lookAt = new Vector2(0, 0);
+		//var half = GetViewportRect().Size / 2f;
 
-		Scale = new Vector2(zoom, zoom);
-		Position = half - lookAt * zoom;
+		//Scale = new Vector2(zoom, zoom);
+		//Position = half - lookAt * zoom;
 
 	}
 	public void OnClickButtonStart()
