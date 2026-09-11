@@ -15,6 +15,7 @@ public partial class Startingmenu : Control
 		main.GetNode<CanvasItem>("Background").Hide();
 		ProcessMode = Node.ProcessModeEnum.WhenPaused;
 		GetTree().Paused = true;
+		GetNode<Node2D>("../Player").Hide();
 	}
 	public void OnClickButtonStart()
 	{
@@ -22,6 +23,7 @@ public partial class Startingmenu : Control
 	main.GetNode<CanvasItem>("Background").Show();
 	GetTree().Paused = false;
 	GetParent().Call("prepareLevel");
+	GetNode<Node2D>("../Player").Show();
 	Hide();
 	}
 
