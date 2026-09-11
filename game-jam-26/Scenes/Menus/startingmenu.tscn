@@ -23,10 +23,13 @@ region = Rect2(54.830544, 9.442933, 55.21392, 28.70808)
 layout_mode = 3
 anchor_right = 0.135
 anchor_bottom = 0.143
-offset_right = 0.47999573
-offset_bottom = 0.33599854
+offset_left = -37.0
+offset_top = -15.0
+offset_right = -36.520004
+offset_bottom = -14.664001
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(6, 6)
 script = ExtResource("1_xmky5")
 
 [node name="TextureButton2" type="TextureButton" parent="." unique_id=645863309]
