@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://dtn54nq4lmoom"]
 
 [ext_resource type="Script" uid="uid://tti25d17stg1" path="res://Code/Player/Player.cs" id="1_uvnfx"]
+[ext_resource type="Texture2D" uid="uid://fy8vis0dlbjj" path="res://Assets/Sprites/Creatures/TestFish.png" id="2_a3d8c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvnfx"]
+radius = 21.0
+height = 58.0
 
 [node name="Player" type="CharacterBody2D" unique_id=442189289]
 script = ExtResource("1_uvnfx")
@@ -8,5 +13,9 @@ script = ExtResource("1_uvnfx")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1135400154]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1361215764]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_uvnfx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=728747852]
+position = Vector2(0, 5)
+texture = ExtResource("2_a3d8c")
