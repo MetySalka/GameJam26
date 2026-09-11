@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://csxqenyycsk2b"]
+
+[ext_resource type="Texture2D" uid="uid://c8ax0cgbqiqg7" path="res://Assets/Sprites/Misc/bar.png" id="1_cobfb"]
+
+[node name="ProgressBar" type="Node2D" unique_id=551622491]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1863472084]
+offset_left = 171.0
+offset_top = 323.0
+offset_right = 671.0
+offset_bottom = 373.0
+scale = Vector2(0.6, 0.6)
+texture_under = ExtResource("1_cobfb")

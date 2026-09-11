@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckw4h670084le" path="res://Scenes/Background/background.tscn" id="2_5yls4"]
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/Menus/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
+[ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/Misc/progress_bar.tscn" id="5_p6jpk"]
 
 [node name="Main" type="Node" unique_id=372516350]
 script = ExtResource("1_1r6ip")
@@ -22,3 +23,5 @@ Background = NodePath("../Background")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1619564848]
 position = Vector2(321, 180)
+
+[node name="ProgressBar" parent="." unique_id=551622491 instance=ExtResource("5_p6jpk")]
