@@ -8,5 +8,8 @@
 [node name="StaticBody3D" parent="." unique_id=1518566740 instance=ExtResource("1_friua")]
 transform = Transform3D(9.833387, 1.8178266, 0, -1.8178266, 9.833387, 0, 0, 0, 10, 0, 0, 0)
 
+[node name="StaticBody3D2" parent="." unique_id=1942162442 instance=ExtResource("1_friua")]
+transform = Transform3D(-9.832549, -1.8223553, -8.742278e-07, -1.8223553, 9.832549, 0, 8.5958874e-07, 1.5931535e-07, -10, 80.54709, 0, 0)
+
 [node name="RigidBody3D" parent="." unique_id=1721430903 instance=ExtResource("2_ctw3a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.110893, 31.157578, 0)
