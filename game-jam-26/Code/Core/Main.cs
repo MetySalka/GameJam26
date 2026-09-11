@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics.Metrics;
 
 public partial class Main : Node
 {
@@ -7,8 +8,8 @@ public partial class Main : Node
 	private RandomNumberGenerator _rng = new RandomNumberGenerator();
 	PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
 	Rect2 Viewport;
-
-
+	int Wait;
+	int ProcessCounter;
 
 
 	public void generateFood(PackedScene foodScene)
@@ -35,16 +36,26 @@ public partial class Main : Node
 
 	public void prepareLevel()
 	{
+		GD.Print("Initial viewport is:");
 		GD.Print(Viewport);
-		for(int i = 0; i < 1200; i++) {
+		for(int i = 0; i < 50; i++) {
 			generateFood(foodScene);
 		}
+		Wait = _rng.RandiRange(300, 1200);
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Viewport = new Rect2(new Vector2(0,0), GetViewport().GetVisibleRect().Size);
 		FoodUpdate();
+		Viewport = new Rect2(new Vector2(0,0), GetViewport().GetVisibleRect().Size);
+		ProcessCounter ++;
+
+		if (ProcessCounter >= Wait) {
+			ProcessCounter = 0;
+			Wait = _rng.RandiRange(300, 1200);
+			generateFood(foodScene);
+		}
+		
 
 	}
 
