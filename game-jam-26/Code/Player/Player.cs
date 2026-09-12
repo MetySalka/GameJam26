@@ -64,8 +64,6 @@ public partial class Player : CharacterBody2D
 	private void OnPlayerDeath()
 	{
 		GD.Print("Player Death");
-		
-		
 	}
 
 	public override void _Ready()

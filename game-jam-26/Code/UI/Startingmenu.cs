@@ -21,14 +21,13 @@ public partial class Startingmenu : Control
 	}
 	public void OnClickButtonStart()
 	{
-		var main =  GetParent();	
 		_background.Show();
 		GetTree().Paused = false;
 		_main.Call("prepareLevel");
 		_player.Show();
 		_progressBar.Show();
-		Hide();
-	}
+		GetNode<Control>("/root/Main/StartingMenu").Hide();
+		}
 
 	public void OnClickButtonExit()
 	{

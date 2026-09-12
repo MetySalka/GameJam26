@@ -20,7 +20,16 @@ layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="Label" type="Label" parent="CenterContainer" unique_id=1516744601]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=660151497]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1516744601]
 layout_mode = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_td03i")
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1243200011]
+layout_mode = 2
+text = "Try again?"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="OnTryAgainPressed"]
