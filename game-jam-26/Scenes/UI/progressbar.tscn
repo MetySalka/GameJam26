@@ -9,10 +9,10 @@ script = ExtResource("1_iwlb4")
 _textureBar = NodePath("TextureProgressBar")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1863472084]
-offset_left = 171.0
-offset_top = 323.0
-offset_right = 671.0
-offset_bottom = 373.0
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 350.0
+offset_bottom = 30.0
 scale = Vector2(0.6, 0.6)
 texture_under = ExtResource("1_cobfb")
 texture_progress = ExtResource("3_edw7m")

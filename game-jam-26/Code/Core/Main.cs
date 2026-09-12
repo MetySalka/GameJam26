@@ -21,7 +21,7 @@ public partial class Main : Node
 	public void prepareLevel()
 	{
 
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 500; i++)
 		{
 			generateFood(foodScene);
 		}

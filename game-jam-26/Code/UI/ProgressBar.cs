@@ -7,8 +7,8 @@ public partial class ProgressBar : Node2D
 {
 	[Export] private TextureProgressBar _textureBar;
 	[Export] public global::Background Background { get; set; }
-	bool evolving = false;
-	int evolveCnt = 0;
+int testVar;
+	int animationState;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{ 
@@ -19,24 +19,32 @@ public partial class ProgressBar : Node2D
 	public override void _Process(double delta)
 	{
 
-		if(evolving)
+		if(animationState >= 1 && animationState < 100)
 		{
-			if(_textureBar.Scale.X > 0.6f) {
-			_textureBar.Scale -= new Vector2(0.0015f, 0.001f);
-			}
+			testVar++;
+			_textureBar.Value = Mathf.MoveToward(_textureBar.Value, 0, 1);;
+			_textureBar.Scale += new Vector2(0.0025f, 0.001f);
+			Background.SetScrollArea(Background.GetScrollArea() + new Vector2(16,16));
 
-			if(_textureBar.Scale.X == 0.6f)
-			{
-				evolving = false;
-			}
+
+			animationState++;
+		} else if (animationState >= 100)
+		{
+			animationState = -100;
+			GD.Print("TestVar in middle of animation: " + testVar);
 		}
+		if(animationState < -1)
+		{
+			_textureBar.Value = Mathf.MoveToward(0, _textureBar.Value, 1);;
+			_textureBar.Scale -= new Vector2(0.0025f, 0.001f);
+			animationState++;
+			testVar--;
+			
+		} 
+		GD.Print("TestVar at the end: " + testVar);
 		if (_textureBar.Value > 99)
 		{
-			_textureBar.Value = 0;
-			_textureBar.Scale = new Vector2(0.75f, 0.7f);
-			Background.SetScrollArea(new Vector2(Background.GetScrollArea().X + 4096, Background.GetScrollArea().Y + 4096));
-			evolving = true;
-
+			animationState = 1;
 		}
 	}
 }
