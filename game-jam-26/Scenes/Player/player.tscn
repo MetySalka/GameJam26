@@ -1,24 +1,111 @@
 [gd_scene format=3 uid="uid://dtn54nq4lmoom"]
 
 [ext_resource type="Script" uid="uid://tti25d17stg1" path="res://Code/Player/Player.cs" id="1_uvnfx"]
+[ext_resource type="Texture2D" uid="uid://dbpefcyh4u0xl" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0001.png" id="2_enij7"]
 [ext_resource type="Texture2D" uid="uid://bvb6e3txsogpv" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0001.png" id="3_hnuln"]
+[ext_resource type="Texture2D" uid="uid://dblbs1oftnskp" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0002.png" id="3_mwii3"]
 [ext_resource type="Script" uid="uid://ctamrepniap05" path="res://Code/Player/FoodPickup.cs" id="3_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://kt4lbybup0gp" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0001.png" id="4_0u5uq"]
+[ext_resource type="Texture2D" uid="uid://ceie5x3hkb6i6" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0003.png" id="4_2aanf"]
 [ext_resource type="Texture2D" uid="uid://bu2c2ykjursdg" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0001.png" id="4_74mp2"]
 [ext_resource type="Texture2D" uid="uid://c4gxfue7c16vo" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0002.png" id="4_aqm4k"]
 [ext_resource type="Texture2D" uid="uid://csn2bl8mtnv8k" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0002.png" id="5_jlvik"]
+[ext_resource type="Texture2D" uid="uid://eve2rd4eogxp" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0004.png" id="5_m6ahd"]
 [ext_resource type="Texture2D" uid="uid://btokgwvi4eith" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0002.png" id="5_oikmp"]
 [ext_resource type="Texture2D" uid="uid://nsum1jqie3ll" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0003.png" id="5_rcvs5"]
 [ext_resource type="Texture2D" uid="uid://cl4vweflk7kcm" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0003.png" id="6_06tpx"]
 [ext_resource type="Texture2D" uid="uid://dmv5fw1gdkwgf" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0003.png" id="6_gk6dx"]
 [ext_resource type="Texture2D" uid="uid://3nwuombrvbcu" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0004.png" id="6_h8ma5"]
+[ext_resource type="Texture2D" uid="uid://d0yiulro2blax" path="res://Assets/Sprites/Creatures/Stika player/stika player_0001.png" id="6_ogmfp"]
 [ext_resource type="Texture2D" uid="uid://bhhaokpu7uk" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0004.png" id="7_7g0yx"]
+[ext_resource type="Texture2D" uid="uid://du36yff40u75w" path="res://Assets/Sprites/Creatures/Stika player/stika player_0002.png" id="7_ixrbb"]
 [ext_resource type="Texture2D" uid="uid://c53lfet446inx" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0004.png" id="7_jhyir"]
+[ext_resource type="Texture2D" uid="uid://bo3a5epg8bnb5" path="res://Assets/Sprites/Creatures/Stika player/stika player_0003.png" id="8_ei2r2"]
+[ext_resource type="Texture2D" uid="uid://dtrrixkf7ukkt" path="res://Assets/Sprites/Creatures/Stika player/stika player_0004.png" id="9_j6uq4"]
+[ext_resource type="Texture2D" uid="uid://cnjdxs4kyak6b" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0001.png" id="10_h5u0x"]
 [ext_resource type="Texture2D" uid="uid://b27jar51o6cuh" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0001.png" id="11_7g0yx"]
+[ext_resource type="Texture2D" uid="uid://djuyaswyj367m" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0002.png" id="11_po18e"]
 [ext_resource type="Texture2D" uid="uid://b3hglpcljbbc4" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0002.png" id="12_dey5f"]
+[ext_resource type="Texture2D" uid="uid://8d4n3al6yckh" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0003.png" id="12_v37cr"]
+[ext_resource type="Texture2D" uid="uid://c47tc70ud58ii" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0004.png" id="13_8d028"]
 [ext_resource type="Texture2D" uid="uid://cgpas700uodpt" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0003.png" id="13_r5xpd"]
+[ext_resource type="Texture2D" uid="uid://6xxv8tgrissm" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0001.png" id="14_0liok"]
 [ext_resource type="Texture2D" uid="uid://dm7bwqltf66tn" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0004.png" id="14_ks1b7"]
+[ext_resource type="Texture2D" uid="uid://c3ys6h5fou5i2" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0002.png" id="15_gyc8k"]
+[ext_resource type="Texture2D" uid="uid://bxvieqfibvhei" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0003.png" id="16_qflxp"]
+[ext_resource type="Texture2D" uid="uid://gs241c3toonb" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0004.png" id="17_0pk7v"]
 [ext_resource type="Script" uid="uid://5u62fch08oxj" path="res://Code/Player/PlayerHitbox.cs" id="19_aqm4k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vwj1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_enij7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mwii3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2aanf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m6ahd")
+}],
+"loop": 1,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ogmfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ixrbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ei2r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j6uq4")
+}],
+"loop": 1,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_h5u0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_po18e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_v37cr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8d028")
+}],
+"loop": 1,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0liok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_gyc8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qflxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0pk7v")
+}],
+"loop": 1,
+"name": &"Up",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
 size = Vector2(12, 8)
@@ -112,6 +199,13 @@ height = 20.119999
 scale = Vector2(1.385, 1.385)
 script = ExtResource("1_uvnfx")
 
+[node name="PikeSprite" type="AnimatedSprite2D" parent="." unique_id=594399275]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_6vwj1")
+animation = &"Right"
+frame = 1
+frame_progress = 0.32966253
+
 [node name="PickupRadius" type="Area2D" parent="." unique_id=56065100 node_paths=PackedStringArray("_player")]
 collision_mask = 4
 script = ExtResource("3_xpcdj")
@@ -133,7 +227,7 @@ shape = SubResource("RectangleShape2D_4qc0h")
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_hnuln")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1118745982]
+[node name="TadpoleSprite" type="AnimatedSprite2D" parent="." unique_id=1118745982]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_uraql")
 animation = &"Left"
