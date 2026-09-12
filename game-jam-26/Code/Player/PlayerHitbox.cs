@@ -16,14 +16,13 @@ public partial class PlayerHitbox : Area2D
 		_HitDown = GetNode<CollisionShape2D>("HitDown");
 		_HitLeft = GetNode<CollisionShape2D>("HitLeft");
 		_HitRight = GetNode<CollisionShape2D>("HitRight");
-
-		_player = GetNode<Player>("../Player");
 	}
 	
 	private void OnHitboxEntered(Area2D area)
 	{
 		if (area is Fishfood food)
 		{
+			GD.Print("Ble");
 			_player.OnPlayerDeath();
 		}
 	}
