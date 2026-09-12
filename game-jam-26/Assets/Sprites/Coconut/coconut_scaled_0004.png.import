@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba38yh6t2kvq6"
-path="res://.godot/imported/coconut_scaled_0004.png-04dd491776080ece880582a15aa914ef.ctex"
+path="res://.godot/imported/coconut_scaled_0004.png-d0eb4aa6bf8f2f78f3a4ffe6e9c7a31e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0004.png"
-dest_files=["res://.godot/imported/coconut_scaled_0004.png-04dd491776080ece880582a15aa914ef.ctex"]
+source_file="res://Assets/Sprites/Coconut/coconut_scaled_0004.png"
+dest_files=["res://.godot/imported/coconut_scaled_0004.png-d0eb4aa6bf8f2f78f3a4ffe6e9c7a31e.ctex"]
 
 [params]
 

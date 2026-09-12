@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bap8tk2vwfche"
-path="res://.godot/imported/palm_coconut_Scaled_0001.png-0f4eb58e414babe11ea899867dfdaec8.ctex"
+path="res://.godot/imported/palm_coconut_Scaled_0001.png-f16da40b7c46d55c3a098b9cf1118276.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0001.png"
-dest_files=["res://.godot/imported/palm_coconut_Scaled_0001.png-0f4eb58e414babe11ea899867dfdaec8.ctex"]
+source_file="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0001.png"
+dest_files=["res://.godot/imported/palm_coconut_Scaled_0001.png-f16da40b7c46d55c3a098b9cf1118276.ctex"]
 
 [params]
 

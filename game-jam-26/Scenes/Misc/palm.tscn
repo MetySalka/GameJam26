@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dmedgaomtdpn6"]
+
+[ext_resource type="Texture2D" uid="uid://bap8tk2vwfche" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0001.png" id="1_mbky3"]
+[ext_resource type="Texture2D" uid="uid://dwvbrx5bcs6cr" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0002.png" id="2_fv4ua"]
+[ext_resource type="Texture2D" uid="uid://bcxepkkcxkrqs" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0003.png" id="3_kx05x"]
+[ext_resource type="Texture2D" uid="uid://cabnbmaxna0l" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0004.png" id="4_6icp3"]
+[ext_resource type="Texture2D" uid="uid://c1mritt0nu8bt" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0005.png" id="5_olm0p"]
+[ext_resource type="Texture2D" uid="uid://dkppmui068viv" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0007.png" id="6_3s64m"]
+[ext_resource type="Texture2D" uid="uid://bs3f3mpapw7bm" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0006.png" id="7_1k51i"]
+[ext_resource type="Texture2D" uid="uid://bfbnyt021aaq2" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0008.png" id="8_l8h8y"]
+[ext_resource type="Texture2D" uid="uid://dgk1grvks1tm8" path="res://Assets/Sprites/Misc/Palm/PalmCoconut/palm_coconut_Scaled_0009.png" id="9_ibufh"]
+[ext_resource type="Texture2D" uid="uid://cas8d2rparddw" path="res://Assets/Sprites/Misc/Palm/palm_Better_Scaled_0001.png" id="10_4pju0"]
+[ext_resource type="Texture2D" uid="uid://ramcxnrrsf1q" path="res://Assets/Sprites/Misc/Palm/palm_Better_Scaled_0002.png" id="11_60gk0"]
+[ext_resource type="Texture2D" uid="uid://daivp7if2afd6" path="res://Assets/Sprites/Misc/Palm/palm_Better_Scaled_0003.png" id="12_466g5"]
+[ext_resource type="Texture2D" uid="uid://cayagoivq3rfr" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0005.png" id="13_mrmaj"]
+[ext_resource type="Texture2D" uid="uid://lctppd8yvgc3" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0006.png" id="14_hiv22"]
+[ext_resource type="Texture2D" uid="uid://c3u7enxa8cnq7" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0001.png" id="15_s1b6u"]
+[ext_resource type="Texture2D" uid="uid://oo8f6h3vo5kn" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0002.png" id="16_6vuhe"]
+[ext_resource type="Texture2D" uid="uid://b0ggbg52os5uh" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0003.png" id="17_ph12v"]
+[ext_resource type="Texture2D" uid="uid://ba38yh6t2kvq6" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0004.png" id="18_rky30"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_plrnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mbky3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fv4ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kx05x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6icp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_olm0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3s64m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1k51i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l8h8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ibufh")
+}],
+"loop": 1,
+"name": &"coconut_falling",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4pju0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_60gk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_466g5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4jq5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_mrmaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hiv22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_s1b6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6vuhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ph12v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_rky30")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Palm" type="Node2D" unique_id=1093762877]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1626023639]
+sprite_frames = SubResource("SpriteFrames_plrnn")
+animation = &"coconut_falling"
+frame = 8
+frame_progress = 0.37827337
+
+[node name="Coconut" type="Node2D" parent="." unique_id=1387515386]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Coconut" unique_id=100090938]
+position = Vector2(12, 23)
+rotation = 0.3944444
+scale = Vector2(0.453125, 0.484375)
+sprite_frames = SubResource("SpriteFrames_4jq5w")
+frame = 5
+frame_progress = 0.5105956

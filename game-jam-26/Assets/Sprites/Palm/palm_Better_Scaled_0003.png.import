@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://daivp7if2afd6"
-path="res://.godot/imported/palm_Better_Scaled_0003.png-f138ebe3059c1e12bb3df9e48cab1299.ctex"
+path="res://.godot/imported/palm_Better_Scaled_0003.png-ac0b10950c4b87b7809e1259dd171452.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Misc/Palm/palm_Better_Scaled_0003.png"
-dest_files=["res://.godot/imported/palm_Better_Scaled_0003.png-f138ebe3059c1e12bb3df9e48cab1299.ctex"]
+source_file="res://Assets/Sprites/Palm/palm_Better_Scaled_0003.png"
+dest_files=["res://.godot/imported/palm_Better_Scaled_0003.png-ac0b10950c4b87b7809e1259dd171452.ctex"]
 
 [params]
 
