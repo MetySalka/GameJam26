@@ -23,4 +23,15 @@ public static class Helpers
 			Mathf.Clamp(position.X, rect.Position.X, rect.End.X),
 			Mathf.Clamp(position.Y, rect.Position.Y, rect.End.Y));
 	}
+
+	public static void MoveFood(Vector2 offset, Background background)
+	{
+
+		foreach (Node child in background.GetChildren())
+		{
+			if (child is Fishfood food && !food.IsQueuedForDeletion())
+				food.Position += offset;
+		}
+
+	}
 }

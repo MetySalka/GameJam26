@@ -41,7 +41,7 @@ public partial class ScrollingBGsprite : Sprite2D
 
 	private void UpdateRegion()
 	{
-		RegionRect = new Rect2(0, _offsetY, Texture.GetSize().X * 4, WindowHeight);
+		RegionRect = new Rect2(0, _offsetY, Texture.GetSize().X * 12, WindowHeight);
 	}
 
 
