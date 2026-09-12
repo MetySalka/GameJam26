@@ -12,7 +12,7 @@ public partial class Main : Node
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
 	private readonly PackedScene tadpoleFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/tadpolefood.tscn");
 	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
-	private readonly PackedScene swordfishScene = GD.Load<PackedScene>("res://Scenes/Creatures/swordfish.tscn");
+	private readonly PackedScene swordfihScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/swordfih.tscn");
 	private Player _Player;
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private double _secondsUntilStikaSpawn;
@@ -94,7 +94,7 @@ public partial class Main : Node
 			if (_secondsUntilSwordfishStream <= 0)
 			{
 				
-
+				SwordFishStream(_rng.RandfRange(0, 360), _rng.RandiRange(1, 3), Helpers.RandomPointInRect(Helpers.GetLocalViewport(Background), _rng));
 
 				_secondsUntilSwordfishStream = _rng.RandfRange(4, 12);
 			}
@@ -107,10 +107,29 @@ public partial class Main : Node
 
 	}
 
-public void SwordFishStream(float Angle, int width)
+	// Position is the point the stream passes through in viewport pixels.
+	// Angle is clockwise degrees from right; the row starts 2,000 pixels before position.
+	public void SwordFishStream(float Angle, int width, Vector2 position)
 	{
-		
-	
+		const float spacing = 40f;
+		const float spawnDistance = 2000f;
+		const float speed = 600f;
+		Vector2 heading = Vector2.Right.Rotated(Mathf.DegToRad(Angle));
+		Vector2 spawnCenter = position - heading * spawnDistance;
+		Vector2 sideways = new Vector2(-heading.Y, heading.X);
+		Transform2D viewportToLocal = Background.GetGlobalTransformWithCanvas().AffineInverse();
+		Vector2 localHeading = viewportToLocal * (position + heading) - viewportToLocal * position;
+
+		for (int i = 0; i < width; i++)
+		{
+			float offset = (i - (width - 1) * 0.5f) * spacing;
+			Swordfih swordfish = swordfihScene.Instantiate<Swordfih>();
+			swordfish.Position = viewportToLocal * (spawnCenter + sideways * offset);
+			swordfish.Rotation = localHeading.Angle();
+			swordfish.Velocity = localHeading * speed;
+			Background.AddChild(swordfish);
+			swordfish.GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("Right");
+		}
 	}
 
 public void SpawnBubble(Vector2 position)

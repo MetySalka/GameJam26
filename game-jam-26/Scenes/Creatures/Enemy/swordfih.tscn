@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6q2q3cr338g3"]
 
 [ext_resource type="Texture2D" uid="uid://bn3k6lkcbqpd2" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0001.png" id="1_duen7"]
+[ext_resource type="Script" uid="uid://bujaf76ukm15y" path="res://Code/Enemies/Swordfih.cs" id="1_g0v00"]
 [ext_resource type="Texture2D" uid="uid://chvv453tgk1ls" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0002.png" id="2_g0v00"]
 [ext_resource type="Texture2D" uid="uid://bg0om53mg6fwl" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0003.png" id="3_c8tyq"]
 [ext_resource type="Texture2D" uid="uid://cu86gflynhwwm" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0004.png" id="4_d8nrg"]
@@ -46,9 +47,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
+size = Vector2(65, 17)
+
 [node name="Swordfih" type="Area2D" unique_id=1265116225]
+script = ExtResource("1_g0v00")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1917374147]
 sprite_frames = SubResource("SpriteFrames_uraql")
 animation = &"Right"
 frame_progress = 0.4096124
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=103279496]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_c8p22")
