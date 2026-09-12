@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dmedgaomtdpn6"]
+
+[ext_resource type="Texture2D" uid="uid://bap8tk2vwfche" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0001.png" id="1_mbky3"]
+[ext_resource type="Texture2D" uid="uid://dwvbrx5bcs6cr" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0002.png" id="2_fv4ua"]
+[ext_resource type="Texture2D" uid="uid://bcxepkkcxkrqs" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0003.png" id="3_kx05x"]
+[ext_resource type="Texture2D" uid="uid://cabnbmaxna0l" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0004.png" id="4_6icp3"]
+[ext_resource type="Texture2D" uid="uid://c1mritt0nu8bt" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0005.png" id="5_olm0p"]
+[ext_resource type="Texture2D" uid="uid://dkppmui068viv" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0007.png" id="6_3s64m"]
+[ext_resource type="Texture2D" uid="uid://bs3f3mpapw7bm" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0006.png" id="7_1k51i"]
+[ext_resource type="Texture2D" uid="uid://bfbnyt021aaq2" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0008.png" id="8_l8h8y"]
+[ext_resource type="Texture2D" uid="uid://dgk1grvks1tm8" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0009.png" id="9_ibufh"]
+[ext_resource type="Texture2D" uid="uid://cas8d2rparddw" path="res://Assets/Sprites/Palm/palm_Better_Scaled_0001.png" id="10_4pju0"]
+[ext_resource type="Texture2D" uid="uid://ramcxnrrsf1q" path="res://Assets/Sprites/Palm/palm_Better_Scaled_0002.png" id="11_60gk0"]
+[ext_resource type="Texture2D" uid="uid://daivp7if2afd6" path="res://Assets/Sprites/Palm/palm_Better_Scaled_0003.png" id="12_466g5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_plrnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mbky3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fv4ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kx05x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6icp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_olm0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3s64m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1k51i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l8h8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ibufh")
+}],
+"loop": 1,
+"name": &"coconut_falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4pju0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_60gk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_466g5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Palm" type="Node2D" unique_id=1093762877]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1626023639]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_plrnn")
+frame_progress = 0.696263

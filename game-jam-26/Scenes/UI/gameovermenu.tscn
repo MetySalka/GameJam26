@@ -33,6 +33,11 @@ label_settings = SubResource("LabelSettings_td03i")
 
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1243200011]
 layout_mode = 2
-text = "Try again?"
+text = "Try Again ?"
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2109441246]
+layout_mode = 2
+text = "Exit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="OnTryAgainPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="OnExitPressed"]
