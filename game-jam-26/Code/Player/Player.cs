@@ -35,30 +35,30 @@ public partial class Player : CharacterBody2D
 		Position = clampedPosition;
 
 		// Move the background in the opposite direction.
-		if (!overflow.IsZeroApprox() && Background != null)
-		{
-			Background.Position -= new Vector2(overflow.X, 0);
-			Background.ScrollVertically(-overflow.Y);
-		}
+		// if (!overflow.IsZeroApprox() && Background != null)
+		// {
+		// 	Background.Position -= new Vector2(overflow.X, 0);
+		// 	Background.ScrollVertically(-overflow.Y);
+		// }
 
-		if (Background.Position.X >= 1024)
-		{
+		// if (Background.Position.X >= 1024)
+		// {
 
-			Vector2 offset = new Vector2(-1024, 0);
-			Background.Position += offset;
-			Helpers.MoveFood(-offset, Background);
+		// 	Vector2 offset = new Vector2(-1024, 0);
+		// 	Background.Position += offset;
+		// 	Helpers.MoveFood(-offset, Background);
 
-			GD.Print("Whoops, too LEFT");
+		// 	GD.Print("Whoops, too LEFT");
 
-		}
-		else if (Background.Position.X <= -1024)
-		{
-			Vector2 offset = new Vector2(1024, 0);
-			Background.Position += offset;
-			Helpers.MoveFood(-offset, Background);
-			GD.Print("Whoops, too RIGHT");
+		// }
+		// else if (Background.Position.X <= -1024)
+		// {
+		// 	Vector2 offset = new Vector2(1024, 0);
+		// 	Background.Position += offset;
+		// 	Helpers.MoveFood(-offset, Background);
+		// 	GD.Print("Whoops, too RIGHT");
 
-		}
+		// }
 
 
 	}
@@ -134,9 +134,10 @@ public partial class Player : CharacterBody2D
 		{	OnPlayerDeath();
 		}
 
-		MovementArea = _viewport.Size * 0.7f;
+		MovementArea = _viewport.Size * new Vector2(0.92f, 0.79f);
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		Vector2 center = _viewport.GetCenter();
+		center.Y = center.Y - _viewport.Size.Y * 0.045f; 
 		Vector2 topLeft = center - MovementArea / 2f;
 		_movementBounds = new Rect2(topLeft, MovementArea);
 
