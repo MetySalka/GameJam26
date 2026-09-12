@@ -1,27 +1,17 @@
 [gd_scene format=3 uid="uid://dtn54nq4lmoom"]
 
 [ext_resource type="Script" uid="uid://tti25d17stg1" path="res://Code/Player/Player.cs" id="1_uvnfx"]
-[ext_resource type="Texture2D" uid="uid://boovaycljdhhw" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0001.png" id="2_2ahak"]
 [ext_resource type="Texture2D" uid="uid://dbpefcyh4u0xl" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0001.png" id="2_enij7"]
 [ext_resource type="Texture2D" uid="uid://dblbs1oftnskp" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0002.png" id="3_mwii3"]
-[ext_resource type="Texture2D" uid="uid://lrpumbus60tc" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0002.png" id="3_rukb4"]
 [ext_resource type="Script" uid="uid://ctamrepniap05" path="res://Code/Player/FoodPickup.cs" id="3_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://ceie5x3hkb6i6" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0003.png" id="4_2aanf"]
-[ext_resource type="Texture2D" uid="uid://bbogirvf2qevn" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0003.png" id="4_4no11"]
-[ext_resource type="Texture2D" uid="uid://47ubcssq2u55" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0004.png" id="5_fcwna"]
 [ext_resource type="Texture2D" uid="uid://eve2rd4eogxp" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0004.png" id="5_m6ahd"]
-[ext_resource type="Texture2D" uid="uid://deud7wj4inn1d" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0005.png" id="6_1agin"]
 [ext_resource type="Texture2D" uid="uid://craxkvrg1swky" path="res://Assets/Sprites/Creatures/Stika player/stika left_0001.png" id="6_enij7"]
-[ext_resource type="Texture2D" uid="uid://bln1hcxyrgr3l" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0001.png" id="7_2jnj1"]
 [ext_resource type="Texture2D" uid="uid://bw47fpjky4emg" path="res://Assets/Sprites/Creatures/Stika player/stika left_0002.png" id="7_mwii3"]
 [ext_resource type="Texture2D" uid="uid://dkkigdk1rqvae" path="res://Assets/Sprites/Creatures/Stika player/stika left_0003.png" id="8_2aanf"]
-[ext_resource type="Texture2D" uid="uid://dpneg5t6rq7k0" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0002.png" id="8_enij7"]
 [ext_resource type="Texture2D" uid="uid://cohh8dmdrusg7" path="res://Assets/Sprites/Creatures/Stika player/stika left_0004.png" id="9_m6ahd"]
-[ext_resource type="Texture2D" uid="uid://h0q3rpnuki16" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0003.png" id="9_mwii3"]
-[ext_resource type="Texture2D" uid="uid://8tfwqy6kd4yx" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0004.png" id="10_2aanf"]
 [ext_resource type="Texture2D" uid="uid://sr57qkg3tlhg" path="res://Assets/Sprites/Creatures/Stika player/stika right_0001.png" id="10_ogmfp"]
 [ext_resource type="Texture2D" uid="uid://bh452l5grmy57" path="res://Assets/Sprites/Creatures/Stika player/stika right_0002.png" id="11_ixrbb"]
-[ext_resource type="Texture2D" uid="uid://breb2gtmk4vxc" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0005.png" id="11_m6ahd"]
 [ext_resource type="Texture2D" uid="uid://dsvheql7mkgv1" path="res://Assets/Sprites/Creatures/Stika player/stika right_0003.png" id="12_ei2r2"]
 [ext_resource type="Texture2D" uid="uid://ddowjx5eia0sk" path="res://Assets/Sprites/Creatures/Stika player/stika right_0004.png" id="13_j6uq4"]
 [ext_resource type="Texture2D" uid="uid://d3g552ywlnpga" path="res://Assets/Sprites/Creatures/Stika player/stika player(Up) _0001.png" id="14_h5u0x"]
@@ -193,34 +183,14 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uraql"]
 radius = 5.0
-height = 17.0
+height = 32.321297
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6vwj1"]
 radius = 7.0
-height = 20.119999
+height = 30.877254
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jf0tn"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_2ahak")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_rukb4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_4no11")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_fcwna")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_1agin")
-}],
-"loop": 1,
-"name": &"Down",
-"speed": 5.0
-}, {
 "frames": [],
 "loop": 1,
 "name": &"Left",
@@ -230,26 +200,6 @@ animations = [{
 "loop": 1,
 "name": &"Right",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_2jnj1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_enij7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_mwii3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_2aanf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_m6ahd")
-}],
-"loop": 1,
-"name": &"Up",
-"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=442189289]
@@ -257,11 +207,11 @@ scale = Vector2(1.385, 1.385)
 script = ExtResource("1_uvnfx")
 
 [node name="PikeSprite" type="AnimatedSprite2D" parent="." unique_id=594399275]
+visible = false
 position = Vector2(-0.7220217, 0)
 scale = Vector2(0.75, 0.9)
 sprite_frames = SubResource("SpriteFrames_6vwj1")
-animation = &"Down"
-frame_progress = 0.0054956106
+animation = &"Left"
 
 [node name="PickupRadius" type="Area2D" parent="." unique_id=56065100 node_paths=PackedStringArray("_player")]
 collision_mask = 4
@@ -273,14 +223,11 @@ position = Vector2(0, 1.1920929e-07)
 shape = SubResource("CircleShape2D_8d028")
 
 [node name="TadpoleSprite" type="AnimatedSprite2D" parent="." unique_id=1118745982]
-visible = false
 position = Vector2(0, 1.1920929e-07)
 sprite_frames = SubResource("SpriteFrames_uraql")
-animation = &"Down"
-frame_progress = 0.23286644
+animation = &"Up"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=886382019 node_paths=PackedStringArray("_player")]
-visible = false
 collision_mask = 8
 script = ExtResource("19_aqm4k")
 _player = NodePath("..")
@@ -308,6 +255,4 @@ visible = false
 position = Vector2(0.7220217, 0)
 scale = Vector2(1.475, 1.475)
 sprite_frames = SubResource("SpriteFrames_jf0tn")
-animation = &"Down"
-frame = 3
-frame_progress = 0.81347394
+animation = &"Left"

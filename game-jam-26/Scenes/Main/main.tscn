@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
-[ext_resource type="PackedScene" uid="uid://dmedgaomtdpn6" path="res://Scenes/Misc/palm.tscn" id="8_hryqi"]
 [ext_resource type="PackedScene" uid="uid://bgtrs5ol1nvq5" path="res://Scenes/UI/health.tscn" id="8_y3v7k"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
@@ -60,4 +59,4 @@ offset_bottom = 40.0
 scale = Vector2(16.154625, 3.957517)
 color = Color(0.7411765, 0, 0, 0.41960785)
 
-[node name="Palm" parent="." unique_id=1093762877 instance=ExtResource("8_hryqi")]
+[node name="Palm" parent="." unique_id=1093762877]
