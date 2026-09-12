@@ -10,8 +10,6 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
-	public int Health = 1;
-
 	[Export] public global::Background Background { get; set; }
 	public Vector2 MovementArea;
 	public int Level { get;  set; } = 0;
@@ -67,7 +65,7 @@ public partial class Player : CharacterBody2D
 
 	public void OnPlayerHit()
 	{
-		Health--;
+		GetNode<Health>("/root/Main/Health").HealthPlayer--;
 	}
 
 	public void LevelUp()
@@ -108,7 +106,7 @@ public partial class Player : CharacterBody2D
 	public void ResetForNewRun()
 	{
 		Level = 0;
-		Health = 1;
+		GetNode<Health>("/root/Main/Health").HealthPlayer = 5;
 		Position = _startingPosition;
 		Velocity = Vector2.Zero;
 		AnimatedSprite2D pike = GetNode<AnimatedSprite2D>("PikeSprite");

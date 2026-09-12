@@ -49,7 +49,7 @@ public partial class Main : Node
 
 	public override void _Process(double delta)
 	{
-		if (_levelStarted && _Player.Health > 0 && _Player.Level == 0)
+		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0 && _Player.Level == 0)
 		{	
 			_secondsUntilStikaSpawn -= delta;
 			if (_secondsUntilStikaSpawn <= 0 && Background.GetChildren().OfType<Stika>().Count() < 10)
@@ -74,7 +74,7 @@ public partial class Main : Node
 
 
 
-		if (_levelStarted && _Player.Health > 0)
+		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0)
 		{	
 			_secondsUntilBubbleSpawn -= delta;
 			if (_secondsUntilBubbleSpawn <= 0 && Background.GetChildren().OfType<Bubble>().Count() < 6 + _Player.Level * 2)
