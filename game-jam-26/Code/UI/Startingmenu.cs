@@ -9,19 +9,17 @@ public partial class Startingmenu : Control
 	[Export] private Player _player;
 	[Export] private ProgressBar _progressBar;
 	[Export] private Background _background;
-	[Export] private Control _gameover;
-
-	public override void _Ready()
+	[Export] private Control _gameOver;
+	public void ShowMenu()
 	{
-		ProcessMode = Node.ProcessModeEnum.WhenPaused;
 		GetTree().Paused = true;
 		_background.Hide();
 		_player.Hide();
 		_progressBar.Hide();
-		_gameover.Hide();
-		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
+		Show();
 	}
-	public void OnClickButtonStart()
+
+	public void HideMenu()
 	{
 		_background.Show();
 		GetTree().Paused = false;
@@ -29,6 +27,17 @@ public partial class Startingmenu : Control
 		_player.Show();
 		_progressBar.Show();
 		GetNode<Control>("/root/Main/StartingMenu").Hide();
+	}
+	public override void _Ready()
+	{
+		ProcessMode = Node.ProcessModeEnum.WhenPaused;
+		ShowMenu();
+		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
+	}
+	public void OnClickButtonStart()
+	{
+		GetNode<Control>("/root/Main/GameOver").Hide();
+		HideMenu();
 		}
 
 	public void OnClickButtonExit()

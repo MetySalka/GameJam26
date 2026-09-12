@@ -43,7 +43,7 @@ public partial class Player : CharacterBody2D
 
 			Vector2 offset = new Vector2(-1024, 0);
 			Background.Position += offset;
-			Helpers.MoveWorldObjects(-offset, Background);
+			Helpers.MoveFood(-offset, Background);
 
 			GD.Print("Whoops, too LEFT");
 
@@ -52,7 +52,7 @@ public partial class Player : CharacterBody2D
 		{
 			Vector2 offset = new Vector2(1024, 0);
 			Background.Position += offset;
-			Helpers.MoveWorldObjects(-offset, Background);
+			Helpers.MoveFood(-offset, Background);
 			GD.Print("Whoops, too RIGHT");
 
 		}
@@ -67,10 +67,8 @@ public partial class Player : CharacterBody2D
 
 	private void OnPlayerDeath()
 	{
-		ProcessMode = Node.ProcessModeEnum.WhenPaused;
-		GetTree().Paused = true;
 		Background.Hide();
-		_player.Hide();
+		Hide();
 		_progressBar.Hide();
 		GetNode<Control>("/root/Main/GameOver").Show();
 	}
