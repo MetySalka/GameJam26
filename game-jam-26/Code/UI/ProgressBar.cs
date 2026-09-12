@@ -5,20 +5,16 @@ namespace GameJam26.Code.UI;
 
 public partial class ProgressBar : Node2D
 {
+	[Export] private TextureProgressBar _textureBar;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		var barValue = _textureBar;
+		GD.Print(barValue);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	float Counter = 0.0f;
 	public override void _Process(double delta)
 	{
-
-		Counter += 5;
-		var bar = GetNode<TextureProgressBar>("TextureProgressBar");
-		GD.Print(bar.Value);
-		
-		bar.Value = (Math.Sin(Counter / 1000) + 1) * 100;
 	}
 }
