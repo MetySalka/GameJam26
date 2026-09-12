@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://o6q3q6gsf7l3"]
+
+[ext_resource type="Texture2D" uid="uid://hmyabf678gis" path="res://Assets/Sprites/Creatures/puffer.png_0001.png" id="1_tbyhc"]
+[ext_resource type="Texture2D" uid="uid://bj0d0piyx06gy" path="res://Assets/Sprites/Creatures/puffer.png_0002.png" id="2_4umla"]
+[ext_resource type="Texture2D" uid="uid://dva26t6o2gq3" path="res://Assets/Sprites/Creatures/puffer.png_0003.png" id="3_74mp8"]
+[ext_resource type="Texture2D" uid="uid://bdwmirkx3v01i" path="res://Assets/Sprites/Creatures/puffer.png_0004.png" id="4_nsc4r"]
+[ext_resource type="Texture2D" uid="uid://cvw726kr2pglw" path="res://Assets/Sprites/Creatures/puffer.png_0005.png" id="5_liyif"]
+[ext_resource type="Texture2D" uid="uid://k225nhqmgxk" path="res://Assets/Sprites/Creatures/puffer.png_0006.png" id="6_qdb1u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uraql"]
+radius = 13.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vwj1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tbyhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4umla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_74mp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nsc4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_liyif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qdb1u")
+}],
+"loop": 0,
+"name": &"Bloat",
+"speed": 5.0
+}]
+
+[node name="Puffer" type="Area2D" unique_id=29247536]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1044730379]
+shape = SubResource("CircleShape2D_uraql")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=621995760]
+sprite_frames = SubResource("SpriteFrames_6vwj1")
+animation = &"Bloat"
+frame = 1
+speed_scale = 2.5
