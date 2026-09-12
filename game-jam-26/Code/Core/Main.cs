@@ -50,7 +50,7 @@ public partial class Main : Node
 		world.ResetForNewRun();
 		_Player.ResetForNewRun();
 		GetNode<GameJam26.Code.UI.ProgressBar>("ProgressBar").ResetForNewRun();
-		GetNode<Control>("GameOver").Hide();
+		GetNode<Control>("ScreenUI/GameOver").Hide();
 		_framesSinceSpawn = 0;
 		for (int i = 0; i < 500; i++)
 		{
@@ -64,7 +64,7 @@ public partial class Main : Node
 	public override void _Process(double delta)
 	{
 		UpdateSwordfishWarning();
-		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0)
+		if (_levelStarted && GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer > 0)
 			UpdateEnemySpawns(delta);
 
 		_framesSinceSpawn++;
@@ -138,7 +138,7 @@ public partial class Main : Node
 	// Angle is clockwise degrees from right; the row starts 2,000 pixels before position.
 	public void SwordFishStream(float Angle, int width, Vector2 position)
 	{
-		if (width <= 0)
+		if (width <= 0 || _Player.OnLand)
 			return;
 		ColorRect rect;
 		if (_availableSwordfishWarnings.Count > 0)
@@ -184,7 +184,7 @@ public partial class Main : Node
 	{
 		if (_swordfishWarnings.Count == 0)
 			return;
-		if (GetNode<Health>("/root/Main/Health").HealthPlayer <= 0)
+		if (GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer <= 0)
 		{
 			HideSwordfishWarning();
 			return;
@@ -212,6 +212,19 @@ public partial class Main : Node
 		_swordfishWarnings.Clear();
 	}
 
+	public void BeginLandPhase()
+	{
+		HideSwordfishWarning();
+		foreach (Node child in Background.GetChildren())
+		{
+			if (child is Fishfood || child is Swordfih || child is Stika)
+			{
+				((Node2D)child).Hide();
+				child.QueueFree();
+			}
+		}
+	}
+
 	public Puffer SpawnPuffer(Vector2 position)
 	{
 		Puffer puffer = pufferScene.Instantiate<Puffer>();
@@ -230,6 +243,8 @@ public void SpawnBubble(Vector2 position)
 
   public Stika SpawnStika(Vector2 position)
   {
+	if (_Player.OnLand)
+		return null;
 	GD.Print("StikaSpawned");
       Stika stika = stikaScene.Instantiate<Stika>();
       stika.Position = position;
@@ -247,6 +262,8 @@ public void SpawnBubble(Vector2 position)
 
 	public void SpawnLevelUpFood()
 	{
+		if (_Player.OnLand)
+			return;
 		PackedScene scene = GetFoodScene();
 		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
 		for (int i = 0; i < 10; i++)
@@ -262,6 +279,8 @@ public void SpawnBubble(Vector2 position)
 
 	public void ExactFood(PackedScene scene, Vector2 position)
 	{
+		if (_Player.OnLand)
+			return;
 		Fishfood food = scene.Instantiate<Fishfood>();
 		food.Spawner = this;
 		food.SourceScene = scene;

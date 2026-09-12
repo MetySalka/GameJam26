@@ -19,6 +19,21 @@ public partial class ScrollingBGsprite : Sprite2D
 	private int _fromLevel;
 	private int _toLevel;
 	private float _transitionProgress;
+	private Vector2 _cameraOffset;
+
+	public void SetCameraOffset(Vector2 offset)
+	{
+		_cameraOffset = offset;
+		UpdatePosition();
+		QueueRedraw();
+	}
+
+	private void UpdatePosition()
+	{
+		Transform2D worldToParent = GetParent<Node2D>().GlobalTransform.AffineInverse();
+		Vector2 localOffset = worldToParent.X * _cameraOffset.X + worldToParent.Y * _cameraOffset.Y;
+		Position = _startingPosition + new Vector2(Mathf.Sin(_phase) * 3f, 0f) + localOffset;
+	}
 
 	public override void _Ready()
 	{
@@ -58,7 +73,7 @@ public partial class ScrollingBGsprite : Sprite2D
 	{
 		// Keep horizontal movement, but never drift vertically out of the level's band.
 		_phase += (float)delta * 0.3f;
-		Position = _startingPosition + new Vector2(Mathf.Sin(_phase) * 3f, 0f);
+		UpdatePosition();
 		UpdateSourceBand();
 	}
 
@@ -82,6 +97,7 @@ public partial class ScrollingBGsprite : Sprite2D
 	public void ResetForNewRun()
 	{
 		Position = _startingPosition;
+		_cameraOffset = Vector2.Zero;
 		_phase = 0f;
 		SetLevelTransition(0, 0, 0f);
 	}

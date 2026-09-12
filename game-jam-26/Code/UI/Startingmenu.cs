@@ -28,7 +28,7 @@ public partial class Startingmenu : Control
 		GetTree().Paused = false;
 		_player.Show();
 		_progressBar.Show();
-		GetNode<Control>("/root/Main/StartingMenu").Hide();
+		GetNode<Control>("/root/Main/ScreenUI/StartingMenu").Hide();
 		_health.Show();
 	}
 	public override void _Ready()
@@ -40,7 +40,7 @@ public partial class Startingmenu : Control
 
 	public void OnClickButtonStart()
 	{
-		GetNode<Control>("/root/Main/GameOver").Hide();
+		GetNode<Control>("/root/Main/ScreenUI/GameOver").Hide();
 		HideMenu();
 }
 

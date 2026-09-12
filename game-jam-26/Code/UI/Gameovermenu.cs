@@ -15,7 +15,7 @@ public partial class Gameovermenu : Control
 	{
 		ProcessMode = Node.ProcessModeEnum.Always;
 		Hide();
-		_startingMenu = GetNode<Startingmenu>("/root/Main/StartingMenu");
+		_startingMenu = GetNode<Startingmenu>("/root/Main/ScreenUI/StartingMenu");
 		_health.Hide();
 		_fihWarn.Hide();
 

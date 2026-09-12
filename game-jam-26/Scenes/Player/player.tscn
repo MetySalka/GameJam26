@@ -202,6 +202,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
+
 [node name="Player" type="CharacterBody2D" unique_id=442189289]
 scale = Vector2(1.385, 1.385)
 script = ExtResource("1_uvnfx")
@@ -209,7 +211,7 @@ script = ExtResource("1_uvnfx")
 [node name="PikeSprite" type="AnimatedSprite2D" parent="." unique_id=594399275]
 visible = false
 position = Vector2(-0.7220217, 0)
-scale = Vector2(0.75, 0.9)
+scale = Vector2(1.465, 1.758)
 sprite_frames = SubResource("SpriteFrames_6vwj1")
 animation = &"Left"
 
@@ -224,6 +226,7 @@ shape = SubResource("CircleShape2D_8d028")
 
 [node name="TadpoleSprite" type="AnimatedSprite2D" parent="." unique_id=1118745982]
 position = Vector2(0, 1.1920929e-07)
+scale = Vector2(1.585, 1.585)
 sprite_frames = SubResource("SpriteFrames_uraql")
 animation = &"Up"
 
@@ -256,3 +259,8 @@ position = Vector2(0.7220217, 0)
 scale = Vector2(1.475, 1.475)
 sprite_frames = SubResource("SpriteFrames_jf0tn")
 animation = &"Left"
+
+[node name="LandCollider" type="CollisionShape2D" parent="." unique_id=1014723199]
+position = Vector2(0, 1.4440433)
+shape = SubResource("RectangleShape2D_c8p22")
+disabled = true

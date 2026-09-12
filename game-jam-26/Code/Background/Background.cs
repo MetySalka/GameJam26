@@ -28,6 +28,11 @@
           _sprite.SetLevelTransition(fromLevel, toLevel, progress);
       }
 
+      public void SetCameraOffset(Vector2 offset)
+      {
+          _sprite.SetCameraOffset(offset);
+      }
+
       public Vector2 GetLevelSourceRange(int level)
       {
           return _sprite.GetLevelSourceRange(level);

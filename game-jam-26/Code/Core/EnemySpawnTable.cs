@@ -22,14 +22,16 @@ public static class EnemySpawnTable
 
         new(0,    EnemyKind.Swordfish,   5,   0.5f,   3f,      2, 4),
         new(1,    EnemyKind.Swordfish,   8,   0.2f,   2f,      3, 5),
-        // Example: add new(2, EnemyKind.Swordfish, 50, 0.4f, 2f, 3, 5),
+        new(2,    EnemyKind.Swordfish,   0,   0.2f,   2f),
 
         new(0,    EnemyKind.Bubble,       6,   1f,     7f),
         new(1,    EnemyKind.Bubble,       8,   0.5f,     4f),
-        new(2,    EnemyKind.Bubble,      10,   0.3f,     3f),
-        new(3,    EnemyKind.Bubble,      12,   0.2f,     1f),
+        new(2,    EnemyKind.Bubble,      0,   0.3f,     3f),
 
-        new(0,    EnemyKind.Pufferfish,   3,   6f,    10f,      1, 1,          8f),
+        new(0,    EnemyKind.Pufferfish,   3,   6f,    10f,      1, 1,          5f),
+        new(1,    EnemyKind.Pufferfish,   5,   2f,    5f,      1, 1,          5f),
+        new(2,    EnemyKind.Pufferfish,   0,   2f,    5f),
+
     };
 
     static EnemySpawnTable()

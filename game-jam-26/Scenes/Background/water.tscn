@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c2wjqq8hwek22"]
+
+[ext_resource type="Texture2D" uid="uid://oi1pscfbavep" path="res://Assets/Sprites/Background/WaterTransition.png" id="1_jraes"]
+
+[node name="Node2D" type="Node2D" unique_id=1109065394]
+
+[node name="WaterTransition" type="Sprite2D" parent="." unique_id=1685366166]
+position = Vector2(6, -3)
+texture = ExtResource("1_jraes")

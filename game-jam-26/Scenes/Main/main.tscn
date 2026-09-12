@@ -8,32 +8,40 @@
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://babt2mxgr03kc" path="res://Scenes/Background/ground.tscn" id="8_hryqi"]
 [ext_resource type="PackedScene" uid="uid://bgtrs5ol1nvq5" path="res://Scenes/UI/health.tscn" id="8_y3v7k"]
+[ext_resource type="PackedScene" uid="uid://wuvwtiohwg3h" path="res://Scenes/Background/slope.tscn" id="9_hryqi"]
+[ext_resource type="PackedScene" uid="uid://c2wjqq8hwek22" path="res://Scenes/Background/water.tscn" id="10_imbg2"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
 Background = NodePath("Background")
 
-[node name="GameOver" parent="." unique_id=844308784 node_paths=PackedStringArray("_player", "_health", "_fihWarn") instance=ExtResource("2_2a143")]
+[node name="ScreenUI" type="CanvasLayer" parent="." unique_id=255523925]
+
+[node name="GameOver" parent="ScreenUI" unique_id=844308784 node_paths=PackedStringArray("_player", "_health", "_fihWarn") instance=ExtResource("2_2a143")]
 offset_left = 1.0
 offset_top = -30.0
 offset_right = 1.0
 offset_bottom = -30.0
-_player = NodePath("../Player")
+_player = NodePath("../../Player")
 _health = NodePath("../Health")
-_fihWarn = NodePath("../FihWarn")
+_fihWarn = NodePath("../../FihWarn")
 
-[node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health") instance=ExtResource("3_p6jpk")]
+[node name="StartingMenu" parent="ScreenUI" unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health") instance=ExtResource("3_p6jpk")]
 anchors_preset = 8
 offset_left = -188.99997
 offset_top = -224.0
 offset_right = 52.599976
 offset_bottom = 3.519989
-_main = NodePath("..")
-_player = NodePath("../Player")
-_progressBar = NodePath("../ProgressBar")
-_background = NodePath("../Background")
+_main = NodePath("../..")
+_player = NodePath("../../Player")
+_progressBar = NodePath("../../ProgressBar")
+_background = NodePath("../../Background")
 _gameOver = NodePath("../GameOver")
 _health = NodePath("../Health")
+
+[node name="Health" parent="ScreenUI" unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
+anchors_preset = 1
+_player = NodePath("../../Player")
 
 [node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background") instance=ExtResource("5_p6jpk")]
 Background = NodePath("../Background")
@@ -43,7 +51,7 @@ position = Vector2(158.00002, 158.00002)
 _main = NodePath("..")
 _player = NodePath(".")
 _progressBar = NodePath("../ProgressBar")
-_health = NodePath("../Health")
+_health = NodePath("../ScreenUI/Health")
 _fihWarn = NodePath("../FihWarn")
 _camera = NodePath("../Camera2D")
 Background = NodePath("../Background")
@@ -56,10 +64,6 @@ scale = Vector2(2, 2)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1619564848]
 anchor_mode = 0
 
-[node name="Health" parent="." unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
-anchors_preset = 1
-_player = NodePath("../Player")
-
 [node name="FihWarn" type="ColorRect" parent="." unique_id=1175961578]
 visible = false
 offset_right = 40.0
@@ -67,5 +71,22 @@ offset_bottom = 40.0
 scale = Vector2(16.154625, 3.957517)
 color = Color(0.7411765, 0, 0, 0.14509805)
 
-[node name="Ground" parent="." unique_id=1549823556 instance=ExtResource("8_hryqi")]
+[node name="LandStuff" type="Node2D" parent="." unique_id=162671218]
+
+[node name="Ground" parent="LandStuff" unique_id=1549823556 instance=ExtResource("8_hryqi")]
 position = Vector2(267, 366)
+
+[node name="Slope" parent="LandStuff" unique_id=797310093 instance=ExtResource("9_hryqi")]
+position = Vector2(1135, 335)
+
+[node name="Node2D2" parent="LandStuff" unique_id=1109065394 instance=ExtResource("10_imbg2")]
+position = Vector2(485.99997, 589.00006)
+scale = Vector2(5, 5)
+
+[node name="Node2D" parent="LandStuff" unique_id=1345165279 instance=ExtResource("10_imbg2")]
+position = Vector2(1125, 589.00006)
+scale = Vector2(5, 5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LandStuff" unique_id=1024685959]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LandStuff/StaticBody2D" unique_id=1355181435]
