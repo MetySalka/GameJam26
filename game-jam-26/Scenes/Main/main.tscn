@@ -15,7 +15,7 @@ Background = NodePath("Background")
 [node name="GameOver" parent="." unique_id=844308784 node_paths=PackedStringArray("_player") instance=ExtResource("2_2a143")]
 _player = NodePath("../Player")
 
-[node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver") instance=ExtResource("3_p6jpk")]
+[node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health") instance=ExtResource("3_p6jpk")]
 offset_right = 61.6
 offset_bottom = 47.519997
 _main = NodePath("..")
@@ -23,6 +23,7 @@ _player = NodePath("../Player")
 _progressBar = NodePath("../ProgressBar")
 _background = NodePath("../Background")
 _gameOver = NodePath("../GameOver")
+_health = NodePath("../Health")
 
 [node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background") instance=ExtResource("5_p6jpk")]
 Background = NodePath("../Background")
