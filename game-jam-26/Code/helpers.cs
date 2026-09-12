@@ -87,7 +87,7 @@ public static class Helpers
 	{
 		foreach (Node child in background.GetChildren())
 		{
-			if ((child is Fishfood || child is Stika || child is Swordfih) && !child.IsQueuedForDeletion())
+			if ((child is Fishfood || child is Stika || child is Swordfih || child is Bubble || child is Puffer) && !child.IsQueuedForDeletion())
 				child.QueueFree();
 		}
 	}

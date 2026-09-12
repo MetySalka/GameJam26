@@ -51,5 +51,4 @@ texture_normal = SubResource("AtlasTexture_4jq5w")
 texture_hover = SubResource("AtlasTexture_bqubg")
 
 [connection signal="pressed" from="TextureButton2" to="." method="OnClickButtonExit"]
-[connection signal="hidden" from="TextureButton" to="." method="HideStartButton"]
 [connection signal="pressed" from="TextureButton" to="." method="OnClickButtonStart"]

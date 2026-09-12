@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 using Godot;
 
 public partial class Main : Node
@@ -13,24 +14,37 @@ public partial class Main : Node
 	private readonly PackedScene tadpoleFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/tadpolefood.tscn");
 	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
 	private readonly PackedScene swordfihScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/swordfih.tscn");
+	private readonly PackedScene pufferScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/puffer.tscn");
 	private Player _Player;
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
-	private double _secondsUntilStikaSpawn;
+	private readonly Dictionary<EnemyKind, double> _spawnTimers = new();
+	private int _spawnSettingsLevel = -1;
 	private bool _levelStarted;
 	private Rect2 Viewport;
 	private int Wait;
 	private int _framesSinceSpawn;
-	private double _secondsUntilBubbleSpawn;
-	private double _secondsUntilSwordfishStream;
+	private ColorRect _fihWarn;
+	private sealed class SwordfishWarning
+	{
+		public ColorRect Rect { get; init; }
+		public List<Swordfih> Fish { get; } = new();
+	}
+	private readonly List<SwordfishWarning> _swordfishWarnings = new();
+	private readonly Stack<ColorRect> _availableSwordfishWarnings = new();
 
 	public override void _Ready()
 	{
 		Viewport = GetViewport().GetVisibleRect();
 		_Player = GetNode<Player>("Player");
+		_fihWarn = GetNode<ColorRect>("FihWarn");
+		_fihWarn.MouseFilter = Control.MouseFilterEnum.Ignore;
+		_fihWarn.Hide();
+		_availableSwordfishWarnings.Push(_fihWarn);
 	}
 	public void prepareLevel()
 	{
 		_levelStarted = false;
+		HideSwordfishWarning();
 		global::Background world = (global::Background)Background;
 		Helpers.ClearScene(world);
 		world.ResetForNewRun();
@@ -43,93 +57,168 @@ public partial class Main : Node
 			generateFood(GetFoodScene());
 		}
 		Wait = _rng.RandiRange(300, 1200);
-		_secondsUntilStikaSpawn = 5;
+		ResetEnemySpawnTimers();
 		_levelStarted = true;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0 && _Player.Level == 0)
-		{	
-			_secondsUntilStikaSpawn -= delta;
-			if (_secondsUntilStikaSpawn <= 0 && Background.GetChildren().OfType<Stika>().Count() < 10)
-			{
-				SpawnStika(Helpers.RandomPointInMargin(
-					Helpers.GetLocalViewport(Background), Stika.SimulationMargin, _rng));
-					
+		UpdateSwordfishWarning();
+		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0)
+			UpdateEnemySpawns(delta);
 
-				_secondsUntilStikaSpawn = _rng.RandfRange(3, 8);
-			}
-		}
 		_framesSinceSpawn++;
-
-
-
 		if (_framesSinceSpawn >= Wait)
 		{
 			_framesSinceSpawn = 0;
 			Wait = _rng.RandiRange(50, 250);
 			generateFood(GetFoodScene());
 		}
+	}
 
+	private void ResetEnemySpawnTimers()
+	{
+		_spawnSettingsLevel = _Player.Level;
+		foreach (EnemyKind enemy in System.Enum.GetValues<EnemyKind>())
+			_spawnTimers[enemy] = EnemySpawnTable.Select(enemy, _Player.Level).InitialDelay;
+	}
 
+	private void UpdateEnemySpawns(double delta)
+	{
+		if (_spawnSettingsLevel != _Player.Level)
+			ResetEnemySpawnTimers();
 
-		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0)
-		{	
-			_secondsUntilBubbleSpawn -= delta;
-			if (_secondsUntilBubbleSpawn <= 0 && Background.GetChildren().OfType<Bubble>().Count() < 6 + _Player.Level * 2)
+		foreach (EnemyKind enemy in System.Enum.GetValues<EnemyKind>())
+		{
+			EnemySpawnRule rule = EnemySpawnTable.Select(enemy, _Player.Level);
+			if (rule.MaxCount == 0)
+				continue;
+			_spawnTimers[enemy] -= delta;
+			if (_spawnTimers[enemy] > 0)
+				continue;
+
+			int alive = Background.GetChildren().Count(child => !child.IsQueuedForDeletion() && (enemy switch
 			{
-				SpawnBubble(Helpers.RandomPointInRect(Helpers.GetLocalViewport(Background), _rng));
-					
+				EnemyKind.Pike => child is Stika,
+				EnemyKind.Swordfish => child is Swordfih,
+				EnemyKind.Bubble => child is Bubble,
+				EnemyKind.Pufferfish => child is Puffer,
+				_ => false
+			}));
+			int available = rule.MaxCount - alive;
+			if (available <= 0)
+				continue;
 
-				_secondsUntilBubbleSpawn = _rng.RandfRange(1, 7);
-			}
-		}
-
-		
-		
-		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0)
-		{	
-			_secondsUntilSwordfishStream -= delta;
-			if (_secondsUntilSwordfishStream <= 0)
+			// Trim the last batch to the available capacity so streams cannot exceed the cap.
+			int count = System.Math.Min(available, _rng.RandiRange(rule.MinBatch, rule.MaxBatch));
+			if (enemy == EnemyKind.Swordfish)
 			{
-				
-				SwordFishStream(_rng.RandfRange(0, 360), _rng.RandiRange(1, 3), Helpers.RandomPointInRect(Helpers.GetLocalViewport(Background), _rng));
-
-				_secondsUntilSwordfishStream = _rng.RandfRange(4, 12);
+				Rect2 viewport = GetViewport().GetVisibleRect();
+				Rect2 targetArea = new Rect2(viewport.GetCenter() - viewport.Size * 0.35f, viewport.Size * 0.7f);
+				SwordFishStream(_rng.RandfRange(0, 360), count, Helpers.RandomPointInRect(targetArea, _rng));
 			}
+			else
+			{
+				Rect2 bounds = Helpers.GetLocalViewport(Background);
+				for (int i = 0; i < count; i++)
+				{
+					if (enemy == EnemyKind.Pike)
+						SpawnStika(Helpers.RandomPointInMargin(bounds, Stika.SimulationMargin, _rng));
+					else if (enemy == EnemyKind.Bubble)
+						SpawnBubble(Helpers.RandomPointInRect(bounds, _rng));
+					else if (enemy == EnemyKind.Pufferfish)
+						SpawnPuffer(Helpers.RandomPointInMargin(bounds, Puffer.SimulationMargin, _rng));
+				}
+			}
+			_spawnTimers[enemy] = _rng.RandfRange(rule.MinSeconds, rule.MaxSeconds);
 		}
-
-		
-
-
-
-
 	}
 
 	// Position is the point the stream passes through in viewport pixels.
 	// Angle is clockwise degrees from right; the row starts 2,000 pixels before position.
 	public void SwordFishStream(float Angle, int width, Vector2 position)
 	{
-		const float spacing = 40f;
-		const float spawnDistance = 2000f;
-		const float speed = 600f;
-		Vector2 heading = Vector2.Right.Rotated(Mathf.DegToRad(Angle));
-		Vector2 spawnCenter = position - heading * spawnDistance;
-		Vector2 sideways = new Vector2(-heading.Y, heading.X);
-		Transform2D viewportToLocal = Background.GetGlobalTransformWithCanvas().AffineInverse();
-		Vector2 localHeading = viewportToLocal * (position + heading) - viewportToLocal * position;
+		if (width <= 0)
+			return;
+		ColorRect rect;
+		if (_availableSwordfishWarnings.Count > 0)
+			rect = _availableSwordfishWarnings.Pop();
+		else
+		{
+			rect = (ColorRect)_fihWarn.Duplicate();
+			rect.Hide();
+			_fihWarn.GetParent().AddChild(rect);
+		}
+		var warning = new SwordfishWarning { Rect = rect };
+		_swordfishWarnings.Add(warning);
+		float spacing = 0f;
 
 		for (int i = 0; i < width; i++)
 		{
-			float offset = (i - (width - 1) * 0.5f) * spacing;
 			Swordfih swordfish = swordfihScene.Instantiate<Swordfih>();
-			swordfish.Position = viewportToLocal * (spawnCenter + sideways * offset);
-			swordfish.Rotation = localHeading.Angle();
-			swordfish.Velocity = localHeading * speed;
 			Background.AddChild(swordfish);
-			swordfish.GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("Right");
+			swordfish.SpawnInStream(Angle, position, 0f);
+			if (i == 0)
+				spacing = 50;
+			float offset = (i - (width - 1) * 0.5f) * spacing;
+			swordfish.SpawnInStream(Angle, position, offset);
+			warning.Fish.Add(swordfish);
 		}
+
+		// Center the rectangle on the crossing point, with its long axis along the stream.
+		Transform2D screenToCanvas = rect.GetCanvasTransform().AffineInverse();
+		Vector2 heading = Vector2.Right.Rotated(Mathf.DegToRad(Angle));
+		Vector2 sideways = new Vector2(-heading.Y, heading.X);
+		Vector2 localHeading = screenToCanvas.X * heading.X + screenToCanvas.Y * heading.Y;
+		Vector2 localSideways = screenToCanvas.X * sideways.X + screenToCanvas.Y * sideways.Y;
+		rect.Size = new Vector2(2000f, spacing * width);
+		rect.PivotOffset = rect.Size * 0.5f;
+		rect.Scale = new Vector2(localHeading.Length(), localSideways.Length());
+		rect.Rotation = localHeading.Angle();
+		rect.Position = screenToCanvas * position - rect.PivotOffset;
+		rect.Show();
+		UpdateSwordfishWarning();
+	}
+
+	private void UpdateSwordfishWarning()
+	{
+		if (_swordfishWarnings.Count == 0)
+			return;
+		if (GetNode<Health>("/root/Main/Health").HealthPlayer <= 0)
+		{
+			HideSwordfishWarning();
+			return;
+		}
+		for (int i = _swordfishWarnings.Count - 1; i >= 0; i--)
+		{
+			SwordfishWarning warning = _swordfishWarnings[i];
+			warning.Fish.RemoveAll(fish => !GodotObject.IsInstanceValid(fish) || fish.IsQueuedForDeletion());
+			if (warning.Fish.Count == 0 || warning.Fish.Any(fish => fish.IsAboutToEnterViewport()))
+			{
+				warning.Rect.Hide();
+				_availableSwordfishWarnings.Push(warning.Rect);
+				_swordfishWarnings.RemoveAt(i);
+			}
+		}
+	}
+
+	private void HideSwordfishWarning()
+	{
+		foreach (SwordfishWarning warning in _swordfishWarnings)
+		{
+			warning.Rect.Hide();
+			_availableSwordfishWarnings.Push(warning.Rect);
+		}
+		_swordfishWarnings.Clear();
+	}
+
+	public Puffer SpawnPuffer(Vector2 position)
+	{
+		Puffer puffer = pufferScene.Instantiate<Puffer>();
+		puffer.Position = position;
+		puffer.Target = _Player;
+		Background.AddChild(puffer);
+		return puffer;
 	}
 
 public void SpawnBubble(Vector2 position)

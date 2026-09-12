@@ -10,13 +10,11 @@ public partial class Gameovermenu : Control
 	[Export] private Player _player;
 	[Export] private Health _health;
 	
-	Background background;
 	public override void _Ready()
 	{
 		ProcessMode = Node.ProcessModeEnum.Always;
 		Hide();
 		_startingMenu = GetNode<Startingmenu>("/root/Main/StartingMenu");
-		background = GetNode<Background>("../Background");
 		_health.Hide();
 	}
 
@@ -27,8 +25,6 @@ public partial class Gameovermenu : Control
 
 	private void OnTryAgainPressed()
 	{
-		Helpers.ClearScene(background);
-		Hide();
-		_startingMenu.ShowMenu();
-}
+		_startingMenu.OnClickButtonStart();
+	}
 }
