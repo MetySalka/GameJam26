@@ -9,6 +9,7 @@ public partial class Startingmenu : Control
 	[Export] private Player _player;
 	[Export] private ProgressBar _progressBar;
 	[Export] private Background _background;
+	[Export] private Control _gameover;
 
 	public override void _Ready()
 	{
@@ -17,6 +18,7 @@ public partial class Startingmenu : Control
 		_background.Hide();
 		_player.Hide();
 		_progressBar.Hide();
+		_gameover.Hide();
 		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
 	}
 	public void OnClickButtonStart()
