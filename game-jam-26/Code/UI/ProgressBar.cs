@@ -1,19 +1,25 @@
-using System;
 using Godot;
 
 namespace GameJam26.Code.UI;
 
-public partial class ProgressBar : Node2D
+public partial class ProgressBar : CanvasLayer
 {
 	[Export] private TextureProgressBar _textureBar;
 	[Export] public global::Background Background { get; set; }
-int testVar;
 	int animationState;
+	private Vector2 _originalScale;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{ 
 		_textureBar.Value = 0;
-		 
+		_originalScale = _textureBar.Scale;
+		_textureBar.Resized += UpdatePivot;
+		UpdatePivot();
+	}
+
+	private void UpdatePivot()
+	{
+		_textureBar.PivotOffset = _textureBar.Size / 2.0f;
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -21,8 +27,7 @@ int testVar;
 
 		if(animationState >= 1 && animationState < 100)
 		{
-			testVar++;
-			_textureBar.Value = Mathf.MoveToward(_textureBar.Value, 0, 1);;
+			_textureBar.Value = Mathf.MoveToward(_textureBar.Value, 0, 1);
 			_textureBar.Scale += new Vector2(0.0025f, 0.001f);
 			Background.SetScrollArea(Background.GetScrollArea() + new Vector2(16,16));
 
@@ -31,18 +36,18 @@ int testVar;
 		} else if (animationState >= 100)
 		{
 			animationState = -100;
-			GD.Print("TestVar in middle of animation: " + testVar);
 		}
 		if(animationState < -1)
 		{
-			_textureBar.Value = Mathf.MoveToward(0, _textureBar.Value, 1);;
 			_textureBar.Scale -= new Vector2(0.0025f, 0.001f);
 			animationState++;
-			testVar--;
-			
+			if (animationState == -1)
+			{
+				_textureBar.Scale = _originalScale;
+				animationState = 0;
+			}
 		} 
-		GD.Print("TestVar at the end: " + testVar);
-		if (_textureBar.Value > 99)
+		if (animationState == 0 && _textureBar.Value >= _textureBar.MaxValue)
 		{
 			animationState = 1;
 		}
