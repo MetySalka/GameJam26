@@ -20,10 +20,10 @@ public partial class PlayerHitbox : Area2D
 	
 	private void OnHitboxEntered(Area2D area)
 	{
-		if (area is Fishfood food)
+		if (area is Bubble bubble)
 		{
-			GD.Print("Ble");
-			_player.OnPlayerDeath();
+			_player.OnPlayerHit();
+			bubble.Consume(false);
 		}
 	}
 	

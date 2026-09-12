@@ -1,12 +1,8 @@
 using Godot;
 
-
 public partial class Fishfood : Area2D
 {
 	private bool _consumed;
-	[Export] private ProgressBar _progressBar;
-
-	[Export] private TextureProgressBar _textureBar;
 
 	// Local movement applied by Main each frame.
 	public Vector2 MoveVector { get; set; }
