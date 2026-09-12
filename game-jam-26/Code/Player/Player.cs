@@ -6,7 +6,7 @@ public partial class Player : CharacterBody2D
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
 
-	[Export] public Node2D Background { get; set; }
+	[Export] public global::Background Background { get; set; }
 	public Vector2 MovementArea = new Vector2I(384, 128);
 	public const float JumpVelocity = -400.0f;
 	private Rect2 _viewport;
@@ -29,7 +29,8 @@ public partial class Player : CharacterBody2D
 		// Move the background in the opposite direction.
 		if (!overflow.IsZeroApprox() && Background != null)
 		{
-			Background.Position -= overflow;
+			Background.Position -= new Vector2(overflow.X, 0);
+			Background.ScrollVertically(-overflow.Y);
 		}
 
 

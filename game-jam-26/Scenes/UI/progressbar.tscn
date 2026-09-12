@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://ddm7cgc0gl30x" path="res://Code/UI/ProgressBar.cs" id="1_iwlb4"]
 [ext_resource type="Texture2D" uid="uid://4wybddva7dv2" path="res://Assets/Sprites/Misc/progressbar/bar_fill.png" id="3_edw7m"]
 
-[node name="ProgressBar" type="Node2D" unique_id=551622491]
+[node name="ProgressBar" type="Node2D" unique_id=551622491 node_paths=PackedStringArray("_textureBar")]
 script = ExtResource("1_iwlb4")
+_textureBar = NodePath("TextureProgressBar")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1863472084]
 offset_left = 171.0

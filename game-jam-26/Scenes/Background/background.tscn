@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://ckw4h670084le"]
 
 [ext_resource type="Script" uid="uid://bp5nkdq18dsyj" path="res://Code/Background/Background.cs" id="1_xgg7f"]
-[ext_resource type="Texture2D" uid="uid://ig0511rr032h" path="res://Assets/testing/underwater-1.png" id="2_onlrx"]
+[ext_resource type="Texture2D" uid="uid://brjhmd1jcq755" path="res://Assets/testing/TestBGTexture.png" id="2_bgfm1"]
 [ext_resource type="Script" uid="uid://d2g8v1l4838jg" path="res://Code/Background/ScrollingBGsprite.cs" id="3_bgfm1"]
 
 [node name="Background" type="Node2D" unique_id=269850265]
 script = ExtResource("1_xgg7f")
 
 [node name="ScrollingBGsprite" type="Sprite2D" parent="." unique_id=963608061]
+texture_repeat = 2
 position = Vector2(1.9999847, 8.999992)
 scale = Vector2(0.6145833, 0.6166667)
-texture = ExtResource("2_onlrx")
+texture = ExtResource("2_bgfm1")
 script = ExtResource("3_bgfm1")
+WindowHeight = 720.0

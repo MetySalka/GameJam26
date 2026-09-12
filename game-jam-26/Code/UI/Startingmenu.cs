@@ -5,28 +5,28 @@ namespace GameJam26.Code.UI;
 public partial class Startingmenu : Control
 {
 	// Called when the node enters the scene tree for the first time.
-	
-	private TextureButton _startButton;
-	private TextureButton _exitButton;
+	[Export] private Main _main;
+	[Export] private Player _player;
+	[Export] private ProgressBar _progressBar;
+	[Export] private Background _background;
 
 	public override void _Ready()
 	{
-		var main = GetParent();
-		main.GetNode<CanvasItem>("Background").Hide();
 		ProcessMode = Node.ProcessModeEnum.WhenPaused;
 		GetTree().Paused = true;
-		GetNode<Node2D>("../Player").Hide();
-		GetNode<Node2D>("../ProgressBar").Hide();
+		_background.Hide();
+		_player.Hide();
+		_progressBar.Hide();
 		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
 	}
 	public void OnClickButtonStart()
 	{
 		var main =  GetParent();	
-		main.GetNode<CanvasItem>("Background").Show();
+		_background.Show();
 		GetTree().Paused = false;
-		GetParent().Call("prepareLevel");
-		GetNode<Node2D>("../Player").Show();
-		GetNode<Node2D>("../ProgressBar").Show();
+		_main.Call("prepareLevel");
+		_player.Show();
+		_progressBar.Show();
 		Hide();
 	}
 
