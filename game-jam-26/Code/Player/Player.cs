@@ -59,6 +59,7 @@ public partial class Player : CharacterBody2D
 	public void OnPlayerDeath()
 	{
 		GD.Print("Player Death");
+		/*
 		var main = GetParent();
 		main.GetNode<CanvasItem>("Background").Hide();
 		ProcessMode = Node.ProcessModeEnum.WhenPaused;
@@ -66,6 +67,7 @@ public partial class Player : CharacterBody2D
 		GetNode<Node2D>("../Player").Hide();
 		GetNode<Node2D>("../ProgressBar").Hide();
 		GetNode<Node2D>("../GameOver").Show();
+		*/
 	}
 
 	public override void _Ready()
@@ -100,22 +102,26 @@ public partial class Player : CharacterBody2D
 
 		if (velocity.Y >= 0.2)
 		{
+			_sprite.Play("Down");
 			_pickupArea.SetMouthDir(0);
 			_hitbox.SetHitDir(0);
 		}
 		else if (velocity.Y <= -0.2)
 		{
+			_sprite.Play("Up");
 			_pickupArea.SetMouthDir(1);
 			_hitbox.SetHitDir(1);
 		}
 		
 		if (velocity.X >= 0.2)
 		{
+			_sprite.Play("Right");
 			_pickupArea.SetMouthDir(2);
 			_hitbox.SetHitDir(2);
 		}
 		else if (velocity.X <= -0.2)
 		{
+			_sprite.Play("Left");
 			_pickupArea.SetMouthDir(3);
 			_hitbox.SetHitDir(3);
 		}
