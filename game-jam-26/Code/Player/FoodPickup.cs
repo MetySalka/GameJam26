@@ -31,38 +31,28 @@ public partial class FoodPickup : Area2D
 	}
 	public void SetMouthDir(int dir)
 	{
+		_MouthUp.Disabled = true;
+		_MouthDown.Disabled = true;
+		_MouthLeft.Disabled = true;
+		_MouthRight.Disabled = true;
+		
 		switch (dir)
 		{
 			case 0:
 				_MouthUp.Disabled = false;
-				_MouthDown.Disabled = true;
-				_MouthLeft.Disabled = true;
-				_MouthRight.Disabled = true;
 				break;
 
 			case 1:
-				_MouthUp.Disabled = true;
 				_MouthDown.Disabled = false;
-				_MouthLeft.Disabled = true;
-				_MouthRight.Disabled = true;
 				break;
 
 			case 2:
-				_MouthUp.Disabled = true;
-				_MouthDown.Disabled = true;
 				_MouthLeft.Disabled = false;
-				_MouthRight.Disabled = true;
 				break;
 
 			case 3:
-
-				_MouthUp.Disabled = true;
-				_MouthDown.Disabled = true;
-				_MouthLeft.Disabled = true;
 				_MouthRight.Disabled = false;
-
 				break;
-
 		}
 	}
 

@@ -10,6 +10,8 @@ public partial class PlayerHitbox : Area2D
 	private CollisionShape2D _HitRight;
 	public override void _Ready()
 	{
+		AreaEntered += OnHitboxEntered;
+		
 		_HitUp = GetNode<CollisionShape2D>("HitUp");
 		_HitDown = GetNode<CollisionShape2D>("HitDown");
 		_HitLeft = GetNode<CollisionShape2D>("HitLeft");
@@ -29,5 +31,32 @@ public partial class PlayerHitbox : Area2D
 	public override void _Process(double delta)
 	{
 		
+	}
+	
+	public void SetHitDir(int dir)
+	{
+		_HitUp.Disabled = true;
+		_HitDown.Disabled = true;
+		_HitLeft.Disabled = true;
+		_HitRight.Disabled = true;
+		
+		switch (dir)
+		{
+			case 0:
+				_HitUp.Disabled = false;
+				break;
+
+			case 1:
+				_HitDown.Disabled = false;
+				break;
+
+			case 2:
+				_HitLeft.Disabled = false;
+				break;
+
+			case 3:
+				_HitRight.Disabled = false;
+				break;
+		}
 	}
 }
