@@ -8,12 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://ci1ugy2vncfqq" path="res://Scenes/Misc/bubble.tscn" id="7_xlvfx"]
 
-[sub_resource type="PackedScene" id="PackedScene_py8um"]
-
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
 Background = NodePath("Background")
-_stikaScene = SubResource("PackedScene_py8um")
 
 [node name="GameOver" parent="." unique_id=844308784 instance=ExtResource("2_2a143")]
 
@@ -43,4 +40,4 @@ position = Vector2(374, 179)
 position = Vector2(321, 180)
 
 [node name="Bubble" parent="." unique_id=304397937 instance=ExtResource("7_xlvfx")]
-position = Vector2(111, 182)
+position = Vector2(146, -51)

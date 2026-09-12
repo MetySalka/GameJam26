@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 // Shared geometry helpers for gameplay scripts.
@@ -70,6 +71,15 @@ public static class Helpers
 			if (child is Fishfood food && !food.IsQueuedForDeletion())
 				food.Position += offset * food.StarWarsSpeedMultiplier;
 		}
+
+	}
+
+
+	public static float GetAngleToObject(Vector2 Coords1, Vector2 Coords2)
+	{
+
+		Vector2 diff = Coords2-Coords1;
+      	return (float)(Math.Atan2(diff.Y, diff.X) * 180.0 / Math.PI);
 
 	}
 }

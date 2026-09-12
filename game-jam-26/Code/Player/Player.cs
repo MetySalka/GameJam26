@@ -88,7 +88,7 @@ public partial class Player : CharacterBody2D
 		if (Health <= 0)
 			OnPlayerDeath();
 
-		MovementArea = _viewport.Size * 0.87f;
+		MovementArea = _viewport.Size * 0.7f;
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		Vector2 center = _viewport.GetCenter();
 		Vector2 topLeft = center - MovementArea / 2f;

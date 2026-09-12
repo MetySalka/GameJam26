@@ -1,12 +1,13 @@
+using System;
 using Godot;
 
 public partial class Stika : Area2D
 {
-	public const float SimulationMargin = 0.1f;
+	public const float SimulationMargin = 0.05f;
 
+	public Player Target { get; set; }
 
-
-	public float RotSpeed = 3f;
+	public float RotSpeed = 100f;
 	private bool Seek = true;
 	private float Angle;
 	private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
@@ -28,17 +29,26 @@ public partial class Stika : Area2D
 
 		if (Seek)
 		{
-			Angle += RotSpeed;
-			Angle %= 360;
-			RotationDegrees = Angle;
-			GD.Print(RotationDegrees);
-			if (Angle <= 90 || Angle >= 270)
+
+			float targetAngle = Helpers.GetAngleToObject(
+				GlobalPosition, Target.GlobalPosition);
+
+			float difference = Mathf.Wrap(targetAngle - Angle, -180f, 180f);
+			float step = RotSpeed * (float)delta;
+
+			Angle += Mathf.Clamp(difference, -step, step);
+			Angle = Mathf.Wrap(Angle, -180f, 180f);
+
+
+			if (Angle <= 90 && Angle > -90)
 			{
 				_sprite.Play("Right");
+				RotationDegrees = Angle;
 			}
 			else
 			{
 				_sprite.Play("Left");
+				RotationDegrees = Mathf.Wrap(Angle+180, -180f, 180f);
 
 			}
 		}
