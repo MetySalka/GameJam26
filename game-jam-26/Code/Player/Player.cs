@@ -123,6 +123,8 @@ public partial class Player : CharacterBody2D
 		GetNode<Health>("/root/Main/Health").HealthPlayer = 5;
 		Position = _startingPosition;
 		Velocity = Vector2.Zero;
+		cameraShakeCnt = 0;
+		_camera.Offset = Vector2.Zero;
 		AnimatedSprite2D pike = GetNode<AnimatedSprite2D>("PikeSprite");
 		pike.Stop();
 		pike.Hide();

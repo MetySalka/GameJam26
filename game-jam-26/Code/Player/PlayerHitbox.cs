@@ -20,7 +20,7 @@ public partial class PlayerHitbox : Area2D
 	
 	private void OnHitboxEntered(Area2D area)
 	{
-		if (area is Stika stika)
+		if (area is Stika stika || area is Swordfih swordfih)
 		{
 			_player.OnPlayerHit();
 			//stika.KYS();
