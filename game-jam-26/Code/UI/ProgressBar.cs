@@ -30,6 +30,7 @@ public partial class ProgressBar : CanvasLayer
 			_textureBar.Value = Mathf.MoveToward(_textureBar.Value, 0, 1);
 			_textureBar.Scale += new Vector2(0.0025f, 0.001f);
 			Background.SetScrollArea(Background.GetScrollArea() + new Vector2(16,16));
+			Helpers.MoveFood(new Vector2(0,6), Background);
 
 
 			animationState++;
