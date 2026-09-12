@@ -6,7 +6,7 @@ public partial class Bubble : Area2D
     private double lifespan = 7;
     private readonly double _maxLifespan = 7;
 
-    private const float StartScale = 0.1f;
+    private const float StartScale = 0.9f;
     private const float EndScale = 3f;
     private const float SimulationMargin = 0.1f;
     private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
