@@ -87,7 +87,7 @@ public partial class Stika : Area2D
 			if (Math.Abs(difference) < 0.1)
 			{
 				Seek = false;
-				countDown = _rng.RandiRange(10, 60);
+				countDown = _rng.RandiRange(40, 160);
 				targetLock = Target.Position;
 			}
 		}
@@ -115,7 +115,7 @@ public partial class Stika : Area2D
 		int v = _rng.RandiRange(450, 950);
 		float angle = Helpers.GetAngleToObject(GlobalPosition, Target);
 		Velocity = new Vector2(Mathf.Cos(Mathf.DegToRad(angle)) * v, Mathf.Sin(Mathf.DegToRad(angle)) * v);
-		countDown = -960;
+		countDown = -240;
 		Seek = false;
 	}
 
