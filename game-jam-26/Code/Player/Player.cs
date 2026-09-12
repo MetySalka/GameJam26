@@ -72,6 +72,7 @@ public partial class Player : CharacterBody2D
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_pickupArea = GetNode<FoodPickup>("PickupRadius");
+		_hitbox = GetNode<PlayerHitbox>("Hitbox");
 	}
 
 	public override void _PhysicsProcess(double delta)
