@@ -48,7 +48,7 @@ public static class Helpers
 	{
 		foreach (Node child in background.GetChildren())
 		{
-			if ((child is Fishfood || child is Stika) && !child.IsQueuedForDeletion())
+			if (!child.IsQueuedForDeletion() && child is not ScrollingBGsprite)
 				((Node2D)child).Position += offset;
 		}
 	}

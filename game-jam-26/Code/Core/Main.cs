@@ -3,7 +3,7 @@ using Godot;
 
 public partial class Main : Node
 {
-	private const float FoodSpeed = 0.1f;
+	private const float FoodSpeed = 0.2f;
 
 	[Export] public Node2D Background { get; set; }
 
@@ -11,6 +11,7 @@ public partial class Main : Node
 	private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
 	private readonly PackedScene tadpoleFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/tadpolefood.tscn");
+	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
 	private Player _Player;
 
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
@@ -19,6 +20,7 @@ public partial class Main : Node
 	private Rect2 Viewport;
 	private int Wait;
 	private int _framesSinceSpawn;
+	private double _secondsUntilBubbleSpawn;
 
 	public override void _Ready()
 	{
@@ -36,7 +38,7 @@ public partial class Main : Node
 		GetNode<GameJam26.Code.UI.ProgressBar>("ProgressBar").ResetForNewRun();
 		GetNode<Control>("GameOver").Hide();
 		_framesSinceSpawn = 0;
-		for (int i = 0; i < 500; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			generateFood(GetFoodScene());
 		}
@@ -47,7 +49,7 @@ public partial class Main : Node
 
 	public override void _Process(double delta)
 	{
-		if (_levelStarted)
+		if (_levelStarted && _Player.Health > 0 && _Player.Level == 0)
 		{	
 			_secondsUntilStikaSpawn -= delta;
 			if (_secondsUntilStikaSpawn <= 0 && Background.GetChildren().OfType<Stika>().Count() < 10)
@@ -56,21 +58,48 @@ public partial class Main : Node
 					Helpers.GetLocalViewport(Background), Stika.SimulationMargin, _rng));
 					
 
-				_secondsUntilStikaSpawn = _rng.RandfRange(1, 7);
+				_secondsUntilStikaSpawn = _rng.RandfRange(3, 8);
 			}
 		}
 		_framesSinceSpawn++;
 
-		// Keep the existing frame-based spawn timing.
+
+
 		if (_framesSinceSpawn >= Wait)
 		{
 			_framesSinceSpawn = 0;
-			Wait = _rng.RandiRange(300, 1200);
+			Wait = _rng.RandiRange(50, 250);
 			generateFood(GetFoodScene());
 		}
+
+
+
+		if (_levelStarted && _Player.Health > 0)
+		{	
+			_secondsUntilBubbleSpawn -= delta;
+			if (_secondsUntilBubbleSpawn <= 0 && Background.GetChildren().OfType<Bubble>().Count() < 6 + _Player.Level * 2)
+			{
+				SpawnBubble(Helpers.RandomPointInRect(Helpers.GetLocalViewport(Background), _rng));
+					
+
+				_secondsUntilBubbleSpawn = _rng.RandfRange(1, 7);
+			}
+		}
+		
+
+
+
+
 	}
 
 
+
+public void SpawnBubble(Vector2 position)
+  {
+	  Bubble bubble = bublinaScene.Instantiate<Bubble>();
+	  bubble.Position = position;
+	  Background.AddChild(bubble);
+  }
 
   public Stika SpawnStika(Vector2 position)
   {

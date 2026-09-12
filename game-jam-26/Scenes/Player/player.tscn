@@ -200,11 +200,10 @@ scale = Vector2(1.385, 1.385)
 script = ExtResource("1_uvnfx")
 
 [node name="PikeSprite" type="AnimatedSprite2D" parent="." unique_id=594399275]
-visible = false
 position = Vector2(0, 2)
 scale = Vector2(1.795, 1.795)
 sprite_frames = SubResource("SpriteFrames_6vwj1")
-animation = &"Down"
+animation = &"Left"
 
 [node name="PickupRadius" type="Area2D" parent="." unique_id=56065100 node_paths=PackedStringArray("_player")]
 collision_mask = 4
@@ -228,6 +227,7 @@ position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_hnuln")
 
 [node name="TadpoleSprite" type="AnimatedSprite2D" parent="." unique_id=1118745982]
+visible = false
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_uraql")
 animation = &"Left"

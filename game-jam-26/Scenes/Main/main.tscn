@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
-[ext_resource type="PackedScene" uid="uid://ci1ugy2vncfqq" path="res://Scenes/Misc/bubble.tscn" id="7_xlvfx"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
@@ -39,6 +38,3 @@ position = Vector2(374, 179)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1619564848]
 position = Vector2(321, 180)
-
-[node name="Bubble" parent="." unique_id=304397937 instance=ExtResource("7_xlvfx")]
-position = Vector2(366, 199)
