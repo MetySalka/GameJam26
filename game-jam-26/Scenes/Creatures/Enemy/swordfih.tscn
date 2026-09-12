@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c6q2q3cr338g3"]
+
+[ext_resource type="Texture2D" uid="uid://bn3k6lkcbqpd2" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0001.png" id="1_duen7"]
+[ext_resource type="Texture2D" uid="uid://chvv453tgk1ls" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0002.png" id="2_g0v00"]
+[ext_resource type="Texture2D" uid="uid://bg0om53mg6fwl" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0003.png" id="3_c8tyq"]
+[ext_resource type="Texture2D" uid="uid://cu86gflynhwwm" path="res://Assets/Sprites/Creatures/Swordfih/swordfih_0004.png" id="4_d8nrg"]
+[ext_resource type="Texture2D" uid="uid://dgtxbdj1wgqx1" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0001.png" id="5_kx0ou"]
+[ext_resource type="Texture2D" uid="uid://ds2i5g74vm7t3" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0002.png" id="6_relbv"]
+[ext_resource type="Texture2D" uid="uid://i3pxu4gu8c5x" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0003.png" id="7_oq2ms"]
+[ext_resource type="Texture2D" uid="uid://1d6n3yxvb7en" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0004.png" id="8_66hu6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_duen7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g0v00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c8tyq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d8nrg")
+}],
+"loop": 1,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kx0ou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_relbv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_oq2ms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_66hu6")
+}],
+"loop": 1,
+"name": &"Right",
+"speed": 5.0
+}]
+
+[node name="Swordfih" type="Area2D" unique_id=1265116225]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1917374147]
+sprite_frames = SubResource("SpriteFrames_uraql")
+animation = &"Right"
+frame_progress = 0.4096124
