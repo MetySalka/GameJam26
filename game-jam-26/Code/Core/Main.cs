@@ -171,7 +171,7 @@ public partial class Main : Node
 		Vector2 sideways = new Vector2(-heading.Y, heading.X);
 		Vector2 localHeading = screenToCanvas.X * heading.X + screenToCanvas.Y * heading.Y;
 		Vector2 localSideways = screenToCanvas.X * sideways.X + screenToCanvas.Y * sideways.Y;
-		rect.Size = new Vector2(2000f, spacing * width);
+		rect.Size = new Vector2(2300f, spacing * width);
 		rect.PivotOffset = rect.Size * 0.5f;
 		rect.Scale = new Vector2(localHeading.Length(), localSideways.Length());
 		rect.Rotation = localHeading.Angle();
