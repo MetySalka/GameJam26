@@ -7,10 +7,16 @@ public partial class Player : CharacterBody2D
 	[Export] private Player _player;
 	[Export] private CanvasLayer _progressBar;
 	[Export] private Control _health;
+
+	[Export] private Camera2D _camera;
+	int cameraShakeCnt = 0;
+
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
 	[Export] public global::Background Background { get; set; }
+
+	RandomNumberGenerator _rng = new RandomNumberGenerator();
 	public Vector2 MovementArea;
 	public int Level { get;  set; } = 0;
 	public const float JumpVelocity = -400.0f;
@@ -66,6 +72,8 @@ public partial class Player : CharacterBody2D
 	public void OnPlayerHit()
 	{
 		GetNode<Health>("/root/Main/Health").HealthPlayer--;
+		cameraShakeCnt = 20 + (4 - GetNode<Health>("/root/Main/Health").HealthPlayer) * 5;
+
 	}
 
 	public void LevelUp()
@@ -131,6 +139,18 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if(cameraShakeCnt > 0)
+		{
+			_camera.Offset = new Vector2(_rng.RandfRange(-3, 3), _rng.RandfRange(-3, 3));
+			cameraShakeCnt--;
+		}
+		else
+		{
+			_camera.Offset = Vector2.Zero;
+		}
+
+
+
 		if (GetNode<Health>("/root/Main/Health").HealthPlayer <= 0)
 		{	OnPlayerDeath();
 		}
