@@ -19,21 +19,17 @@
 
       public void ScrollVertically(float distance)
       {
-          _sprite.ScrollVertically(distance);
-
           Helpers.MoveWorldObjects(new Vector2(0, distance), this);
       }
 
 
-      public void SetScrollArea(Vector2 FromTo)
-    {
-        _sprite.ScrollAreaFrom = FromTo.X;
-        _sprite.ScrollAreaTo = FromTo.Y;
-    }
+      public void SetLevelTransition(int fromLevel, int toLevel, float progress)
+      {
+          _sprite.SetLevelTransition(fromLevel, toLevel, progress);
+      }
 
-
-    public Vector2 GetScrollArea()
-    {
-        return new Vector2(_sprite.ScrollAreaFrom, _sprite.ScrollAreaTo);
-    }
+      public Vector2 GetLevelSourceRange(int level)
+      {
+          return _sprite.GetLevelSourceRange(level);
+      }
   }

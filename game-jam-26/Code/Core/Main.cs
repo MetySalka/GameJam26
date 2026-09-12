@@ -52,7 +52,7 @@ public partial class Main : Node
 		GetNode<GameJam26.Code.UI.ProgressBar>("ProgressBar").ResetForNewRun();
 		GetNode<Control>("GameOver").Hide();
 		_framesSinceSpawn = 0;
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 500; i++)
 		{
 			generateFood(GetFoodScene());
 		}
@@ -159,7 +159,7 @@ public partial class Main : Node
 			Background.AddChild(swordfish);
 			swordfish.SpawnInStream(Angle, position, 0f);
 			if (i == 0)
-				spacing = 50;
+				spacing = 50f * Background.GetGlobalTransformWithCanvas().X.Length();
 			float offset = (i - (width - 1) * 0.5f) * spacing;
 			swordfish.SpawnInStream(Angle, position, offset);
 			warning.Fish.Add(swordfish);

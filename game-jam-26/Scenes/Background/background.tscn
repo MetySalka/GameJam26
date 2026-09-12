@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ckw4h670084le"]
 
 [ext_resource type="Script" uid="uid://bp5nkdq18dsyj" path="res://Code/Background/Background.cs" id="1_xgg7f"]
-[ext_resource type="Texture2D" uid="uid://dkr5ye1m1ui87" path="res://Assets/testing/TestBGTexture2.png" id="2_bgfm1"]
+[ext_resource type="Texture2D" uid="uid://dp0hf0c86pn1y" path="res://Assets/testing/BGTextureV2.jpg" id="2_bgfm1"]
 [ext_resource type="Script" uid="uid://d2g8v1l4838jg" path="res://Code/Background/ScrollingBGsprite.cs" id="3_bgfm1"]
 
 [node name="Background" type="Node2D" unique_id=269850265]
@@ -13,4 +13,3 @@ position = Vector2(1.9999847, 8.999992)
 scale = Vector2(0.6145833, 0.6166667)
 texture = ExtResource("2_bgfm1")
 script = ExtResource("3_bgfm1")
-WindowHeight = 720.0

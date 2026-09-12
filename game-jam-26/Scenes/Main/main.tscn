@@ -17,8 +17,6 @@ _player = NodePath("../Player")
 _health = NodePath("../Health")
 
 [node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health") instance=ExtResource("3_p6jpk")]
-offset_right = 61.6
-offset_bottom = 47.519997
 _main = NodePath("..")
 _player = NodePath("../Player")
 _progressBar = NodePath("../ProgressBar")
@@ -30,7 +28,8 @@ _health = NodePath("../Health")
 Background = NodePath("../Background")
 
 [node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_health", "_camera", "Background") instance=ExtResource("4_2a143")]
-position = Vector2(158.00002, 158.00002)
+position = Vector2(316, 316)
+scale = Vector2(2, 2)
 _main = NodePath("..")
 _player = NodePath(".")
 _progressBar = NodePath("../ProgressBar")
@@ -40,10 +39,11 @@ Background = NodePath("../Background")
 
 [node name="Background" parent="." unique_id=1858228470 instance=ExtResource("2_5yls4")]
 z_index = -1
-position = Vector2(374, 179)
+position = Vector2(352, -45)
+scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1619564848]
-position = Vector2(321, 180)
+anchor_mode = 0
 
 [node name="Health" parent="." unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
 _player = NodePath("../Player")

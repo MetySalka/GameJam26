@@ -1,124 +1,88 @@
 using Godot;
-using System;
 
 public partial class ScrollingBGsprite : Sprite2D
 {
-	[Export] public float ScrollSpeed { get; set; } = 10.0f;
-	[Export] public float WindowHeight { get; set; } = 500.0f;
+	// Two viewport bands plus two equal gaps occupy the lower 4,096 source rows.
+	public const float BottomRow = 8192f;
+	public const float MiddleRow = 4096f;
+	public const float LevelStep = (BottomRow - MiddleRow) / 2f;
 
+	public float SourceTop { get; private set; }
+	public float WindowHeight => Mathf.Min(GetViewport().GetVisibleRect().Size.Y, _sourceTexture.GetHeight());
+	public float GapHeight => LevelStep - WindowHeight;
+	// Cancel inherited node/camera scaling: one source pixel occupies one viewport pixel.
+	public float TileWidthLocal => _sourceTexture.GetWidth() / GetGlobalTransformWithCanvas().X.Length();
 
-
-	public float ScrollAreaFrom = 0.0f;
-	public float ScrollAreaTo = 1024.0f;
-	public const float WobbleSpeed = 0.3f;
-	public const float WobbleRange = 0.03f;
-	public const float RisingSpeed = 0.05f;
-
-	private float _offsetY;
 	private Texture2D _sourceTexture;
-	private float _phase = 0.0f;
 	private Vector2 _startingPosition;
-	private Vector2 _startingScrollArea;
+	private float _phase;
+	private int _fromLevel;
+	private int _toLevel;
+	private float _transitionProgress;
 
 	public override void _Ready()
 	{
 		_startingPosition = Position;
-		_startingScrollArea = new Vector2(ScrollAreaFrom, ScrollAreaTo);
-		// Keep the scene's texture for custom drawing, but disable Sprite2D's
-		// automatic drawing so the full image isn't drawn behind the strips.
 		_sourceTexture = Texture;
+		// Draw only the selected source band, without the full Sprite2D texture behind it.
 		Texture = null;
 		TextureRepeat = CanvasItem.TextureRepeatEnum.Disabled;
-		_offsetY = ScrollAreaFrom;
-		UpdateRegion();
+		ResetForNewRun();
+	}
+
+	// X is the top source row; Y is the bottom. A band contains one viewport's source rows.
+	public Vector2 GetLevelSourceRange(int level)
+	{
+		float bottom = Mathf.Min(BottomRow, _sourceTexture.GetHeight());
+		float top = Mathf.Clamp(bottom - Mathf.Max(0, level) * LevelStep - WindowHeight,
+			0f, _sourceTexture.GetHeight() - WindowHeight);
+		return new Vector2(top, top + WindowHeight);
+	}
+
+	public void SetLevelTransition(int fromLevel, int toLevel, float progress)
+	{
+		_fromLevel = fromLevel;
+		_toLevel = toLevel;
+		_transitionProgress = Mathf.Clamp(progress, 0f, 1f);
+		UpdateSourceBand();
+	}
+
+	private void UpdateSourceBand()
+	{
+		SourceTop = Mathf.Lerp(GetLevelSourceRange(_fromLevel).X,
+			GetLevelSourceRange(_toLevel).X, _transitionProgress);
+		QueueRedraw();
 	}
 
 	public override void _Process(double delta)
 	{
-
-
-		// Advance through source rows from ScrollAreaFrom toward ScrollAreaTo.
-		_offsetY += ScrollSpeed * (float)delta;
-		UpdateRegion();
-
-		// Combine two gentle waves for horizontal movement.
-		_phase += WobbleSpeed;
-		_phase %= 360;
-
-		double firstWave = Math.Sin((((_phase + 80) % 360) / 360) * 0.9f * Math.PI * 2);
-		double secondWave = Math.Sin((_phase / 360) * 1.1f * Math.PI * 2);
-		float horizontalOffset = (float)(firstWave * WobbleRange / 2 + secondWave * WobbleRange / 2);
-		Position += new Vector2(horizontalOffset, 0);
-	}
-
-	private void UpdateRegion()
-	{
-		if (TryGetScrollRange(out float from, out float to))
-		{
-			// Store an absolute source row. Expanding either boundary leaves
-			// the current row unchanged, instead of resetting the scroll phase.
-			if (_offsetY < from || _offsetY >= to)
-				_offsetY = from + Mathf.PosMod(_offsetY - from, to - from);
-		}
-		QueueRedraw();
-	}
-
-	private bool TryGetScrollRange(out float from, out float to)
-	{
-		float height = _sourceTexture?.GetHeight() ?? 0;
-		from = Mathf.Clamp(ScrollAreaFrom, 0, height);
-		to = Mathf.Clamp(ScrollAreaTo, 0, height);
-		return _sourceTexture != null && to - from >= 1.0f;
+		// Keep horizontal movement, but never drift vertically out of the level's band.
+		_phase += (float)delta * 0.3f;
+		Position = _startingPosition + new Vector2(Mathf.Sin(_phase) * 3f, 0f);
+		UpdateSourceBand();
 	}
 
 	public override void _Draw()
 	{
-		if (!TryGetScrollRange(out float from, out float to) || WindowHeight <= 0)
+		if (_sourceTexture == null || WindowHeight <= 0f)
 			return;
 
-		float tileWidth = _sourceTexture.GetWidth();
-		Vector2 size = new Vector2(tileWidth * 12, WindowHeight);
-		Vector2 origin = Offset - (Centered ? size / 2 : Vector2.Zero);
-		float sourceY = from + Mathf.PosMod(_offsetY - from, to - from);
-		float drawnHeight = 0;
-
-		while (drawnHeight < WindowHeight)
-		{
-			float sectionHeight = Mathf.Min(to - sourceY, WindowHeight - drawnHeight);
-			if (sectionHeight <= 0 || drawnHeight + sectionHeight == drawnHeight)
-				break;
-
-			Rect2 source = new Rect2(0, sourceY, tileWidth, sectionHeight);
-			for (int column = 0; column < 12; column++)
-			{
-				Vector2 position = origin + new Vector2(column * tileWidth, drawnHeight);
-				DrawTextureRectRegion(_sourceTexture,
-					new Rect2(position, new Vector2(tileWidth, sectionHeight)), source);
-			}
-
-			drawnHeight += sectionHeight;
-			sourceY = from;
-		}
+		// Map one viewport-height source band onto the whole visible screen, including
+		// the scene's sprite scale and camera transform. Tile only horizontally.
+		Rect2 visible = Helpers.GetLocalViewport(this);
+		float tileWidth = TileWidthLocal;
+		float originX = Offset.X - (Centered ? tileWidth * 0.5f : 0f);
+		float startX = originX + Mathf.Floor((visible.Position.X - originX) / tileWidth) * tileWidth;
+		Rect2 source = new Rect2(0f, SourceTop, _sourceTexture.GetWidth(), WindowHeight);
+		for (float x = startX; x < visible.End.X; x += tileWidth)
+			DrawTextureRectRegion(_sourceTexture,
+				new Rect2(x, visible.Position.Y, tileWidth, visible.Size.Y), source);
 	}
 
 	public void ResetForNewRun()
 	{
 		Position = _startingPosition;
-		ScrollAreaFrom = _startingScrollArea.X;
-		ScrollAreaTo = _startingScrollArea.Y;
-		_offsetY = ScrollAreaFrom;
-		_phase = 0;
-		UpdateRegion();
+		_phase = 0f;
+		SetLevelTransition(0, 0, 0f);
 	}
-
-	public void ScrollVertically(float distance)
-	{
-		if (Mathf.IsZeroApprox(Scale.Y))
-			return;
-
-		_offsetY -= distance / Scale.Y;
-		UpdateRegion();
-	}
-
-
 }

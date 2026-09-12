@@ -36,7 +36,7 @@ public partial class Bubble : Area2D
             _sprite.AnimationFinished -= OnPopFinished;
             _popped = false;
             lifespan = _maxLifespan;
-            GlobalScale = Vector2.One * StartScale;
+            Scale = Vector2.One * StartScale;
             _sprite.Stop();
             _sprite.Play("Idle");
             return;
@@ -45,7 +45,7 @@ public partial class Bubble : Area2D
         double t = 1.0 - (lifespan / _maxLifespan); // 0 at start, 1 at end
         t = Mathf.Clamp(t, 0.0, 1.0);
         float scale = Mathf.Lerp(StartScale, EndScale, (float)t);
-        GlobalScale = new Vector2(scale, scale);
+        Scale = new Vector2(scale, scale);
 
         if (_popped)
             return;
