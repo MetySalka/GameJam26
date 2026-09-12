@@ -1,0 +1,60 @@
+[gd_scene load_steps=20 format=3]
+
+[ext_resource type="Script" path="res://Code/Misc/Fishfood.cs" id="1_script"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0001.png" id="Right_1"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0002.png" id="Right_2"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0003.png" id="Right_3"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0004.png" id="Right_4"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0001.png" id="Left_1"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0002.png" id="Left_2"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0003.png" id="Left_3"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0004.png" id="Left_4"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0001.png" id="Up_1"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0002.png" id="Up_2"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0003.png" id="Up_3"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0004.png" id="Up_4"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0001.png" id="Down_1"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0002.png" id="Down_2"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0003.png" id="Down_3"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0004.png" id="Down_4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tadpole"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("Right_1")}, {"duration": 1.0, "texture": ExtResource("Right_2")}, {"duration": 1.0, "texture": ExtResource("Right_3")}, {"duration": 1.0, "texture": ExtResource("Right_4")}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("Left_1")}, {"duration": 1.0, "texture": ExtResource("Left_2")}, {"duration": 1.0, "texture": ExtResource("Left_3")}, {"duration": 1.0, "texture": ExtResource("Left_4")}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("Up_1")}, {"duration": 1.0, "texture": ExtResource("Up_2")}, {"duration": 1.0, "texture": ExtResource("Up_3")}, {"duration": 1.0, "texture": ExtResource("Up_4")}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("Down_1")}, {"duration": 1.0, "texture": ExtResource("Down_2")}, {"duration": 1.0, "texture": ExtResource("Down_3")}, {"duration": 1.0, "texture": ExtResource("Down_4")}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_food"]
+radius = 8.0
+
+[node name="TadpoleFood" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_script")
+FoodValue = 4.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tadpole")
+animation = &"Right"
+autoplay = "Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_food")

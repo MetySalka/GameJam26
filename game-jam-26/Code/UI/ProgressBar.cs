@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace GameJam26.Code.UI;
@@ -6,8 +7,12 @@ public partial class ProgressBar : CanvasLayer
 {
 	[Export] private TextureProgressBar _textureBar;
 	[Export] public global::Background Background { get; set; }
+
+	Player player;
 	int animationState;
 	private Vector2 _originalScale;
+	private int _displayedLevel = -1;
+	private double _drainPerFrame;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -16,6 +21,28 @@ public partial class ProgressBar : CanvasLayer
 		_originalScale = _textureBar.Scale;
 		_textureBar.Resized += UpdatePivot;
 		UpdatePivot();
+		player = GetNode<Player>("/root/Main/Player");
+		_textureBar.Step = 0;
+		UpdateLevelRequirement();
+	}
+
+	public void ResetForNewRun()
+	{
+		animationState = 0;
+		_drainPerFrame = 0;
+		_textureBar.Value = 0;
+		_textureBar.Scale = _originalScale;
+		_displayedLevel = -1;
+		UpdateLevelRequirement();
+	}
+
+	private void UpdateLevelRequirement()
+	{
+		if (_displayedLevel == player.Level)
+			return;
+
+		_displayedLevel = player.Level;
+		_textureBar.MaxValue = Math.Pow(10.0, player.Level + 1);
 	}
 
 	private void UpdatePivot()
@@ -25,10 +52,11 @@ public partial class ProgressBar : CanvasLayer
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		UpdateLevelRequirement();
 
 		if (animationState >= 1 && animationState < 100)
 		{
-			_textureBar.Value = Mathf.MoveToward(_textureBar.Value, 0, 1);
+			_textureBar.Value = Mathf.MoveToward(_textureBar.Value, 0, _drainPerFrame);
 			_textureBar.Scale += new Vector2(0.0025f, 0.001f);
 			Background.SetScrollArea(Background.GetScrollArea() + new Vector2(16, 16));
 			Helpers.MoveWorldObjects(new Vector2(0, 5), Background);
@@ -41,7 +69,9 @@ public partial class ProgressBar : CanvasLayer
 		else if (animationState >= 100)
 		{
 			animationState = -100;
-
+			_textureBar.Value = 0;
+			player.LevelUp();
+			UpdateLevelRequirement();
 			foreach (Node child in Background.GetChildren())
 			{
 				if ((child is Stika) && !child.IsQueuedForDeletion())
@@ -50,6 +80,9 @@ public partial class ProgressBar : CanvasLayer
 				}
 			}
 		}
+
+
+
 		if (animationState < -1)
 		{
 			_textureBar.Scale -= new Vector2(0.0025f, 0.001f);
@@ -62,6 +95,8 @@ public partial class ProgressBar : CanvasLayer
 		}
 		if (animationState == 0 && _textureBar.Value >= _textureBar.MaxValue)
 		{
+			// Empty the bar over the same 99 animation frames at every level.
+			_drainPerFrame = _textureBar.Value / 99.0;
 			animationState = 1;
 		}
 	}

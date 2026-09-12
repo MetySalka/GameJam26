@@ -12,8 +12,7 @@
 script = ExtResource("1_1r6ip")
 Background = NodePath("Background")
 
-[node name="GameOver" parent="." unique_id=844308784 node_paths=PackedStringArray("_startingMenu", "_player") instance=ExtResource("2_2a143")]
-_startingMenu = NodePath("../StartingMenu")
+[node name="GameOver" parent="." unique_id=844308784 node_paths=PackedStringArray("_player") instance=ExtResource("2_2a143")]
 _player = NodePath("../Player")
 
 [node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background") instance=ExtResource("3_p6jpk")]
