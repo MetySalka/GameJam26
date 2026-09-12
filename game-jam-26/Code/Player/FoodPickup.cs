@@ -3,18 +3,12 @@ using Godot;
 public partial class FoodPickup : Area2D
 {
 	[Export] private Player _player;
-	private CollisionShape2D _MouthUp;
-	private CollisionShape2D _MouthDown;
-	private CollisionShape2D _MouthLeft;
-	private CollisionShape2D _MouthRight;
+	private CollisionShape2D _mouth;
 	public override void _Ready()
 	{
 		AreaEntered += OnAreaEntered;
 
-		_MouthUp = GetNode<CollisionShape2D>("MouthUp");
-		_MouthDown = GetNode<CollisionShape2D>("MouthDown");
-		_MouthLeft = GetNode<CollisionShape2D>("MouthLeft");
-		_MouthRight = GetNode<CollisionShape2D>("MouthRight");
+		_mouth = GetNode<CollisionShape2D>("Mouth");
 	}
 
 	// Consume food when it enters the pickup area.
@@ -26,31 +20,4 @@ public partial class FoodPickup : Area2D
 			food.Consume();
 		}
 	}
-	public void SetMouthDir(int dir)
-	{
-		_MouthUp.Disabled = true;
-		_MouthDown.Disabled = true;
-		_MouthLeft.Disabled = true;
-		_MouthRight.Disabled = true;
-		
-		switch (dir)
-		{
-			case 0:
-				_MouthUp.Disabled = false;
-				break;
-
-			case 1:
-				_MouthDown.Disabled = false;
-				break;
-
-			case 2:
-				_MouthLeft.Disabled = false;
-				break;
-
-			case 3:
-				_MouthRight.Disabled = false;
-				break;
-		}
-	}
-
 }
