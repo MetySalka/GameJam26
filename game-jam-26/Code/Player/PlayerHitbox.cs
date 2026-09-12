@@ -23,7 +23,7 @@ public partial class PlayerHitbox : Area2D
 		if (area is Stika stika)
 		{
 			_player.OnPlayerHit();
-			stika.KYS();
+			//stika.KYS();
 		}
 		else if (area is Bubble bubble)
 		{

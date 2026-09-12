@@ -43,7 +43,7 @@ public partial class Main : Node
 			generateFood(GetFoodScene());
 		}
 		Wait = _rng.RandiRange(300, 1200);
-		_secondsUntilStikaSpawn = 10;
+		_secondsUntilStikaSpawn = 5;
 		_levelStarted = true;
 	}
 
@@ -122,7 +122,7 @@ public void SpawnBubble(Vector2 position)
 	{
 		PackedScene scene = GetFoodScene();
 		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 10; i++)
 			ExactFood(scene, Helpers.RandomPointInMargin(visibleBounds, Fishfood.SimulationMargin, _rng));
 	}
 
