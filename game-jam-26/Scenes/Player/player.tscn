@@ -41,10 +41,20 @@
 [ext_resource type="Texture2D" uid="uid://47ubcssq2u55" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0004.png" id="38_8d028"]
 [ext_resource type="Texture2D" uid="uid://deud7wj4inn1d" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0005.png" id="39_0liok"]
 [ext_resource type="Texture2D" uid="uid://bln1hcxyrgr3l" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0001.png" id="40_gyc8k"]
+[ext_resource type="Texture2D" uid="uid://dpqe846ku2lag" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0001.png" id="41_ejxfg"]
 [ext_resource type="Texture2D" uid="uid://dpneg5t6rq7k0" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0002.png" id="41_qflxp"]
 [ext_resource type="Texture2D" uid="uid://h0q3rpnuki16" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0003.png" id="42_0pk7v"]
+[ext_resource type="Texture2D" uid="uid://dck48oiniklvr" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0002.png" id="42_huyyu"]
+[ext_resource type="Texture2D" uid="uid://csgn0tsrkljb5" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0003.png" id="43_m5eiq"]
 [ext_resource type="Texture2D" uid="uid://8tfwqy6kd4yx" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0004.png" id="43_rblve"]
+[ext_resource type="Texture2D" uid="uid://c8ectuf3cn6ag" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0004.png" id="44_8g0gh"]
 [ext_resource type="Texture2D" uid="uid://breb2gtmk4vxc" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0005.png" id="44_fn4qh"]
+[ext_resource type="Texture2D" uid="uid://dmx6j3nxeyo8s" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0005.png" id="45_0a2xn"]
+[ext_resource type="Texture2D" uid="uid://dd4avkn8h5fj3" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0001.png" id="46_grehw"]
+[ext_resource type="Texture2D" uid="uid://cb1y3rlnixuty" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0002.png" id="47_vn8q6"]
+[ext_resource type="Texture2D" uid="uid://b3fyy7i5su6hg" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0003.png" id="48_8vj0r"]
+[ext_resource type="Texture2D" uid="uid://cv63p54onmcg5" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0004.png" id="49_j7g5o"]
+[ext_resource type="Texture2D" uid="uid://cajckyqloywl8" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0005.png" id="50_ckdd2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vwj1"]
 animations = [{
@@ -199,9 +209,6 @@ height = 32.321297
 radius = 7.0
 height = 30.877254
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5omc3"]
-load_path = "res://.godot/imported/Lizard down_0001.png-7e4556f07bb986a26d231b2194551394.ctex"
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_jf0tn"]
 animations = [{
 "frames": [{
@@ -226,13 +233,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_5omc3")
+"texture": ExtResource("41_ejxfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_huyyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_m5eiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_8g0gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_0a2xn")
 }],
 "loop": 1,
 "name": &"Left",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("46_grehw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_vn8q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_8vj0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_j7g5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_ckdd2")
+}],
 "loop": 1,
 "name": &"Right",
 "speed": 5.0
@@ -272,6 +306,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
+size = Vector2(12, 8)
 
 [node name="Player" type="CharacterBody2D" unique_id=442189289]
 scale = Vector2(1.385, 1.385)
@@ -327,8 +362,7 @@ visible = false
 position = Vector2(0.7220217, 0)
 scale = Vector2(1.475, 1.475)
 sprite_frames = SubResource("SpriteFrames_jf0tn")
-animation = &"Down"
-frame_progress = 0.21095183
+animation = &"Right"
 
 [node name="PigeonSprite" type="AnimatedSprite2D" parent="." unique_id=311430943]
 visible = false
