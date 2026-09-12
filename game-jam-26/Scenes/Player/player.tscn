@@ -202,10 +202,9 @@ script = ExtResource("1_uvnfx")
 [node name="PikeSprite" type="AnimatedSprite2D" parent="." unique_id=594399275]
 visible = false
 position = Vector2(0, 2)
+scale = Vector2(1.795, 1.795)
 sprite_frames = SubResource("SpriteFrames_6vwj1")
-animation = &"Right"
-frame = 1
-frame_progress = 0.32966253
+animation = &"Down"
 
 [node name="PickupRadius" type="Area2D" parent="." unique_id=56065100 node_paths=PackedStringArray("_player")]
 collision_mask = 4

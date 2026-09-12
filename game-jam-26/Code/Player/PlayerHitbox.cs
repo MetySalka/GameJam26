@@ -25,7 +25,7 @@ public partial class PlayerHitbox : Area2D
 			_player.OnPlayerHit();
 			stika.KYS();
 		}
-		else if (area is Fishfood bubble)
+		else if (area is Bubble bubble)
 		{
 			_player.OnPlayerHit();
 			bubble.Consume(false);

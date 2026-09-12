@@ -4,13 +4,15 @@ using Godot;
 public partial class Main : Node
 {
 	private const float FoodSpeed = 0.1f;
-	private const float SimulationMargin = 0.1f;
 
 	[Export] public Node2D Background { get; set; }
 
 
 	private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
+	private readonly PackedScene tadpoleFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/tadpolefood.tscn");
+	private Player _Player;
+
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private double _secondsUntilStikaSpawn;
 	private bool _levelStarted;
@@ -21,14 +23,22 @@ public partial class Main : Node
 	public override void _Ready()
 	{
 		Viewport = GetViewport().GetVisibleRect();
+		_Player = GetNode<Player>("Player");
 	}
 
 	public void prepareLevel()
 	{
-
+		_levelStarted = false;
+		global::Background world = (global::Background)Background;
+		Helpers.ClearScene(world);
+		world.ResetForNewRun();
+		_Player.ResetForNewRun();
+		GetNode<GameJam26.Code.UI.ProgressBar>("ProgressBar").ResetForNewRun();
+		GetNode<Control>("GameOver").Hide();
+		_framesSinceSpawn = 0;
 		for (int i = 0; i < 500; i++)
 		{
-			generateFood(foodScene);
+			generateFood(GetFoodScene());
 		}
 		Wait = _rng.RandiRange(300, 1200);
 		_secondsUntilStikaSpawn = 10;
@@ -37,7 +47,6 @@ public partial class Main : Node
 
 	public override void _Process(double delta)
 	{
-		FoodUpdate();
 		if (_levelStarted)
 		{	
 			_secondsUntilStikaSpawn -= delta;
@@ -57,7 +66,7 @@ public partial class Main : Node
 		{
 			_framesSinceSpawn = 0;
 			Wait = _rng.RandiRange(300, 1200);
-			generateFood(foodScene);
+			generateFood(GetFoodScene());
 		}
 	}
 
@@ -75,6 +84,19 @@ public partial class Main : Node
 
 
 
+	private PackedScene GetFoodScene()
+	{
+		return _Player.Level >= 1 ? tadpoleFoodScene : foodScene;
+	}
+
+	public void SpawnLevelUpFood()
+	{
+		PackedScene scene = GetFoodScene();
+		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
+		for (int i = 0; i < 50; i++)
+			ExactFood(scene, Helpers.RandomPointInMargin(visibleBounds, Fishfood.SimulationMargin, _rng));
+	}
+
 	public void generateFood(PackedScene scene)
 	{
 		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
@@ -85,40 +107,12 @@ public partial class Main : Node
 	public void ExactFood(PackedScene scene, Vector2 position)
 	{
 		Fishfood food = scene.Instantiate<Fishfood>();
+		food.Spawner = this;
+		food.SourceScene = scene;
 		food.Position = position;
 		food.MoveVector = new Vector2(
 			_rng.RandfRange(-FoodSpeed, FoodSpeed),
 			_rng.RandfRange(-FoodSpeed, FoodSpeed));
 		Background.AddChild(food);
-	}
-
-	public void FoodUpdate()
-	{
-		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
-		// The simulation extends 10% beyond each side of the screen.
-		Vector2 margin = visibleBounds.Size * SimulationMargin;
-		Rect2 simulationBounds = new Rect2(
-			visibleBounds.Position - margin, visibleBounds.Size + margin * 2f);
-
-		foreach (Node child in Background.GetChildren())
-		{
-			if (child is not Fishfood food || food.IsQueuedForDeletion())
-				continue;
-
-			// Food velocity is measured in local units per frame.
-			food.Position += food.MoveVector;
-			if (simulationBounds.HasPoint(food.Position))
-				continue;
-
-			// Replace escaped food somewhere in the offscreen margin.
-			Vector2 respawnPosition;
-			do
-			{
-				respawnPosition = Helpers.RandomPointInRect(simulationBounds, _rng);
-			} while (visibleBounds.HasPoint(respawnPosition));
-
-			ExactFood(foodScene, respawnPosition);
-			food.Consume(false);
-		}
 	}
 }

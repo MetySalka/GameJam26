@@ -17,9 +17,13 @@ public partial class ScrollingBGsprite : Sprite2D
 	private float _offsetY;
 	private Texture2D _sourceTexture;
 	private float _phase = 0.0f;
+	private Vector2 _startingPosition;
+	private Vector2 _startingScrollArea;
 
 	public override void _Ready()
 	{
+		_startingPosition = Position;
+		_startingScrollArea = new Vector2(ScrollAreaFrom, ScrollAreaTo);
 		// Keep the scene's texture for custom drawing, but disable Sprite2D's
 		// automatic drawing so the full image isn't drawn behind the strips.
 		_sourceTexture = Texture;
@@ -95,6 +99,16 @@ public partial class ScrollingBGsprite : Sprite2D
 			drawnHeight += sectionHeight;
 			sourceY = from;
 		}
+	}
+
+	public void ResetForNewRun()
+	{
+		Position = _startingPosition;
+		ScrollAreaFrom = _startingScrollArea.X;
+		ScrollAreaTo = _startingScrollArea.Y;
+		_offsetY = ScrollAreaFrom;
+		_phase = 0;
+		UpdateRegion();
 	}
 
 	public void ScrollVertically(float distance)

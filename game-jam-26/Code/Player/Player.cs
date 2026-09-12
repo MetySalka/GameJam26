@@ -10,14 +10,18 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
+	public int Health = 1;
 
 	[Export] public global::Background Background { get; set; }
 	public Vector2 MovementArea;
+	public int Level { get;  set; } = 0;
 	public const float JumpVelocity = -400.0f;
 	private Rect2 _viewport;
 	private Rect2 _movementBounds;
 
 	private AnimatedSprite2D _sprite;
+	private Vector2 _startingPosition;
+	private StringName _startingAnimation;
 
 	private FoodPickup _pickupArea;
 	private PlayerHitbox _hitbox;
@@ -63,11 +67,28 @@ public partial class Player : CharacterBody2D
 
 	public void OnPlayerHit()
 	{
-		GetNode<Health>("/root/Main/Health").HealthPlayer--;
+		Health--;
+	}
+
+	public void LevelUp()
+	{
+		Level++;
+		_main.SpawnLevelUpFood();
+		if (Level != 1)
+			return;
+
+		// Keep the current facing direction when evolving into the pike.
+		StringName animation = _sprite.Animation;
+		_sprite.Stop();
+		_sprite.Hide();
+		_sprite = GetNode<AnimatedSprite2D>("PikeSprite");
+		_sprite.Show();
+		_sprite.Play("Up");
 	}
 
 	private void OnPlayerDeath()
 	{
+		GetTree().Paused = true;
 		Background.Hide();
 		Hide();
 		_progressBar.Hide();
@@ -78,14 +99,42 @@ public partial class Player : CharacterBody2D
 	{
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		_sprite = GetNode<AnimatedSprite2D>("TadpoleSprite");
+		_startingPosition = Position;
+		_startingAnimation = _sprite.Animation;
 		_pickupArea = GetNode<FoodPickup>("PickupRadius");
 		_hitbox = GetNode<PlayerHitbox>("Hitbox");
+	}
+
+	public void ResetForNewRun()
+	{
+		Level = 0;
+		Health = 1;
+		Position = _startingPosition;
+		Velocity = Vector2.Zero;
+		AnimatedSprite2D pike = GetNode<AnimatedSprite2D>("PikeSprite");
+		pike.Stop();
+		pike.Hide();
+		_sprite = GetNode<AnimatedSprite2D>("TadpoleSprite");
+		_sprite.Stop();
+		_sprite.Animation = _startingAnimation;
+		_sprite.Frame = 0;
+		_sprite.Show();
+		int direction = _startingAnimation.ToString() switch
+		{
+			"Down" => 0,
+			"Up" => 1,
+			"Right" => 2,
+			_ => 3
+		};
+		_pickupArea.SetMouthDir(direction);
+		_hitbox.SetHitDir(direction);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		if (GetNode<Health>("/root/Main/Health").HealthPlayer <= 0)
-			OnPlayerDeath();
+		{	OnPlayerDeath();
+		}
 
 		MovementArea = _viewport.Size * 0.7f;
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);

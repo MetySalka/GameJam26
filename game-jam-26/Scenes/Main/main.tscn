@@ -13,7 +13,8 @@
 script = ExtResource("1_1r6ip")
 Background = NodePath("Background")
 
-[node name="GameOver" parent="." unique_id=844308784 node_paths=PackedStringArray("_player") instance=ExtResource("2_2a143")]
+[node name="GameOver" parent="." unique_id=844308784 node_paths=PackedStringArray("_startingMenu", "_player") instance=ExtResource("2_2a143")]
+_startingMenu = NodePath("../StartingMenu")
 _player = NodePath("../Player")
 
 [node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver") instance=ExtResource("3_p6jpk")]
@@ -44,7 +45,7 @@ position = Vector2(374, 179)
 position = Vector2(321, 180)
 
 [node name="Bubble" parent="." unique_id=304397937 instance=ExtResource("7_xlvfx")]
-position = Vector2(146, -51)
+position = Vector2(366, 199)
 
 [node name="Health" parent="." unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
 _player = NodePath("../Player")

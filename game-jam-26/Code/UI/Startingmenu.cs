@@ -21,9 +21,9 @@ public partial class Startingmenu : Control
 
 	public void HideMenu()
 	{
+		_main.prepareLevel();
 		_background.Show();
 		GetTree().Paused = false;
-		_main.Call("prepareLevel");
 		_player.Show();
 		_progressBar.Show();
 		GetNode<Control>("/root/Main/StartingMenu").Hide();
