@@ -10,12 +10,14 @@ public partial class Startingmenu : Control
 	[Export] private ProgressBar _progressBar;
 	[Export] private Background _background;
 	[Export] private Control _gameOver;
+	[Export] private Health _health;
 	public void ShowMenu()
 	{
 		GetTree().Paused = true;
 		_background.Hide();
 		_player.Hide();
 		_progressBar.Hide();
+		_health.Show();
 		Show();
 	}
 
@@ -27,6 +29,7 @@ public partial class Startingmenu : Control
 		_player.Show();
 		_progressBar.Show();
 		GetNode<Control>("/root/Main/StartingMenu").Hide();
+		_health.Hide();
 	}
 	public override void _Ready()
 	{
