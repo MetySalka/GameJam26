@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://bulo17y1uxqcx"]
 
 [ext_resource type="Script" uid="uid://bahy3v7doolsw" path="res://Code/Core/Main.cs" id="1_1r6ip"]
+[ext_resource type="PackedScene" uid="uid://dldumcw4nafyx" path="res://Scenes/UI/gameovermenu.tscn" id="2_2a143"]
 [ext_resource type="PackedScene" uid="uid://ckw4h670084le" path="res://Scenes/Background/background.tscn" id="2_5yls4"]
-[ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/Menus/startingmenu.tscn" id="3_p6jpk"]
+[ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
-[ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/Misc/progress_bar.tscn" id="5_p6jpk"]
+[ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
 
-[node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
+[node name="Main" type="Node" unique_id=372516350]
 script = ExtResource("1_1r6ip")
-Background = NodePath("Background")
+
+[node name="GameOver" parent="." unique_id=844308784 instance=ExtResource("2_2a143")]
+visible = false
 
 [node name="StartingMenu" parent="." unique_id=1066928608 instance=ExtResource("3_p6jpk")]
 offset_right = 61.6
