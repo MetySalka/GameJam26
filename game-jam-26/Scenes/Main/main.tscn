@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
+[ext_resource type="PackedScene" uid="uid://babt2mxgr03kc" path="res://Scenes/Background/ground.tscn" id="8_hryqi"]
 [ext_resource type="PackedScene" uid="uid://bgtrs5ol1nvq5" path="res://Scenes/UI/health.tscn" id="8_y3v7k"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
@@ -17,7 +18,8 @@ _player = NodePath("../Player")
 _health = NodePath("../Health")
 _fihWarn = NodePath("../FihWarn")
 
-[node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health", "_palm") instance=ExtResource("3_p6jpk")]
+[node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health") instance=ExtResource("3_p6jpk")]
+anchors_preset = 8
 offset_right = 61.6
 offset_bottom = 47.519997
 _main = NodePath("..")
@@ -26,7 +28,6 @@ _progressBar = NodePath("../ProgressBar")
 _background = NodePath("../Background")
 _gameOver = NodePath("../GameOver")
 _health = NodePath("../Health")
-_palm = NodePath("../Palm")
 
 [node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background") instance=ExtResource("5_p6jpk")]
 Background = NodePath("../Background")
@@ -50,6 +51,7 @@ scale = Vector2(2, 2)
 anchor_mode = 0
 
 [node name="Health" parent="." unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
+anchors_preset = 1
 _player = NodePath("../Player")
 
 [node name="FihWarn" type="ColorRect" parent="." unique_id=1175961578]
@@ -59,4 +61,5 @@ offset_bottom = 40.0
 scale = Vector2(16.154625, 3.957517)
 color = Color(0.7411765, 0, 0, 0.41960785)
 
-[node name="Palm" parent="." unique_id=1093762877]
+[node name="Ground" parent="." unique_id=1549823556 instance=ExtResource("8_hryqi")]
+position = Vector2(267, 366)

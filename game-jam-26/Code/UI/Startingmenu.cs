@@ -11,7 +11,6 @@ public partial class Startingmenu : Control
 	[Export] private Background _background;
 	[Export] private Control _gameOver;
 	[Export] private Health _health;
-	[Export] private Node2D _palm;
 	public void ShowMenu()
 	{
 		GetTree().Paused = true;
@@ -19,7 +18,6 @@ public partial class Startingmenu : Control
 		_player.Hide();
 		_progressBar.Hide();
 		_health.Hide();
-		_palm.Hide();
 		Show();
 	}
 
@@ -30,7 +28,6 @@ public partial class Startingmenu : Control
 		GetTree().Paused = false;
 		_player.Show();
 		_progressBar.Show();
-		_palm.Hide();
 		GetNode<Control>("/root/Main/StartingMenu").Hide();
 		_health.Show();
 	}
