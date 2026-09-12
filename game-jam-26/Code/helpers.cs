@@ -82,4 +82,13 @@ public static class Helpers
       	return (float)(Math.Atan2(diff.Y, diff.X) * 180.0 / Math.PI);
 
 	}
+
+	public static void ClearScene(Background background)
+	{
+		foreach (Node child in background.GetChildren())
+		{
+			if ((child is Fishfood || child is Stika) && !child.IsQueuedForDeletion())
+				child.QueueFree();
+		}
+	}
 }

@@ -11,7 +11,7 @@ public partial class Player : CharacterBody2D
 	public int Health = 1;
 
 	[Export] public global::Background Background { get; set; }
-	public Vector2 MovementArea = new Vector2I(384, 128);
+	public Vector2 MovementArea;
 	public const float JumpVelocity = -400.0f;
 	private Rect2 _viewport;
 	private Rect2 _movementBounds;
@@ -76,7 +76,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
-		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_sprite = GetNode<AnimatedSprite2D>("TadpoleSprite");
 		_pickupArea = GetNode<FoodPickup>("PickupRadius");
 		_hitbox = GetNode<PlayerHitbox>("Hitbox");
 	}

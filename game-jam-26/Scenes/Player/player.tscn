@@ -200,6 +200,7 @@ scale = Vector2(1.385, 1.385)
 script = ExtResource("1_uvnfx")
 
 [node name="PikeSprite" type="AnimatedSprite2D" parent="." unique_id=594399275]
+visible = false
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_6vwj1")
 animation = &"Right"

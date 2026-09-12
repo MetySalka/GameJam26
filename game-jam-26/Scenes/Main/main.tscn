@@ -16,20 +16,19 @@ Background = NodePath("Background")
 _startingMenu = NodePath("../StartingMenu")
 _player = NodePath("../Player")
 
-[node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver") instance=ExtResource("3_p6jpk")]
+[node name="StartingMenu" parent="." unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background") instance=ExtResource("3_p6jpk")]
 offset_right = 61.6
 offset_bottom = 47.519997
 _main = NodePath("..")
 _player = NodePath("../Player")
 _progressBar = NodePath("../ProgressBar")
 _background = NodePath("../Background")
-_gameOver = NodePath("../GameOver")
 
 [node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background") instance=ExtResource("5_p6jpk")]
 Background = NodePath("../Background")
 
 [node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("_main", "_player", "_progressBar", "Background") instance=ExtResource("4_2a143")]
-position = Vector2(188, 144)
+position = Vector2(158.00002, 158.00002)
 _main = NodePath("..")
 _player = NodePath(".")
 _progressBar = NodePath("../ProgressBar")
