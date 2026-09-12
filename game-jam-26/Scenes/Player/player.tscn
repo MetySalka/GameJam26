@@ -1,40 +1,50 @@
 [gd_scene format=3 uid="uid://dtn54nq4lmoom"]
 
 [ext_resource type="Script" uid="uid://tti25d17stg1" path="res://Code/Player/Player.cs" id="1_uvnfx"]
+[ext_resource type="Texture2D" uid="uid://boovaycljdhhw" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0001.png" id="2_2ahak"]
 [ext_resource type="Texture2D" uid="uid://dbpefcyh4u0xl" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0001.png" id="2_enij7"]
-[ext_resource type="Texture2D" uid="uid://bvb6e3txsogpv" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0001.png" id="3_hnuln"]
 [ext_resource type="Texture2D" uid="uid://dblbs1oftnskp" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0002.png" id="3_mwii3"]
+[ext_resource type="Texture2D" uid="uid://lrpumbus60tc" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0002.png" id="3_rukb4"]
 [ext_resource type="Script" uid="uid://ctamrepniap05" path="res://Code/Player/FoodPickup.cs" id="3_xpcdj"]
-[ext_resource type="Texture2D" uid="uid://kt4lbybup0gp" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0001.png" id="4_0u5uq"]
 [ext_resource type="Texture2D" uid="uid://ceie5x3hkb6i6" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0003.png" id="4_2aanf"]
-[ext_resource type="Texture2D" uid="uid://bu2c2ykjursdg" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0001.png" id="4_74mp2"]
-[ext_resource type="Texture2D" uid="uid://c4gxfue7c16vo" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0002.png" id="4_aqm4k"]
-[ext_resource type="Texture2D" uid="uid://csn2bl8mtnv8k" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0002.png" id="5_jlvik"]
+[ext_resource type="Texture2D" uid="uid://bbogirvf2qevn" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0003.png" id="4_4no11"]
+[ext_resource type="Texture2D" uid="uid://47ubcssq2u55" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0004.png" id="5_fcwna"]
 [ext_resource type="Texture2D" uid="uid://eve2rd4eogxp" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Down) _0004.png" id="5_m6ahd"]
-[ext_resource type="Texture2D" uid="uid://btokgwvi4eith" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0002.png" id="5_oikmp"]
-[ext_resource type="Texture2D" uid="uid://nsum1jqie3ll" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0003.png" id="5_rcvs5"]
-[ext_resource type="Texture2D" uid="uid://cl4vweflk7kcm" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0003.png" id="6_06tpx"]
-[ext_resource type="Texture2D" uid="uid://dmv5fw1gdkwgf" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0003.png" id="6_gk6dx"]
-[ext_resource type="Texture2D" uid="uid://3nwuombrvbcu" path="res://Assets/Sprites/Creatures/Tadpole/down/tadpole_0004.png" id="6_h8ma5"]
-[ext_resource type="Texture2D" uid="uid://d0yiulro2blax" path="res://Assets/Sprites/Creatures/Stika player/stika player_0001.png" id="6_ogmfp"]
-[ext_resource type="Texture2D" uid="uid://bhhaokpu7uk" path="res://Assets/Sprites/Creatures/Tadpole/left/tadpole_0004.png" id="7_7g0yx"]
-[ext_resource type="Texture2D" uid="uid://du36yff40u75w" path="res://Assets/Sprites/Creatures/Stika player/stika player_0002.png" id="7_ixrbb"]
-[ext_resource type="Texture2D" uid="uid://c53lfet446inx" path="res://Assets/Sprites/Creatures/Tadpole/right/tadpole_0004.png" id="7_jhyir"]
-[ext_resource type="Texture2D" uid="uid://bo3a5epg8bnb5" path="res://Assets/Sprites/Creatures/Stika player/stika player_0003.png" id="8_ei2r2"]
-[ext_resource type="Texture2D" uid="uid://dtrrixkf7ukkt" path="res://Assets/Sprites/Creatures/Stika player/stika player_0004.png" id="9_j6uq4"]
-[ext_resource type="Texture2D" uid="uid://cnjdxs4kyak6b" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0001.png" id="10_h5u0x"]
-[ext_resource type="Texture2D" uid="uid://b27jar51o6cuh" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0001.png" id="11_7g0yx"]
-[ext_resource type="Texture2D" uid="uid://djuyaswyj367m" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0002.png" id="11_po18e"]
-[ext_resource type="Texture2D" uid="uid://b3hglpcljbbc4" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0002.png" id="12_dey5f"]
-[ext_resource type="Texture2D" uid="uid://8d4n3al6yckh" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0003.png" id="12_v37cr"]
-[ext_resource type="Texture2D" uid="uid://c47tc70ud58ii" path="res://Assets/Sprites/Creatures/Stika player/stika_scale_0004.png" id="13_8d028"]
-[ext_resource type="Texture2D" uid="uid://cgpas700uodpt" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0003.png" id="13_r5xpd"]
-[ext_resource type="Texture2D" uid="uid://6xxv8tgrissm" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0001.png" id="14_0liok"]
-[ext_resource type="Texture2D" uid="uid://dm7bwqltf66tn" path="res://Assets/Sprites/Creatures/Tadpole/up/tadpole_0004.png" id="14_ks1b7"]
-[ext_resource type="Texture2D" uid="uid://c3ys6h5fou5i2" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0002.png" id="15_gyc8k"]
-[ext_resource type="Texture2D" uid="uid://bxvieqfibvhei" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0003.png" id="16_qflxp"]
-[ext_resource type="Texture2D" uid="uid://gs241c3toonb" path="res://Assets/Sprites/Creatures/Stika player/stikaplayer(Up) _0004.png" id="17_0pk7v"]
+[ext_resource type="Texture2D" uid="uid://deud7wj4inn1d" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0005.png" id="6_1agin"]
+[ext_resource type="Texture2D" uid="uid://craxkvrg1swky" path="res://Assets/Sprites/Creatures/Stika player/stika left_0001.png" id="6_enij7"]
+[ext_resource type="Texture2D" uid="uid://bln1hcxyrgr3l" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0001.png" id="7_2jnj1"]
+[ext_resource type="Texture2D" uid="uid://bw47fpjky4emg" path="res://Assets/Sprites/Creatures/Stika player/stika left_0002.png" id="7_mwii3"]
+[ext_resource type="Texture2D" uid="uid://dkkigdk1rqvae" path="res://Assets/Sprites/Creatures/Stika player/stika left_0003.png" id="8_2aanf"]
+[ext_resource type="Texture2D" uid="uid://dpneg5t6rq7k0" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0002.png" id="8_enij7"]
+[ext_resource type="Texture2D" uid="uid://cohh8dmdrusg7" path="res://Assets/Sprites/Creatures/Stika player/stika left_0004.png" id="9_m6ahd"]
+[ext_resource type="Texture2D" uid="uid://h0q3rpnuki16" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0003.png" id="9_mwii3"]
+[ext_resource type="Texture2D" uid="uid://8tfwqy6kd4yx" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0004.png" id="10_2aanf"]
+[ext_resource type="Texture2D" uid="uid://sr57qkg3tlhg" path="res://Assets/Sprites/Creatures/Stika player/stika right_0001.png" id="10_ogmfp"]
+[ext_resource type="Texture2D" uid="uid://bh452l5grmy57" path="res://Assets/Sprites/Creatures/Stika player/stika right_0002.png" id="11_ixrbb"]
+[ext_resource type="Texture2D" uid="uid://breb2gtmk4vxc" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0005.png" id="11_m6ahd"]
+[ext_resource type="Texture2D" uid="uid://dsvheql7mkgv1" path="res://Assets/Sprites/Creatures/Stika player/stika right_0003.png" id="12_ei2r2"]
+[ext_resource type="Texture2D" uid="uid://ddowjx5eia0sk" path="res://Assets/Sprites/Creatures/Stika player/stika right_0004.png" id="13_j6uq4"]
+[ext_resource type="Texture2D" uid="uid://d3g552ywlnpga" path="res://Assets/Sprites/Creatures/Stika player/stika player(Up) _0001.png" id="14_h5u0x"]
+[ext_resource type="Texture2D" uid="uid://b6m3c73061020" path="res://Assets/Sprites/Creatures/Stika player/stika player(Up) _0002.png" id="15_po18e"]
+[ext_resource type="Texture2D" uid="uid://efe3ixcmfk1s" path="res://Assets/Sprites/Creatures/Stika player/stika player(Up) _0003.png" id="16_v37cr"]
+[ext_resource type="Texture2D" uid="uid://dngilr546evm3" path="res://Assets/Sprites/Creatures/Stika player/stika player(Up) _0004.png" id="17_8d028"]
 [ext_resource type="Script" uid="uid://5u62fch08oxj" path="res://Code/Player/PlayerHitbox.cs" id="19_aqm4k"]
+[ext_resource type="Texture2D" uid="uid://b82ku80ewg4hr" path="res://Assets/Sprites/Creatures/Tadpole/tadpole down_0001.png" id="19_v37cr"]
+[ext_resource type="Texture2D" uid="uid://c8maehwefcvn7" path="res://Assets/Sprites/Creatures/Tadpole/tadpole down_0002.png" id="20_8d028"]
+[ext_resource type="Texture2D" uid="uid://b215gru41xet5" path="res://Assets/Sprites/Creatures/Tadpole/tadpole down_0003.png" id="21_0liok"]
+[ext_resource type="Texture2D" uid="uid://dy2vn2ms842v2" path="res://Assets/Sprites/Creatures/Tadpole/tadpole down_0004.png" id="22_gyc8k"]
+[ext_resource type="Texture2D" uid="uid://ehvemskxnc6p" path="res://Assets/Sprites/Creatures/Tadpole/tadpole left_0001.png" id="23_qflxp"]
+[ext_resource type="Texture2D" uid="uid://chywfn486mwyk" path="res://Assets/Sprites/Creatures/Tadpole/tadpole left_0002.png" id="24_0pk7v"]
+[ext_resource type="Texture2D" uid="uid://uyg463qeglh7" path="res://Assets/Sprites/Creatures/Tadpole/tadpole left_0003.png" id="25_rblve"]
+[ext_resource type="Texture2D" uid="uid://mdnfpqlqk0p1" path="res://Assets/Sprites/Creatures/Tadpole/tadpole left_0004.png" id="26_fn4qh"]
+[ext_resource type="Texture2D" uid="uid://dtejdrkjph2sr" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0001.png" id="27_5omc3"]
+[ext_resource type="Texture2D" uid="uid://bnmti7fj558ln" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0002.png" id="28_pcwjh"]
+[ext_resource type="Texture2D" uid="uid://boniqbvq7i4bg" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0003.png" id="29_ejxfg"]
+[ext_resource type="Texture2D" uid="uid://cac1ckssbl3op" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0004.png" id="30_huyyu"]
+[ext_resource type="Texture2D" uid="uid://db7321ym6ch8j" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0001.png" id="31_m5eiq"]
+[ext_resource type="Texture2D" uid="uid://bbhifrv75knfj" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0002.png" id="32_8g0gh"]
+[ext_resource type="Texture2D" uid="uid://djvpm5crm1wt2" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0003.png" id="33_0a2xn"]
+[ext_resource type="Texture2D" uid="uid://csico608rjfmh" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0004.png" id="34_grehw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vwj1"]
 animations = [{
@@ -57,16 +67,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_ogmfp")
+"texture": ExtResource("6_enij7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_ixrbb")
+"texture": ExtResource("7_mwii3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_ei2r2")
+"texture": ExtResource("8_2aanf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_j6uq4")
+"texture": ExtResource("9_m6ahd")
 }],
 "loop": 1,
 "name": &"Left",
@@ -74,16 +84,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_h5u0x")
+"texture": ExtResource("10_ogmfp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_po18e")
+"texture": ExtResource("11_ixrbb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_v37cr")
+"texture": ExtResource("12_ei2r2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_8d028")
+"texture": ExtResource("13_j6uq4")
 }],
 "loop": 1,
 "name": &"Right",
@@ -91,45 +101,39 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_0liok")
+"texture": ExtResource("14_h5u0x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_gyc8k")
+"texture": ExtResource("15_po18e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_qflxp")
+"texture": ExtResource("16_v37cr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_0pk7v")
+"texture": ExtResource("17_8d028")
 }],
 "loop": 1,
 "name": &"Up",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8p22"]
-size = Vector2(12, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qc0h"]
-size = Vector2(15.125, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnuln"]
-size = Vector2(14.75, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8d028"]
+radius = 8.66426
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_hnuln")
+"texture": ExtResource("19_v37cr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_aqm4k")
+"texture": ExtResource("20_8d028")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_rcvs5")
+"texture": ExtResource("21_0liok")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_h8ma5")
+"texture": ExtResource("22_gyc8k")
 }],
 "loop": 1,
 "name": &"Down",
@@ -137,16 +141,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_74mp2")
+"texture": ExtResource("23_qflxp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_oikmp")
+"texture": ExtResource("24_0pk7v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_06tpx")
+"texture": ExtResource("25_rblve")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_7g0yx")
+"texture": ExtResource("26_fn4qh")
 }],
 "loop": 1,
 "name": &"Left",
@@ -154,16 +158,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_0u5uq")
+"texture": ExtResource("27_5omc3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_jlvik")
+"texture": ExtResource("28_pcwjh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_gk6dx")
+"texture": ExtResource("29_ejxfg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_jhyir")
+"texture": ExtResource("30_huyyu")
 }],
 "loop": 1,
 "name": &"Right",
@@ -171,16 +175,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_7g0yx")
+"texture": ExtResource("31_m5eiq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_dey5f")
+"texture": ExtResource("32_8g0gh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_r5xpd")
+"texture": ExtResource("33_0a2xn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_ks1b7")
+"texture": ExtResource("34_grehw")
 }],
 "loop": 1,
 "name": &"Up",
@@ -195,44 +199,88 @@ height = 17.0
 radius = 7.0
 height = 20.119999
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_jf0tn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2ahak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rukb4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4no11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fcwna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1agin")
+}],
+"loop": 1,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2jnj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_enij7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mwii3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2aanf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_m6ahd")
+}],
+"loop": 1,
+"name": &"Up",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=442189289]
 scale = Vector2(1.385, 1.385)
 script = ExtResource("1_uvnfx")
 
 [node name="PikeSprite" type="AnimatedSprite2D" parent="." unique_id=594399275]
-position = Vector2(0, 2)
+position = Vector2(-0.7220217, 0)
 scale = Vector2(0.75, 0.9)
 sprite_frames = SubResource("SpriteFrames_6vwj1")
-animation = &"Left"
+animation = &"Down"
+frame_progress = 0.0054956106
 
 [node name="PickupRadius" type="Area2D" parent="." unique_id=56065100 node_paths=PackedStringArray("_player")]
 collision_mask = 4
 script = ExtResource("3_xpcdj")
 _player = NodePath("..")
 
-[node name="MouthLeft" type="CollisionShape2D" parent="PickupRadius" unique_id=1421534460]
-position = Vector2(-10, 1)
-shape = SubResource("RectangleShape2D_c8p22")
-
-[node name="MouthRight" type="CollisionShape2D" parent="PickupRadius" unique_id=523997331]
-position = Vector2(10, 1)
-shape = SubResource("RectangleShape2D_c8p22")
-
-[node name="MouthUp" type="CollisionShape2D" parent="PickupRadius" unique_id=1431762199]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_4qc0h")
-
-[node name="MouthDown" type="CollisionShape2D" parent="PickupRadius" unique_id=1191523009]
-position = Vector2(0, 10)
-shape = SubResource("RectangleShape2D_hnuln")
+[node name="Mouth" type="CollisionShape2D" parent="PickupRadius" unique_id=1421534460]
+position = Vector2(0, 1.1920929e-07)
+shape = SubResource("CircleShape2D_8d028")
 
 [node name="TadpoleSprite" type="AnimatedSprite2D" parent="." unique_id=1118745982]
 visible = false
-position = Vector2(0, 2)
+position = Vector2(0, 1.1920929e-07)
 sprite_frames = SubResource("SpriteFrames_uraql")
-animation = &"Left"
+animation = &"Down"
+frame_progress = 0.23286644
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=886382019 node_paths=PackedStringArray("_player")]
+visible = false
 collision_mask = 8
 script = ExtResource("19_aqm4k")
 _player = NodePath("..")
@@ -254,3 +302,12 @@ shape = SubResource("CapsuleShape2D_6vwj1")
 [node name="HitDown" type="CollisionShape2D" parent="Hitbox" unique_id=348489529]
 position = Vector2(-0.5, 5.5)
 shape = SubResource("CapsuleShape2D_6vwj1")
+
+[node name="LizardSprite" type="AnimatedSprite2D" parent="." unique_id=481883837]
+visible = false
+position = Vector2(0.7220217, 0)
+scale = Vector2(1.475, 1.475)
+sprite_frames = SubResource("SpriteFrames_jf0tn")
+animation = &"Down"
+frame = 3
+frame_progress = 0.81347394
