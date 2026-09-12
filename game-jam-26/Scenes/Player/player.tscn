@@ -102,7 +102,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uraql"]
 radius = 5.0
-height = 18.380001
+height = 17.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6vwj1"]
 radius = 7.0
@@ -135,9 +135,10 @@ shape = SubResource("RectangleShape2D_hnuln")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1118745982]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_uraql")
-animation = &"Down"
+animation = &"Left"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=886382019 node_paths=PackedStringArray("_player")]
+collision_mask = 8
 script = ExtResource("19_aqm4k")
 _player = NodePath("..")
 

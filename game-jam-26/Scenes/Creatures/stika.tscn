@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c6ep8iuldn4ae"]
+
+[ext_resource type="Texture2D" uid="uid://cg7awt5npg7wq" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0001.png" id="1_8a7y6"]
+[ext_resource type="Texture2D" uid="uid://icjuf6622jmw" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0002.png" id="2_g4mkx"]
+[ext_resource type="Texture2D" uid="uid://idljqyyyvkvm" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0003.png" id="3_1fgwc"]
+[ext_resource type="Texture2D" uid="uid://cgppmhn3ua8x1" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0004.png" id="4_py8um"]
+[ext_resource type="Texture2D" uid="uid://ulxe1mre6gmy" path="res://Assets/Sprites/Creatures/Stika/left/stika_sprite_left_0001.png" id="5_5mjoe"]
+[ext_resource type="Texture2D" uid="uid://dbat5h8u5xp0m" path="res://Assets/Sprites/Creatures/Stika/left/stika_sprite_left_0002.png" id="6_yflbg"]
+[ext_resource type="Texture2D" uid="uid://bixodlk6lywlq" path="res://Assets/Sprites/Creatures/Stika/left/stika_sprite_left_0003.png" id="7_5tnxm"]
+[ext_resource type="Texture2D" uid="uid://b2eypxrsicdie" path="res://Assets/Sprites/Creatures/Stika/left/stika_sprite_left_0004.png" id="8_3e1nt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_plrnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8a7y6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g4mkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1fgwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_py8um")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5mjoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yflbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5tnxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3e1nt")
+}],
+"loop": 1,
+"name": &"left",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n50i5"]
+radius = 2.0
+height = 6.0
+
+[node name="Stika" type="Area2D" unique_id=1241933422]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113502288]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_plrnn")
+frame_progress = 0.07094494
+speed_scale = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305623995]
+position = Vector2(23, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_n50i5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2060289732]
+position = Vector2(-23, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_n50i5")

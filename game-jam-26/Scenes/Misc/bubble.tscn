@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ci1ugy2vncfqq"]
+
+[ext_resource type="Script" uid="uid://caawje0loxx5v" path="res://Code/Misc/Bubble.cs" id="1_6l1px"]
+[ext_resource type="Texture2D" uid="uid://cb0f1o0mesuj7" path="res://Assets/Sprites/Misc/Bubble/Bubble_0001.png" id="1_rv8tc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rv8tc")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uraql"]
+radius = 8.0
+
+[node name="Bubble" type="Area2D" unique_id=304397937]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_6l1px")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310536594]
+sprite_frames = SubResource("SpriteFrames_uraql")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397004495]
+rotation = 2.8797934
+shape = SubResource("CircleShape2D_uraql")

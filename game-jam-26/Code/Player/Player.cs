@@ -5,6 +5,7 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
+	public int Health = 1;
 
 	[Export] public global::Background Background { get; set; }
 	public Vector2 MovementArea = new Vector2I(384, 128);
@@ -56,18 +57,15 @@ public partial class Player : CharacterBody2D
 
 	}
 
-	public void OnPlayerDeath()
+	public void OnPlayerHit()
+	{
+		Health--;
+	}
+	private void OnPlayerDeath()
 	{
 		GD.Print("Player Death");
-		/*
-		var main = GetParent();
-		main.GetNode<CanvasItem>("Background").Hide();
-		ProcessMode = Node.ProcessModeEnum.WhenPaused;
-		GetTree().Paused = true;
-		GetNode<Node2D>("../Player").Hide();
-		GetNode<Node2D>("../ProgressBar").Hide();
-		GetNode<Node2D>("../GameOver").Show();
-		*/
+		
+		
 	}
 
 	public override void _Ready()
@@ -80,6 +78,9 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Health <= 0)
+			OnPlayerDeath();
+		
 		MovementArea = _viewport.Size * 0.87f;
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		Vector2 center = _viewport.GetCenter();

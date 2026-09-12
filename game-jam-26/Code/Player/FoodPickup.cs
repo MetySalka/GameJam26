@@ -15,7 +15,6 @@ public partial class FoodPickup : Area2D
 		_MouthDown = GetNode<CollisionShape2D>("MouthDown");
 		_MouthLeft = GetNode<CollisionShape2D>("MouthLeft");
 		_MouthRight = GetNode<CollisionShape2D>("MouthRight");
-
 	}
 
 	// Consume food when it enters the pickup area.
@@ -24,9 +23,7 @@ public partial class FoodPickup : Area2D
 		if (area is Fishfood food)
 		{
 			GD.Print("Yum Yum");
-
 			food.Consume();
-
 		}
 	}
 	public void SetMouthDir(int dir)
