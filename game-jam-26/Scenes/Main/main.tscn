@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
+[ext_resource type="PackedScene" uid="uid://dj2l5fa77ka8" path="res://Scenes/Background/justsand.tscn" id="8_hfg1r"]
 [ext_resource type="PackedScene" uid="uid://babt2mxgr03kc" path="res://Scenes/Background/ground.tscn" id="8_hryqi"]
 [ext_resource type="PackedScene" uid="uid://bgtrs5ol1nvq5" path="res://Scenes/UI/health.tscn" id="8_y3v7k"]
 [ext_resource type="PackedScene" uid="uid://wuvwtiohwg3h" path="res://Scenes/Background/slope.tscn" id="9_hryqi"]
@@ -76,8 +77,37 @@ color = Color(0.7411765, 0, 0, 0.14509805)
 
 [node name="LandStuff" type="Node2D" parent="." unique_id=162671218]
 
+[node name="Node2D4" parent="LandStuff" unique_id=1936720432 instance=ExtResource("8_hfg1r")]
+modulate = Color(0.74474084, 0.74474084, 0.74474084, 1)
+position = Vector2(2434.0002, -2182.9998)
+rotation = -1.5707964
+scale = Vector2(5, 5)
+
+[node name="Node2D6" parent="LandStuff" unique_id=774725216 instance=ExtResource("8_hfg1r")]
+modulate = Color(0.74474084, 0.74474084, 0.74474084, 1)
+position = Vector2(2487.0002, -1491.9999)
+rotation = 3.1415925
+scale = Vector2(5, 5)
+
+[node name="Node2D7" parent="LandStuff" unique_id=2140093263 instance=ExtResource("8_hfg1r")]
+modulate = Color(0.74474084, 0.74474084, 0.74474084, 1)
+position = Vector2(2690, -1523.0001)
+scale = Vector2(5, 5)
+
+[node name="Node2D5" parent="LandStuff" unique_id=1204552801 instance=ExtResource("8_hfg1r")]
+modulate = Color(0.74474084, 0.74474084, 0.74474084, 1)
+position = Vector2(2133, -1542.9999)
+rotation = 1.5707964
+scale = Vector2(5, 5)
+
 [node name="Ground" parent="LandStuff" unique_id=1549823556 instance=ExtResource("8_hryqi")]
 position = Vector2(267, 366)
+
+[node name="Ground" parent="LandStuff/Ground" unique_id=2046749582 instance=ExtResource("8_hryqi")]
+position = Vector2(1827, -517.94)
+
+[node name="Ground" parent="LandStuff/Ground/Ground" unique_id=285668980 instance=ExtResource("8_hryqi")]
+position = Vector2(-2462, 518)
 
 [node name="Ground2" parent="LandStuff" unique_id=224423123 instance=ExtResource("8_hryqi")]
 position = Vector2(1456, 1004)
@@ -85,6 +115,13 @@ rotation = -3.1415927
 
 [node name="Slope" parent="LandStuff" unique_id=797310093 instance=ExtResource("9_hryqi")]
 position = Vector2(1135, 335)
+
+[node name="Slope2" parent="LandStuff" unique_id=1555440767 instance=ExtResource("9_hryqi")]
+position = Vector2(1775, 75)
+
+[node name="Slope2" parent="LandStuff/Slope2" unique_id=1679383234 instance=ExtResource("9_hryqi")]
+position = Vector2(0, 640)
+rotation = 3.1415927
 
 [node name="Node2D2" parent="LandStuff" unique_id=1109065394 instance=ExtResource("10_imbg2")]
 position = Vector2(485.99997, 589.00006)
@@ -94,8 +131,12 @@ scale = Vector2(5, 5)
 position = Vector2(1125, 589.00006)
 scale = Vector2(5, 5)
 
+[node name="Node2D3" parent="LandStuff" unique_id=1370992978 instance=ExtResource("10_imbg2")]
+position = Vector2(-153, 592)
+scale = Vector2(5, 5)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="LandStuff" unique_id=1024685959]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LandStuff/StaticBody2D" unique_id=1355181435]
-position = Vector2(270, 387.5)
+position = Vector2(-92, 390)
 shape = SubResource("RectangleShape2D_hfg1r")

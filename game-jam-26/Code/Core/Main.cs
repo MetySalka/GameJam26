@@ -24,6 +24,8 @@ public partial class Main : Node
 	private int Wait;
 	private int _framesSinceSpawn;
 	private ColorRect _fihWarn;
+
+	private Camera2D camera;
 	private sealed class SwordfishWarning
 	{
 		public ColorRect Rect { get; init; }
@@ -40,6 +42,8 @@ public partial class Main : Node
 		_fihWarn.MouseFilter = Control.MouseFilterEnum.Ignore;
 		_fihWarn.Hide();
 		_availableSwordfishWarnings.Push(_fihWarn);
+		camera = GetNode<Camera2D>("Camera2D");
+
 	}
 	public void prepareLevel()
 	{
@@ -213,7 +217,7 @@ public partial class Main : Node
 	}
 
 	public void BeginLandPhase()
-	{
+	{	
 		HideSwordfishWarning();
 		foreach (Node child in Background.GetChildren())
 		{
@@ -222,7 +226,13 @@ public partial class Main : Node
 				((Node2D)child).Hide();
 				child.QueueFree();
 			}
+
+
+
 		}
+
+		camera.Zoom = new Vector2(1.1f, 1.1f);
+
 	}
 
 	public Puffer SpawnPuffer(Vector2 position)
@@ -266,7 +276,7 @@ public void SpawnBubble(Vector2 position)
 			return;
 		PackedScene scene = GetFoodScene();
 		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 100; i++)
 			ExactFood(scene, Helpers.RandomPointInMargin(visibleBounds, Fishfood.SimulationMargin, _rng));
 	}
 
