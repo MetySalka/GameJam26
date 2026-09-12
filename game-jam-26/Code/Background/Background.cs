@@ -19,4 +19,17 @@
                   food.Position += new Vector2(0, distance);
           }
       }
+
+
+      public void SetScrollArea(Vector2 FromTo)
+    {
+        _sprite.ScrollAreaFrom = FromTo.X;
+        _sprite.ScrollAreaTo = FromTo.Y;
+    }
+
+
+    public Vector2 GetScrollArea()
+    {
+        return new Vector2(_sprite.ScrollAreaFrom, _sprite.ScrollAreaTo);
+    }
   }
