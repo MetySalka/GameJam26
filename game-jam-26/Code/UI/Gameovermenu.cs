@@ -22,9 +22,15 @@ public partial class Gameovermenu : Control
 	{
 
 	}
-
+	
 	private void OnTryAgainPressed()
 	{
+		_player.ResetForNewRun();
 		_startingMenu.OnClickButtonStart();
+	}
+
+	private void OnExitPressed()
+	{
+		GetTree().Quit(1);
 	}
 }
