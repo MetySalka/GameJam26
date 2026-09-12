@@ -21,6 +21,6 @@ public partial class Fishfood : Area2D
 
 		_consumed = true;
 		QueueFree();
-		GetNode<TextureProgressBar>("/root/Main/Hud/TextureProgressBar").Value += 5;
+		GetNode<TextureProgressBar>("/root/Main/ProgressBar/TextureProgressBar").Value += 5;
 	}
 }

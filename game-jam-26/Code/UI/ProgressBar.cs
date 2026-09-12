@@ -14,6 +14,9 @@ public partial class ProgressBar : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print(_textureBar.Value);
+		if (_textureBar.Value > 99)
+		{
+			_textureBar.Value = 0;
+		}
 	}
 }
