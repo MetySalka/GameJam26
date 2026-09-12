@@ -52,6 +52,7 @@ radius = 2.0
 height = 6.0
 
 [node name="Stika" type="Area2D" unique_id=1241933422]
+scale = Vector2(2.205, 2.205)
 script = ExtResource("1_g4mkx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113502288]

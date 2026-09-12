@@ -48,7 +48,7 @@ public partial class Player : CharacterBody2D
 			GD.Print("Whoops, too LEFT");
 
 		}
-		else if (Background.Position.X <= -1024)	
+		else if (Background.Position.X <= -1024)
 		{
 			Vector2 offset = new Vector2(1024, 0);
 			Background.Position += offset;
@@ -87,7 +87,7 @@ public partial class Player : CharacterBody2D
 	{
 		if (Health <= 0)
 			OnPlayerDeath();
-		
+
 		MovementArea = _viewport.Size * 0.87f;
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		Vector2 center = _viewport.GetCenter();
@@ -120,7 +120,7 @@ public partial class Player : CharacterBody2D
 			_pickupArea.SetMouthDir(1);
 			_hitbox.SetHitDir(1);
 		}
-		
+
 		if (velocity.X >= 0.2)
 		{
 			_sprite.Play("Right");
@@ -129,6 +129,7 @@ public partial class Player : CharacterBody2D
 		}
 		else if (velocity.X <= -0.2)
 		{
+
 			_sprite.Play("Left");
 			_pickupArea.SetMouthDir(3);
 			_hitbox.SetHitDir(3);

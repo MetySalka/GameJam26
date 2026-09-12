@@ -9,7 +9,7 @@ public partial class Main : Node
 
 	private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
-	[Export] private PackedScene _stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
+	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private double _secondsUntilStikaSpawn;
 	private bool _levelStarted;
 	private Rect2 Viewport;
@@ -43,6 +43,7 @@ public partial class Main : Node
 			{
 				SpawnStika(Helpers.RandomPointInMargin(
 					Helpers.GetLocalViewport(Background), Stika.SimulationMargin, _rng));
+
 				_secondsUntilStikaSpawn = _rng.RandfRange(5, 20);
 			}
 		}
@@ -61,7 +62,8 @@ public partial class Main : Node
 
   public Stika SpawnStika(Vector2 position)
   {
-      Stika stika = _stikaScene.Instantiate<Stika>();
+	GD.Print("StikaSpawned");
+      Stika stika = stikaScene.Instantiate<Stika>();
       stika.Position = position;
       Background.AddChild(stika);
       return stika;
