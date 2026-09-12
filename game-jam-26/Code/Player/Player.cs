@@ -185,7 +185,7 @@ public partial class Player : CharacterBody2D
 			if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 				velocity.Y = JumpVelocity;
 			if (Input.IsActionJustPressed("jump"))
-				velocity.Y += 500.0f;
+				velocity.Y += 900.0f;
 			velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);
 		}
 
