@@ -17,7 +17,7 @@ public static class EnemySpawnTable
     private static readonly EnemySpawnRule[] Rows =
     {
         // Level  Enemy                 Max   Min sec Max sec  Batch min/max  First delay
-        new(0,    EnemyKind.Pike,        10,   3f,     8f,      1, 1,          5f),
+        new(0,    EnemyKind.Pike,        10,   3f,     8f,      1, 1,          3f),
         new(1,    EnemyKind.Pike,         0,   3f,     8f),
 
         new(0,    EnemyKind.Swordfish,   5,   0.5f,   3f,      2, 4),

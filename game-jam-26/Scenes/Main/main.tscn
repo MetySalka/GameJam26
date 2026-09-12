@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://wuvwtiohwg3h" path="res://Scenes/Background/slope.tscn" id="9_hryqi"]
 [ext_resource type="PackedScene" uid="uid://c2wjqq8hwek22" path="res://Scenes/Background/water.tscn" id="10_imbg2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfg1r"]
+size = Vector2(20, 511)
+
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
 Background = NodePath("Background")
@@ -76,6 +79,9 @@ color = Color(0.7411765, 0, 0, 0.14509805)
 [node name="Ground" parent="LandStuff" unique_id=1549823556 instance=ExtResource("8_hryqi")]
 position = Vector2(267, 366)
 
+[node name="Ground2" parent="LandStuff" unique_id=224423123 instance=ExtResource("8_hryqi")]
+position = Vector2(814, 351)
+
 [node name="Slope" parent="LandStuff" unique_id=797310093 instance=ExtResource("9_hryqi")]
 position = Vector2(1135, 335)
 
@@ -90,3 +96,5 @@ scale = Vector2(5, 5)
 [node name="StaticBody2D" type="StaticBody2D" parent="LandStuff" unique_id=1024685959]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LandStuff/StaticBody2D" unique_id=1355181435]
+position = Vector2(270, 387.5)
+shape = SubResource("RectangleShape2D_hfg1r")
