@@ -7,6 +7,7 @@ public partial class Player : CharacterBody2D
 	[Export] private Player _player;
 	[Export] private CanvasLayer _progressBar;
 	[Export] private Control _health;
+	[Export] private ColorRect _fihWarn;
 
 	[Export] private Camera2D _camera;
 	int cameraShakeCnt = 0;
@@ -133,6 +134,7 @@ public partial class Player : CharacterBody2D
 		_sprite.Animation = _startingAnimation;
 		_sprite.Frame = 0;
 		_sprite.Show();
+		//_fihWarn.Show();
 		int direction = _startingAnimation.ToString() switch
 		{
 			"Down" => 0,
