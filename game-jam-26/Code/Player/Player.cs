@@ -11,6 +11,8 @@ public partial class Player : CharacterBody2D
 	[Export] private Camera2D _camera;
 	int cameraShakeCnt = 0;
 
+	public bool Invincible { get; set; } = false;
+
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
@@ -71,6 +73,9 @@ public partial class Player : CharacterBody2D
 
 	public void OnPlayerHit()
 	{
+		if (Invincible)
+			return;
+
 		GetNode<Health>("/root/Main/Health").HealthPlayer--;
 		cameraShakeCnt = 20 + (4 - GetNode<Health>("/root/Main/Health").HealthPlayer) * 5;
 
@@ -172,6 +177,11 @@ public partial class Player : CharacterBody2D
 
 		// Ease toward the requested swimming speed on each axis.
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
+
+		if(Input.IsActionJustPressed("jump"))
+		{
+			velocity.Y += 500.0f;
+		}
 
 		velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Speed / DecelFactor);
 		velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);

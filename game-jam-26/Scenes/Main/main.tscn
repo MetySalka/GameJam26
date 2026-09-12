@@ -45,3 +45,10 @@ position = Vector2(321, 180)
 
 [node name="Health" parent="." unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
 _player = NodePath("../Player")
+
+[node name="FihWarn" type="ColorRect" parent="." unique_id=1175961578]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(16.154625, 3.957517)
+color = Color(0.7411765, 0, 0, 0.41960785)

@@ -21,6 +21,8 @@ public partial class Stika : Area2D
 	private CollisionShape2D _leftHitbox;
 	private bool? _facingRight;
 
+	private ColorRect _WarnRay;
+
 
 	public override void _Ready()
 	{
@@ -28,6 +30,7 @@ public partial class Stika : Area2D
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_rightHitbox = GetNode<CollisionShape2D>("CollisionShape2D");
 		_leftHitbox = GetNode<CollisionShape2D>("CollisionShape2D2");
+		_WarnRay = GetNode<ColorRect>("RedRay");
 		UpdateFacing();
 
 	}
@@ -38,22 +41,16 @@ public partial class Stika : Area2D
 
 		if (!Seek)
 		{
-
-
-
-
 			if (countDown > 0)
 			{
+				_WarnRay.Visible = true;
 				countDown--;
 				if (countDown <= 0)
 				{
 					Seek = false;
+					_WarnRay.Visible = false;
 					Launch(targetLock);
 				}
-
-
-
-
 			}
 			else
 			{
@@ -64,31 +61,26 @@ public partial class Stika : Area2D
 				}
 			}
 		}
-
 		if (Seek)
 		{
 			Velocity = new Vector2(0, 0);
 			float targetAngle = Helpers.GetAngleToObject(
-				GlobalPosition, Target.GlobalPosition);
-
+			GlobalPosition, Target.GlobalPosition);
 			float difference = Mathf.Wrap(targetAngle - Angle, -180f, 180f);
-
 
 			float step = RotSpeed * (float)delta;
 
 			Angle += Mathf.Clamp(difference, -step, step);
 			Angle = Mathf.Wrap(Angle, -180f, 180f);
 
-
 			UpdateFacing();
-
-
 
 			if (Math.Abs(difference) < 0.1)
 			{
 				Seek = false;
 				countDown = _rng.RandiRange(40, 160);
 				targetLock = Target.Position;
+
 			}
 		}
 
@@ -105,6 +97,9 @@ public partial class Stika : Area2D
 
 		_facingRight = facingRight;
 		_sprite.Play(facingRight ? "Right" : "Left");
+		float direction = facingRight ? 1f : -1f;
+		_WarnRay.Position = new Vector2(Mathf.Abs(_WarnRay.Position.X) * direction, _WarnRay.Position.Y);
+		_WarnRay.Scale = new Vector2(Mathf.Abs(_WarnRay.Scale.X) * direction, _WarnRay.Scale.Y);
 		// Change collision state safely outside any physics overlap callbacks.
 		_rightHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, !facingRight);
 		_leftHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, facingRight);

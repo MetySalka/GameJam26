@@ -12,8 +12,8 @@ public partial class Main : Node
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
 	private readonly PackedScene tadpoleFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/tadpolefood.tscn");
 	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
+	private readonly PackedScene swordfishScene = GD.Load<PackedScene>("res://Scenes/Creatures/swordfish.tscn");
 	private Player _Player;
-
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private double _secondsUntilStikaSpawn;
 	private bool _levelStarted;
@@ -21,13 +21,13 @@ public partial class Main : Node
 	private int Wait;
 	private int _framesSinceSpawn;
 	private double _secondsUntilBubbleSpawn;
+	private double _secondsUntilSwordfishStream;
 
 	public override void _Ready()
 	{
 		Viewport = GetViewport().GetVisibleRect();
 		_Player = GetNode<Player>("Player");
 	}
-
 	public void prepareLevel()
 	{
 		_levelStarted = false;
@@ -85,6 +85,21 @@ public partial class Main : Node
 				_secondsUntilBubbleSpawn = _rng.RandfRange(1, 7);
 			}
 		}
+
+		
+		
+		if (_levelStarted && GetNode<Health>("/root/Main/Health").HealthPlayer > 0)
+		{	
+			_secondsUntilSwordfishStream -= delta;
+			if (_secondsUntilSwordfishStream <= 0)
+			{
+				
+
+
+				_secondsUntilSwordfishStream = _rng.RandfRange(4, 12);
+			}
+		}
+
 		
 
 
@@ -92,7 +107,11 @@ public partial class Main : Node
 
 	}
 
-
+public void SwordFishStream(float Angle, int width)
+	{
+		
+	
+	}
 
 public void SpawnBubble(Vector2 position)
   {

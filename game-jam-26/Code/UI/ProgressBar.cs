@@ -52,6 +52,15 @@ public partial class ProgressBar : CanvasLayer
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
+		if(! (animationState == 0))
+		{
+			player.Invincible = true;
+		} else
+		{
+			player.Invincible = false;
+		}
+
 		UpdateLevelRequirement();
 
 		if (animationState >= 1 && animationState < 100)

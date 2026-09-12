@@ -60,7 +60,7 @@ script = ExtResource("1_g4mkx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113502288]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_plrnn")
-animation = &"Left"
+animation = &"Right"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305623995]
@@ -72,3 +72,11 @@ shape = SubResource("CapsuleShape2D_n50i5")
 position = Vector2(-23, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_n50i5")
+
+[node name="RedRay" type="ColorRect" parent="." unique_id=2147241710]
+offset_left = -31.746033
+offset_top = -1.814059
+offset_right = 41.305206
+offset_bottom = 38.18594
+scale = Vector2(-7.3147225, 0.08706242)
+color = Color(1, 0, 0, 0.28627452)
