@@ -35,6 +35,17 @@ public partial class Player : CharacterBody2D
 
 	}
 
+	public void OnPlayerDeath()
+	{
+		var main = GetParent();
+		main.GetNode<CanvasItem>("Background").Hide();
+		ProcessMode = Node.ProcessModeEnum.WhenPaused;
+		GetTree().Paused = true;
+		GetNode<Node2D>("../Player").Hide();
+		GetNode<Node2D>("../ProgressBar").Hide();
+		GetNode<Node2D>("../GameOver").Show();
+	}
+
 	public override void _Ready()
 	{
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
@@ -61,18 +72,8 @@ public partial class Player : CharacterBody2D
 		// Ease toward the requested swimming speed on each axis.
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 
-
-
-
-
-
 		velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Speed / DecelFactor);
 		velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);
-
-
-
-
-
 
 		if (velocity.Y >= 0.2)
 		{
@@ -85,8 +86,7 @@ public partial class Player : CharacterBody2D
 			_pickupArea.SetMouthDir(1);
 
 		}
-
-
+		
 		if (velocity.X >= 0.2)
 		{
 			_sprite.Play("Right");
@@ -99,9 +99,6 @@ public partial class Player : CharacterBody2D
 			_pickupArea.SetMouthDir(3);
 
 		}
-
-
-
 
 		Velocity = velocity;
 		MoveAndSlide();
