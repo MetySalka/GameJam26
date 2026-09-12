@@ -90,6 +90,7 @@ public partial class Player : CharacterBody2D
 		Background.Hide();
 		Hide();
 		_progressBar.Hide();
+		_health.Hide();
 		GetNode<Control>("/root/Main/GameOver").Show();
 	}
 

@@ -17,7 +17,7 @@ public partial class Startingmenu : Control
 		_background.Hide();
 		_player.Hide();
 		_progressBar.Hide();
-		_health.Show();
+		_health.Hide();
 		Show();
 	}
 
@@ -29,7 +29,7 @@ public partial class Startingmenu : Control
 		_player.Show();
 		_progressBar.Show();
 		GetNode<Control>("/root/Main/StartingMenu").Hide();
-		_health.Hide();
+		_health.Show();
 	}
 	public override void _Ready()
 	{

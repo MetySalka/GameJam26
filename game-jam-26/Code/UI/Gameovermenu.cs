@@ -8,7 +8,7 @@ public partial class Gameovermenu : Control
 {
 	private Startingmenu _startingMenu;
 	[Export] private Player _player;
-	
+	[Export] private Health _health;
 	
 	Background background;
 	public override void _Ready()
@@ -17,6 +17,7 @@ public partial class Gameovermenu : Control
 		Hide();
 		_startingMenu = GetNode<Startingmenu>("/root/Main/StartingMenu");
 		background = GetNode<Background>("../Background");
+		_health.Hide();
 	}
 
 	public override void _Process(double delta)
