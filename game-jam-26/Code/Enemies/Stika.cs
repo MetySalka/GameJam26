@@ -3,7 +3,7 @@ using Godot;
 
 public partial class Stika : Area2D
 {
-	public const float SimulationMargin = 0.05f;
+	public const float SimulationMargin = 0.15f;
 
 	public Player Target { get; set; }
 
