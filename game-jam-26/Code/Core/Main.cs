@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 public partial class Main : Node
@@ -30,7 +31,7 @@ public partial class Main : Node
 			generateFood(foodScene);
 		}
 		Wait = _rng.RandiRange(300, 1200);
-		_secondsUntilStikaSpawn = _rng.RandfRange(1, 20);
+		_secondsUntilStikaSpawn = 10;
 		_levelStarted = true;
 	}
 
@@ -38,14 +39,15 @@ public partial class Main : Node
 	{
 		FoodUpdate();
 		if (_levelStarted)
-		{
+		{	
 			_secondsUntilStikaSpawn -= delta;
-			if (_secondsUntilStikaSpawn <= 0)
+			if (_secondsUntilStikaSpawn <= 0 && Background.GetChildren().OfType<Stika>().Count() < 10)
 			{
 				SpawnStika(Helpers.RandomPointInMargin(
 					Helpers.GetLocalViewport(Background), Stika.SimulationMargin, _rng));
+					
 
-				_secondsUntilStikaSpawn = _rng.RandfRange(1, 20);
+				_secondsUntilStikaSpawn = _rng.RandfRange(1, 7);
 			}
 		}
 		_framesSinceSpawn++;
