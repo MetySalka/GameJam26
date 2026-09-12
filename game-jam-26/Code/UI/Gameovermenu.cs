@@ -7,6 +7,7 @@ using GameJam26.Code.UI;
 public partial class Gameovermenu : Control
 {
 	private Startingmenu _startingMenu;
+	[Export] private 
 	[Export] private Player _player;
 	
 	
@@ -27,8 +28,6 @@ public partial class Gameovermenu : Control
 	private void OnTryAgainPressed()
 	{
 		Helpers.ClearScene(background);
-
-		GetNode<Health>("/root/Health/").HealthPlayer = 5;
 		Hide();
 		_startingMenu.ShowMenu();
 }
