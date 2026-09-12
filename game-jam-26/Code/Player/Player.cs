@@ -2,6 +2,9 @@ using Godot;
 
 public partial class Player : CharacterBody2D
 {
+	[Export] private Main _main;
+	[Export] private Player _player;
+	[Export] private Node2D _progressBar;
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
@@ -61,9 +64,15 @@ public partial class Player : CharacterBody2D
 	{
 		Health--;
 	}
+
 	private void OnPlayerDeath()
 	{
-		GD.Print("Player Death");
+		ProcessMode = Node.ProcessModeEnum.WhenPaused;
+		GetTree().Paused = true;
+		Background.Hide();
+		_player.Hide();
+		_progressBar.Hide();
+		GetNode<Control>("/root/Main/GameOver").Show();
 	}
 
 	public override void _Ready()

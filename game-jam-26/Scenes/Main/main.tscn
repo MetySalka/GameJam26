@@ -26,8 +26,11 @@ _background = NodePath("../Background")
 [node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background") instance=ExtResource("5_p6jpk")]
 Background = NodePath("../Background")
 
-[node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("Background") instance=ExtResource("4_2a143")]
+[node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("_main", "_player", "_progressBar", "Background") instance=ExtResource("4_2a143")]
 position = Vector2(188, 144)
+_main = NodePath("..")
+_player = NodePath(".")
+_progressBar = NodePath("../ProgressBar")
 Background = NodePath("../Background")
 
 [node name="Background" parent="." unique_id=1858228470 instance=ExtResource("2_5yls4")]
