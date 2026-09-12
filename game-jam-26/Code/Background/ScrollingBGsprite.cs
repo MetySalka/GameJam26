@@ -41,6 +41,17 @@ public partial class ScrollingBGsprite : Sprite2D
 
 	private void UpdateRegion()
 	{
-		RegionRect = new Rect2(0, _offsetY, Texture.GetSize().X, WindowHeight);
+		RegionRect = new Rect2(0, _offsetY, Texture.GetSize().X * 4, WindowHeight);
 	}
+
+
+
+	  public void ScrollVertically(float distance)
+  {
+      _offsetY -= distance / Scale.Y;
+      _offsetY = Mathf.PosMod(_offsetY, _textureHeight);
+      UpdateRegion();
+  }
+
+
 }

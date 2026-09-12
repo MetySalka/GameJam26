@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
 
-[node name="Main" type="Node" unique_id=372516350]
+[node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
+Background = NodePath("Background")
 
 [node name="GameOver" parent="." unique_id=844308784 instance=ExtResource("2_2a143")]
 visible = false
