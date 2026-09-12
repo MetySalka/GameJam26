@@ -217,7 +217,7 @@ public partial class Main : Node
 		HideSwordfishWarning();
 		foreach (Node child in Background.GetChildren())
 		{
-			if (child is Fishfood || child is Swordfih || child is Stika)
+			if (child is Fishfood || child is Swordfih || child is Stika || child is Bubble || child is Puffer)
 			{
 				((Node2D)child).Hide();
 				child.QueueFree();
