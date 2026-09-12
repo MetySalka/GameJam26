@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bdwmirkx3v01i" path="res://Assets/Sprites/Creatures/puffer.png_0004.png" id="4_nsc4r"]
 [ext_resource type="Texture2D" uid="uid://cvw726kr2pglw" path="res://Assets/Sprites/Creatures/puffer.png_0005.png" id="5_liyif"]
 [ext_resource type="Texture2D" uid="uid://k225nhqmgxk" path="res://Assets/Sprites/Creatures/puffer.png_0006.png" id="6_qdb1u"]
+[ext_resource type="Script" uid="uid://cyqih0df1wehd" path="res://Code/Enemies/Puffer.cs" id="7_script"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uraql"]
 radius = 13.0
@@ -37,6 +38,11 @@ animations = [{
 }]
 
 [node name="Puffer" type="Area2D" unique_id=29247536]
+scale = Vector2(1.555, 1.555)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("7_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1044730379]
 shape = SubResource("CircleShape2D_uraql")

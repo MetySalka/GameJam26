@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-public enum EnemyKind { Pike, Swordfish, Bubble }
+public enum EnemyKind { Pike, Swordfish, Bubble, Pufferfish }
 
 public sealed record EnemySpawnRule(
     int FromLevel, EnemyKind Enemy, int MaxCount,
@@ -28,6 +28,8 @@ public static class EnemySpawnTable
         new(1,    EnemyKind.Bubble,       8,   0.5f,     4f),
         new(2,    EnemyKind.Bubble,      10,   0.3f,     3f),
         new(3,    EnemyKind.Bubble,      12,   0.2f,     1f),
+
+        new(0,    EnemyKind.Pufferfish,   3,   6f,    10f,      1, 1,          8f),
     };
 
     static EnemySpawnTable()

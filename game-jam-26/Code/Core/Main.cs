@@ -14,6 +14,7 @@ public partial class Main : Node
 	private readonly PackedScene tadpoleFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/tadpolefood.tscn");
 	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
 	private readonly PackedScene swordfihScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/swordfih.tscn");
+	private readonly PackedScene pufferScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/puffer.tscn");
 	private Player _Player;
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private readonly Dictionary<EnemyKind, double> _spawnTimers = new();
@@ -101,6 +102,7 @@ public partial class Main : Node
 				EnemyKind.Pike => child is Stika,
 				EnemyKind.Swordfish => child is Swordfih,
 				EnemyKind.Bubble => child is Bubble,
+				EnemyKind.Pufferfish => child is Puffer,
 				_ => false
 			}));
 			int available = rule.MaxCount - alive;
@@ -124,6 +126,8 @@ public partial class Main : Node
 						SpawnStika(Helpers.RandomPointInMargin(bounds, Stika.SimulationMargin, _rng));
 					else if (enemy == EnemyKind.Bubble)
 						SpawnBubble(Helpers.RandomPointInRect(bounds, _rng));
+					else if (enemy == EnemyKind.Pufferfish)
+						SpawnPuffer(Helpers.RandomPointInMargin(bounds, Puffer.SimulationMargin, _rng));
 				}
 			}
 			_spawnTimers[enemy] = _rng.RandfRange(rule.MinSeconds, rule.MaxSeconds);
@@ -206,6 +210,15 @@ public partial class Main : Node
 			_availableSwordfishWarnings.Push(warning.Rect);
 		}
 		_swordfishWarnings.Clear();
+	}
+
+	public Puffer SpawnPuffer(Vector2 position)
+	{
+		Puffer puffer = pufferScene.Instantiate<Puffer>();
+		puffer.Position = position;
+		puffer.Target = _Player;
+		Background.AddChild(puffer);
+		return puffer;
 	}
 
 public void SpawnBubble(Vector2 position)
