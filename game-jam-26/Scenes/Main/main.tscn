@@ -80,7 +80,8 @@ color = Color(0.7411765, 0, 0, 0.14509805)
 position = Vector2(267, 366)
 
 [node name="Ground2" parent="LandStuff" unique_id=224423123 instance=ExtResource("8_hryqi")]
-position = Vector2(814, 351)
+position = Vector2(1456, 1004)
+rotation = -3.1415927
 
 [node name="Slope" parent="LandStuff" unique_id=797310093 instance=ExtResource("9_hryqi")]
 position = Vector2(1135, 335)
