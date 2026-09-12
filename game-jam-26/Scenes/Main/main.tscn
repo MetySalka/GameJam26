@@ -41,4 +41,4 @@ position = Vector2(374, 179)
 position = Vector2(321, 180)
 
 [node name="Bubble" parent="." unique_id=304397937 instance=ExtResource("7_xlvfx")]
-position = Vector2(146, -51)
+position = Vector2(366, 199)
