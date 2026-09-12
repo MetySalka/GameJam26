@@ -6,7 +6,7 @@ using GameJam26.Code.UI;
 
 public partial class Gameovermenu : Control
 {
-	[Export] private Control _startingMenu;
+	private Startingmenu _startingMenu;
 	[Export] private Player _player;
 
 	Background background;
@@ -14,6 +14,7 @@ public partial class Gameovermenu : Control
 	{
 		ProcessMode = Node.ProcessModeEnum.Always;
 		Hide();
+		_startingMenu = GetNode<Startingmenu>("/root/Main/StartingMenu");
 		background = GetNode<Background>("../Background");
 	}
 
@@ -24,8 +25,10 @@ public partial class Gameovermenu : Control
 
 	private void OnTryAgainPressed()
 	{
-		Hide();
-		_player.Health = 1;
 		Helpers.ClearScene(background);
-	}
+
+		_player.Health = 1;
+		Hide();
+		_startingMenu.ShowMenu();
+}
 }
