@@ -33,6 +33,25 @@ public partial class Player : CharacterBody2D
 			Background.ScrollVertically(-overflow.Y);
 		}
 
+		if (Background.Position.X >= 1024)
+		{
+
+			Vector2 offset = new Vector2(-1024, 0);
+			Background.Position += offset;
+			Helpers.MoveFood(-offset, Background);
+
+			GD.Print("Whoops, too LEFT");
+
+		}
+		else if (Background.Position.X <= -1024)	
+		{
+			Vector2 offset = new Vector2(1024, 0);
+			Background.Position += offset;
+			Helpers.MoveFood(-offset, Background);
+			GD.Print("Whoops, too RIGHT");
+
+		}
+
 
 	}
 
