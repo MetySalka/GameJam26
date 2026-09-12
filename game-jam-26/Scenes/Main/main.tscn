@@ -47,8 +47,9 @@ _health = NodePath("../Health")
 anchors_preset = 1
 _player = NodePath("../../Player")
 
-[node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background") instance=ExtResource("5_p6jpk")]
+[node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background", "_health") instance=ExtResource("5_p6jpk")]
 Background = NodePath("../Background")
+_health = NodePath("../ScreenUI/Health")
 
 [node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_health", "_fihWarn", "_camera", "Background") instance=ExtResource("4_2a143")]
 position = Vector2(158.00002, 158.00002)

@@ -7,6 +7,7 @@ public partial class ProgressBar : CanvasLayer
 {
 	[Export] private TextureProgressBar _textureBar;
 	[Export] public global::Background Background { get; set; }
+	[Export] private Health _health;
 
 	Player player;
 	int animationState;
@@ -40,7 +41,7 @@ public partial class ProgressBar : CanvasLayer
 	{
 		if (_displayedLevel == player.Level)
 			return;
-
+		_health.HealthPlayer += 1;
 		_displayedLevel = player.Level;
 		_textureBar.MaxValue = Math.Pow(10.0, player.Level + 1);
 	}

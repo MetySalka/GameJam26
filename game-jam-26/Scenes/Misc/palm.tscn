@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dmedgaomtdpn6"]
 
+[ext_resource type="Script" uid="uid://c7t7swy8los6y" path="res://Scenes/Misc/Palm.cs" id="1_33huk"]
 [ext_resource type="Texture2D" uid="uid://bap8tk2vwfche" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0001.png" id="1_mbky3"]
 [ext_resource type="Texture2D" uid="uid://dwvbrx5bcs6cr" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0002.png" id="2_fv4ua"]
 [ext_resource type="Texture2D" uid="uid://bcxepkkcxkrqs" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0003.png" id="3_kx05x"]
@@ -59,12 +60,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 3.0
+"speed": 1.0
 }]
 
 [node name="Palm" type="Node2D" unique_id=1093762877]
+script = ExtResource("1_33huk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1626023639]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_plrnn")
-frame_progress = 0.696263
+animation = &"coconut_falling"
+frame_progress = 0.30595544

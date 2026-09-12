@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ebywmpgspv1k"
-path="res://.godot/imported/Lizard down_0001.png-7e4556f07bb986a26d231b2194551394.ctex"
+uid="uid://cajckyqloywl8"
+path="res://.godot/imported/lizard right_0005.png-da79dff81142c0c896ba2aa24fc929b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Creatures/Lizard/Lizard down_0001.png"
-dest_files=["res://.godot/imported/Lizard down_0001.png-7e4556f07bb986a26d231b2194551394.ctex"]
+source_file="res://Assets/Sprites/Creatures/Lizard/lizard right_0005.png"
+dest_files=["res://.godot/imported/lizard right_0005.png-da79dff81142c0c896ba2aa24fc929b9.ctex"]
 
 [params]
 
