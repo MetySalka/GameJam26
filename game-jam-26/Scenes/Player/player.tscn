@@ -135,3 +135,5 @@ shape = SubResource("RectangleShape2D_hnuln")
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_uraql")
 animation = &"Down"
+frame = 1
+frame_progress = 0.31313062
