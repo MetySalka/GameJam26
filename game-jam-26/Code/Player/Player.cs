@@ -4,7 +4,7 @@ public partial class Player : CharacterBody2D
 {
 	[Export] private Main _main;
 	[Export] private Player _player;
-	[Export] private Node2D _progressBar;
+	[Export] private CanvasLayer _progressBar;
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
@@ -43,7 +43,7 @@ public partial class Player : CharacterBody2D
 
 			Vector2 offset = new Vector2(-1024, 0);
 			Background.Position += offset;
-			Helpers.MoveFood(-offset, Background);
+			Helpers.MoveWorldObjects(-offset, Background);
 
 			GD.Print("Whoops, too LEFT");
 
@@ -52,7 +52,7 @@ public partial class Player : CharacterBody2D
 		{
 			Vector2 offset = new Vector2(1024, 0);
 			Background.Position += offset;
-			Helpers.MoveFood(-offset, Background);
+			Helpers.MoveWorldObjects(-offset, Background);
 			GD.Print("Whoops, too RIGHT");
 
 		}

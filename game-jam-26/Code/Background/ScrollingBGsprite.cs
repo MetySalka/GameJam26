@@ -32,7 +32,6 @@ public partial class ScrollingBGsprite : Sprite2D
 	public override void _Process(double delta)
 	{
 
-		GD.Print("Back texture goes from " + ScrollAreaFrom + " to " + ScrollAreaTo + ".");
 
 		// Advance through source rows from ScrollAreaFrom toward ScrollAreaTo.
 		_offsetY += ScrollSpeed * (float)delta;

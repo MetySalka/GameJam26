@@ -24,6 +24,34 @@ public static class Helpers
 			Mathf.Clamp(position.Y, rect.Position.Y, rect.End.Y));
 	}
 
+	public static Rect2 GetSimulationBounds(Rect2 visibleBounds, float marginFraction)
+	{
+		Vector2 margin = visibleBounds.Size * marginFraction;
+		return new Rect2(visibleBounds.Position - margin, visibleBounds.Size + margin * 2);
+	}
+
+	public static Vector2 RandomPointInMargin(Rect2 visibleBounds, float marginFraction,
+		RandomNumberGenerator rng)
+	{
+		Rect2 bounds = GetSimulationBounds(visibleBounds, marginFraction);
+		Vector2 point;
+		do
+		{
+			point = RandomPointInRect(bounds, rng);
+		} while (visibleBounds.HasPoint(point));
+		return point;
+	}
+
+	// Camera-like movement applies equally to food and enemies.
+	public static void MoveWorldObjects(Vector2 offset, Background background)
+	{
+		foreach (Node child in background.GetChildren())
+		{
+			if ((child is Fishfood || child is Stika) && !child.IsQueuedForDeletion())
+				((Node2D)child).Position += offset;
+		}
+	}
+
 	public static void MoveFood(Vector2 offset, Background background)
 	{
 
@@ -31,6 +59,16 @@ public static class Helpers
 		{
 			if (child is Fishfood food && !food.IsQueuedForDeletion())
 				food.Position += offset;
+		}
+
+	}
+
+	public static void MoveFoodStarWars(Vector2 offset, Background background)
+	{
+		foreach (Node child in background.GetChildren())
+		{
+			if (child is Fishfood food && !food.IsQueuedForDeletion())
+				food.Position += offset * food.StarWarsSpeedMultiplier;
 		}
 
 	}

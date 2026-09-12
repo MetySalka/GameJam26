@@ -13,11 +13,7 @@
       {
           _sprite.ScrollVertically(distance);
 
-          foreach (Node child in GetChildren())
-          {
-              if (child is Fishfood food && !food.IsQueuedForDeletion())
-                  food.Position += new Vector2(0, distance);
-          }
+          Helpers.MoveWorldObjects(new Vector2(0, distance), this);
       }
 
 

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6ep8iuldn4ae"]
 
 [ext_resource type="Texture2D" uid="uid://cg7awt5npg7wq" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0001.png" id="1_8a7y6"]
+[ext_resource type="Script" uid="uid://p7qa16dcitro" path="res://Code/Enemies/Stika.cs" id="1_g4mkx"]
 [ext_resource type="Texture2D" uid="uid://icjuf6622jmw" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0002.png" id="2_g4mkx"]
 [ext_resource type="Texture2D" uid="uid://idljqyyyvkvm" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0003.png" id="3_1fgwc"]
 [ext_resource type="Texture2D" uid="uid://cgppmhn3ua8x1" path="res://Assets/Sprites/Creatures/Stika/right/stika_sprite_0004.png" id="4_py8um"]
@@ -11,23 +12,6 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_plrnn"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_8a7y6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_g4mkx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_1fgwc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_py8um")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_5mjoe")
@@ -42,7 +26,24 @@ animations = [{
 "texture": ExtResource("8_3e1nt")
 }],
 "loop": 1,
-"name": &"left",
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8a7y6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g4mkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1fgwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_py8um")
+}],
+"loop": 1,
+"name": &"Right",
 "speed": 5.0
 }]
 
@@ -51,11 +52,12 @@ radius = 2.0
 height = 6.0
 
 [node name="Stika" type="Area2D" unique_id=1241933422]
+script = ExtResource("1_g4mkx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113502288]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_plrnn")
-frame_progress = 0.07094494
+animation = &"Left"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305623995]

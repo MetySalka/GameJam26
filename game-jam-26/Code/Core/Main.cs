@@ -9,6 +9,9 @@ public partial class Main : Node
 
 	private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
+	[Export] private PackedScene _stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
+	private double _secondsUntilStikaSpawn;
+	private bool _levelStarted;
 	private Rect2 Viewport;
 	private int Wait;
 	private int _framesSinceSpawn;
@@ -26,11 +29,23 @@ public partial class Main : Node
 			generateFood(foodScene);
 		}
 		Wait = _rng.RandiRange(300, 1200);
+		_secondsUntilStikaSpawn = _rng.RandfRange(5, 20);
+		_levelStarted = true;
 	}
 
 	public override void _Process(double delta)
 	{
 		FoodUpdate();
+		if (_levelStarted)
+		{
+			_secondsUntilStikaSpawn -= delta;
+			if (_secondsUntilStikaSpawn <= 0)
+			{
+				SpawnStika(Helpers.RandomPointInMargin(
+					Helpers.GetLocalViewport(Background), Stika.SimulationMargin, _rng));
+				_secondsUntilStikaSpawn = _rng.RandfRange(5, 20);
+			}
+		}
 		_framesSinceSpawn++;
 
 		// Keep the existing frame-based spawn timing.
@@ -41,6 +56,18 @@ public partial class Main : Node
 			generateFood(foodScene);
 		}
 	}
+
+
+
+  public Stika SpawnStika(Vector2 position)
+  {
+      Stika stika = _stikaScene.Instantiate<Stika>();
+      stika.Position = position;
+      Background.AddChild(stika);
+      return stika;
+  }
+
+
 
 	public void generateFood(PackedScene scene)
 	{
