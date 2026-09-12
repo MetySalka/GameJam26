@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using Godot;
 
 public partial class Player : CharacterBody2D
@@ -5,6 +6,7 @@ public partial class Player : CharacterBody2D
 	[Export] private Main _main;
 	[Export] private Player _player;
 	[Export] private CanvasLayer _progressBar;
+	[Export] private Control _health;
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
 	public const float AccelFactor = 1.0f;
@@ -130,10 +132,8 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (Health <= 0)
-		{
-			OnPlayerDeath();
-			return;
+		if (GetNode<Health>("/root/Main/Health").HealthPlayer <= 0)
+		{	OnPlayerDeath();
 		}
 
 		MovementArea = _viewport.Size * 0.7f;

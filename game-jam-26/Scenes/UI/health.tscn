@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bgtrs5ol1nvq5"]
+
+[ext_resource type="Script" uid="uid://da3bruimot35e" path="res://Scenes/UI/Health.cs" id="1_077l4"]
+[ext_resource type="Texture2D" uid="uid://fiexys8x4hhv" path="res://Assets/Sprites/Misc/hearts.png" id="2_tvysp"]
+
+[node name="Health" type="TextureProgressBar" unique_id=1868753401 node_paths=PackedStringArray("_healthStat")]
+offset_right = 76.0
+offset_bottom = 48.0
+script = ExtResource("1_077l4")
+_healthStat = NodePath("TextureProgressBar")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=616644132]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.859
+anchor_bottom = 1.3330001
+offset_left = 560.0
+offset_top = 2.0
+offset_right = 602.716
+offset_bottom = 2.0159988
+max_value = 5.0
+fill_mode = 1
+texture_progress = ExtResource("2_tvysp")
