@@ -8,7 +8,8 @@ public partial class Gameovermenu : Control
 {
 	private Startingmenu _startingMenu;
 	[Export] private Player _player;
-
+	
+	
 	Background background;
 	public override void _Ready()
 	{
@@ -27,7 +28,7 @@ public partial class Gameovermenu : Control
 	{
 		Helpers.ClearScene(background);
 
-		_player.Health = 1;
+		GetNode<Health>("/root/Health/").HealthPlayer = 5;
 		Hide();
 		_startingMenu.ShowMenu();
 }
