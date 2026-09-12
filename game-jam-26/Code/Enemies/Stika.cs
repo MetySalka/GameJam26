@@ -112,8 +112,9 @@ public partial class Stika : Area2D
 
 	public void Launch(Vector2 Target)
 	{
+		int v = _rng.RandiRange(250, 700);
 		float angle = Helpers.GetAngleToObject(GlobalPosition, Target);
-		Velocity = new Vector2(Mathf.Cos(Mathf.DegToRad(angle)) * 350, Mathf.Sin(Mathf.DegToRad(angle)) * 350);
+		Velocity = new Vector2(Mathf.Cos(Mathf.DegToRad(angle)) * v, Mathf.Sin(Mathf.DegToRad(angle)) * v);
 		countDown = -960;
 		Seek = false;
 	}
