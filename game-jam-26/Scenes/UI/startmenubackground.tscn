@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5ikt5v8twv6m"]
 
 [ext_resource type="Script" uid="uid://dj8sf0nwcjvj2" path="res://Code/UI/StartMenuBackground.cs" id="0_menubg"]
+[ext_resource type="Texture2D" uid="uid://117s6rjgmioj" path="res://Assets/Sprites/Background/Speakers.png" id="5_oobqv"]
 [ext_resource type="Texture2D" uid="uid://dtejdrkjph2sr" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0001.png" id="5_tadpole"]
 [ext_resource type="Texture2D" uid="uid://sr57qkg3tlhg" path="res://Assets/Sprites/Creatures/Stika player/stika right_0001.png" id="6_pike"]
 [ext_resource type="Texture2D" uid="uid://dd4avkn8h5fj3" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0001.png" id="7_lizard"]
@@ -79,3 +80,8 @@ mouse_filter = 2
 texture = ExtResource("7_lizard")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1306245603]
+position = Vector2(1196, 622)
+scale = Vector2(1.825, 1.825)
+texture = ExtResource("5_oobqv")
