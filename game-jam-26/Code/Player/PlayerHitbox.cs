@@ -31,6 +31,12 @@ public partial class PlayerHitbox : Area2D
 			bubble.Consume(false);
 		}
 	}
+
+	public void TakeCoconutHit(Vector2 knockbackDirection, float knockbackForce)
+	{
+		_player.OnPlayerHit(1f, new Color(0.6f, 0.4f, 0.2f));
+		_player.ApplyKnockback(knockbackDirection * knockbackForce);
+	}
 	
 	public override void _Process(double delta)
 	{

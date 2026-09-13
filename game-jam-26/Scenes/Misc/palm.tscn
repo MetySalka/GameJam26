@@ -65,12 +65,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blncs"]
-size = Vector2(251, 379.5)
+size = Vector2(251, 789)
 
-[node name="Palm" type="Node2D" unique_id=1093762877 node_paths=PackedStringArray("SpawnPoint")]
+[node name="Palm" type="Node2D" unique_id=1093762877 node_paths=PackedStringArray("SpawnPoint", "DetectionArea")]
 script = ExtResource("1_33huk")
 CoconutScene = ExtResource("2_0wg4j")
 SpawnPoint = NodePath("Marker2D")
+DetectionArea = NodePath("Area2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1626023639]
 scale = Vector2(3, 3)
@@ -81,10 +82,8 @@ frame_progress = 0.30595544
 [node name="Area2D" type="Area2D" parent="." unique_id=860280616]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=598801182]
-position = Vector2(0, 98.25)
+position = Vector2(0, 320.5)
 shape = SubResource("RectangleShape2D_blncs")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1185520609]
 position = Vector2(23, -16)
-
-[connection signal="area_entered" from="Area2D" to="." method="OnBodyEntered"]

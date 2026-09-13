@@ -13,9 +13,9 @@ public partial class Startingmenu : Control
 	[Export] private Health _health;
 	[Export] private Control _menuBackground;
 	[Export] private TextureButton _debugToggle;
-	[Export] private VBoxContainer _debugPanel;
 	[Export] private CanvasLayer _textureBarMain;
 	private TextureProgressBar _textureBar;
+	private bool _debugScoreEnabled;
 	public void ShowMenu()
 	{
 		GetTree().Paused = true;
@@ -25,8 +25,6 @@ public partial class Startingmenu : Control
 		_health.Hide();
 		_menuBackground?.Show();
 		_debugToggle?.Show();
-		if (_debugPanel != null)
-			_debugPanel.Visible = false;
 		Show();
 	}
 
@@ -40,9 +38,7 @@ public partial class Startingmenu : Control
 		GetNode<Control>("/root/Main/ScreenUI/StartingMenu").Hide();
 		_health.Show();
 		_menuBackground?.Hide();
-		_debugToggle?.Hide();
-		if (_debugPanel != null)
-			_debugPanel.Visible = false;
+		_debugToggle.Visible = _debugScoreEnabled;
 	}
 	public override void _Ready()
 	{
@@ -63,18 +59,15 @@ public partial class Startingmenu : Control
 		GetTree().Quit(0); 
 	}
 
-	// Hidden helper for testing: toggles the debug level-jump buttons.
 	public void OnClickDebugToggle()
 	{
-		_debugPanel.Show();
-	}
+		if (GetTree().Paused)
+		{
+			_debugScoreEnabled = _debugToggle.ButtonPressed;
+			return;
+		}
 
-	// Skips straight to a given evolution level instead of playing from the start.
-	public void OnClickDebugLand()
-	{
-		GetNode<Control>("/root/Main/ScreenUI/GameOver").Hide();
 		GetNode<TextureProgressBar>("/root/Main/ProgressBar/TextureProgressBar").Value += 100;
-		GD.Print("main=", _main, " player=", _player, " bg=", _background, " bar=", _progressBar, " gameOver=", _gameOver);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

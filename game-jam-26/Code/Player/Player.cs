@@ -76,6 +76,11 @@ public partial class Player : CharacterBody2D
 		_flashFramesLeft = _flashFramesTotal;
 	}
 
+	public void ApplyKnockback(Vector2 velocity)
+	{
+		Velocity += velocity;
+	}
+
 	public void LevelUp()
 	{
 

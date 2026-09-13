@@ -35,7 +35,7 @@ _fihWarn = NodePath("../../FihWarn")
 [node name="StartMenuBackground" parent="ScreenUI" unique_id=303944661 instance=ExtResource("3_mnubg")]
 visible = false
 
-[node name="StartingMenu" parent="ScreenUI" unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health", "_menuBackground", "_debugToggle", "_debugPanel") instance=ExtResource("3_p6jpk")]
+[node name="StartingMenu" parent="ScreenUI" unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health", "_menuBackground", "_debugToggle") instance=ExtResource("3_p6jpk")]
 offset_left = -188.99997
 offset_top = -224.0
 offset_right = 52.599976
@@ -48,7 +48,6 @@ _gameOver = NodePath("../GameOver")
 _health = NodePath("../Health")
 _menuBackground = NodePath("../StartMenuBackground")
 _debugToggle = NodePath("../DebugCrab")
-_debugPanel = NodePath("")
 
 [node name="DebugCrab" type="TextureButton" parent="ScreenUI" unique_id=1839729297]
 anchors_preset = -1
@@ -62,11 +61,11 @@ offset_bottom = -10.0
 grow_vertical = 0
 tooltip_text = "..."
 focus_mode = 0
+toggle_mode = true
 texture_normal = ExtResource("13_dbgcrab")
 stretch_mode = 4
 
 [node name="Health" parent="ScreenUI" unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
-anchors_preset = 1
 _player = NodePath("../../Player")
 
 [node name="EscapeMenu" parent="ScreenUI" unique_id=999888777 instance=ExtResource("15_escmn")]
@@ -122,9 +121,28 @@ position = Vector2(-67, 53)
 scale = Vector2(0.96, 0.96)
 script = ExtResource("14_wliom")
 
-[node name="Palm" parent="LandStuff" unique_id=1093762877 node_paths=PackedStringArray("_lizardNode") instance=ExtResource("11_hfg1r")]
+[node name="Palm" parent="LandStuff" unique_id=1093762877 instance=ExtResource("11_hfg1r")]
 position = Vector2(390, 102)
 scale = Vector2(1.505, 1.505)
-_lizardNode = NodePath("../../Player")
+
+[node name="Palm2" parent="LandStuff" unique_id=1910936073 instance=ExtResource("11_hfg1r")]
+position = Vector2(11, 222)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm3" parent="LandStuff" unique_id=223511784 instance=ExtResource("11_hfg1r")]
+position = Vector2(837, 185)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm4" parent="LandStuff" unique_id=474367293 instance=ExtResource("11_hfg1r")]
+position = Vector2(276.00003, 450)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm5" parent="LandStuff" unique_id=798717761 instance=ExtResource("11_hfg1r")]
+position = Vector2(1095, 265)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm6" parent="LandStuff" unique_id=2124306296 instance=ExtResource("11_hfg1r")]
+position = Vector2(623, 271)
+scale = Vector2(1.505, 1.505)
 
 [connection signal="pressed" from="ScreenUI/DebugCrab" to="ScreenUI/StartingMenu" method="OnClickDebugToggle"]
