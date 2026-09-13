@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dtcmil0bvorsx"]
+
+[ext_resource type="Texture2D" uid="uid://dyu1bok1tv8w5" path="res://Assets/Sprites/Background/Beach.png" id="1_h7rr2"]
+
+[node name="BeachBackground" type="Node2D" unique_id=786131746]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1560395345]
+position = Vector2(1069, 384)
+scale = Vector2(6, 6)
+texture = ExtResource("1_h7rr2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1614948280]
+position = Vector2(301, 385)
+scale = Vector2(6, 6)
+texture = ExtResource("1_h7rr2")

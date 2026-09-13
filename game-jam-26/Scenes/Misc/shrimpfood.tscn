@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Code/Misc/Fishfood.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="Right_1"]
+[ext_resource type="Texture2D" uid="uid://ct7hri88t8lnj" path="res://Assets/Sprites/Creatures/Shrimp/shrimp left.png" id="Left_1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_shrimp"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("Right_1")}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("Left_1")}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_food"]
+radius = 6.0
+
+[node name="ShrimpFood" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_script")
+FoodValue = 4.0
+SpinWhileDrifting = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_shrimp")
+animation = &"Right"
+autoplay = "Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_food")

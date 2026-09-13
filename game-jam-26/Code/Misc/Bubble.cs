@@ -33,7 +33,8 @@ public partial class Bubble : Area2D
         {
             // Recycle escaped bubbles without awarding points or changing their count.
             Position = Helpers.RandomPointInMargin(visibleBounds, SimulationMargin, _rng);
-            _sprite.AnimationFinished -= OnPopFinished;
+            if (_popped)
+                _sprite.AnimationFinished -= OnPopFinished;
             _popped = false;
             lifespan = _maxLifespan;
             Scale = Vector2.One * StartScale;
@@ -71,8 +72,11 @@ public partial class Bubble : Area2D
             return;
 
         _consumed = true;
-        QueueFree();
         if (reward)
+        {
             GetNode<TextureProgressBar>("/root/Main/ProgressBar/TextureProgressBar").Value += 5;
+            EatBurst.SpawnAt(_world, GlobalPosition, new Color(0.6f, 0.85f, 1f));
+        }
+        QueueFree();
     }
 }

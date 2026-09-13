@@ -3,6 +3,8 @@ using Godot;
 public partial class Fishfood : Area2D
 {
 	[Export] public float FoodValue { get; set; } = 0.5f;
+	// Set true for sprites without up/down facing frames, so they tumble instead.
+	[Export] public bool SpinWhileDrifting { get; set; }
 	private bool _consumed;
 	public const float SimulationMargin = 0.1f;
 	private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
@@ -19,12 +21,16 @@ public partial class Fishfood : Area2D
 	// Pick once so each piece stays consistently faster or slower.
 	public float StarWarsSpeedMultiplier { get; private set; }
 
+	// Pick once so each piece tumbles at its own slow, gentle rate.
+	private float _rotationSpeed;
+
 	public override void _Ready()
 	{
 		_world = GetParent<Node2D>();
 		_animatedSprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
 		UpdateAnimation();
 		StarWarsSpeedMultiplier = (float)GD.RandRange(0.1, 1);
+		_rotationSpeed = (float)GD.RandRange(-0.03, 0.03);
 	}
 
 	public override void _Process(double delta)
@@ -39,6 +45,9 @@ public partial class Fishfood : Area2D
 
 		UpdateAnimation();
 		Position += MoveVector;
+		// Sprites with up/down facing animations shouldn't also spin.
+		if (_animatedSprite == null || SpinWhileDrifting)
+			Rotation += _rotationSpeed;
 		Rect2 visibleBounds = Helpers.GetLocalViewport(_world);
 		Rect2 simulationBounds = Helpers.GetSimulationBounds(visibleBounds, SimulationMargin);
 		if (simulationBounds.HasPoint(Position))
@@ -59,6 +68,9 @@ public partial class Fishfood : Area2D
 		string animation = Mathf.Abs(MoveVector.X) >= Mathf.Abs(MoveVector.Y)
 			? (MoveVector.X >= 0 ? "Right" : "Left")
 			: (MoveVector.Y >= 0 ? "Down" : "Up");
+		// Some food sprites (e.g. shrimp) only have left/right frames.
+		if (!_animatedSprite.SpriteFrames.HasAnimation(animation))
+			animation = MoveVector.X >= 0 ? "Right" : "Left";
 		if (_animatedSprite.Animation != animation || !_animatedSprite.IsPlaying())
 			_animatedSprite.Play(animation);
 	}
@@ -74,6 +86,7 @@ public partial class Fishfood : Area2D
 		if (Do)
 		{
 			GetNode<TextureProgressBar>("/root/Main/ProgressBar/TextureProgressBar").Value += FoodValue;
+			EatBurst.SpawnAt(_world, GlobalPosition, new Color(1f, 0.9f, 0.4f));
 		}
 		
 		QueueFree();

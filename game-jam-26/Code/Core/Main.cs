@@ -11,7 +11,7 @@ public partial class Main : Node
 
 	private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
-	private readonly PackedScene tadpoleFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/tadpolefood.tscn");
+	private readonly PackedScene shrimpFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/shrimpfood.tscn");
 	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
 	private readonly PackedScene swordfihScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/swordfih.tscn");
 	private readonly PackedScene pufferScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/puffer.tscn");
@@ -56,7 +56,7 @@ public partial class Main : Node
 		GetNode<GameJam26.Code.UI.ProgressBar>("ProgressBar").ResetForNewRun();
 		GetNode<Control>("ScreenUI/GameOver").Hide();
 		_framesSinceSpawn = 0;
-		for (int i = 0; i < 500; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			generateFood(GetFoodScene());
 		}
@@ -75,7 +75,7 @@ public partial class Main : Node
 		if (_framesSinceSpawn >= Wait)
 		{
 			_framesSinceSpawn = 0;
-			Wait = _rng.RandiRange(50, 250);
+			Wait = _rng.RandiRange(150, 400);
 			generateFood(GetFoodScene());
 		}
 	}
@@ -206,7 +206,7 @@ public partial class Main : Node
 		}
 	}
 
-	private void HideSwordfishWarning()
+	public void HideSwordfishWarning()
 	{
 		foreach (SwordfishWarning warning in _swordfishWarnings)
 		{
@@ -267,7 +267,7 @@ public void SpawnBubble(Vector2 position)
 
 	private PackedScene GetFoodScene()
 	{
-		return _Player.Level >= 1 ? tadpoleFoodScene : foodScene;
+		return _Player.Level >= 1 ? shrimpFoodScene : foodScene;
 	}
 
 	public void SpawnLevelUpFood()
@@ -276,14 +276,24 @@ public void SpawnBubble(Vector2 position)
 			return;
 		PackedScene scene = GetFoodScene();
 		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 8; i++)
 			ExactFood(scene, Helpers.RandomPointInMargin(visibleBounds, Fishfood.SimulationMargin, _rng));
 	}
 
 	public void generateFood(PackedScene scene)
 	{
-		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
-		ExactFood(scene, Helpers.RandomPointInRect(visibleBounds, _rng));
+		// Spawn within the area the player can actually reach, not the full screen,
+		// so food never lands permanently stranded past the swim/walk bounds.
+		Rect2 reachableBounds = GetFoodSpawnBounds();
+		ExactFood(scene, Helpers.RandomPointInRect(reachableBounds, _rng));
+	}
+
+	private Rect2 GetFoodSpawnBounds()
+	{
+		Rect2 reachable = _Player.GetMovementBounds();
+		Vector2 shrink = reachable.Size * 0.08f;
+		Rect2 inset = new Rect2(reachable.Position + shrink * 0.5f, reachable.Size - shrink);
+		return Helpers.GetLocalRect(Background, inset);
 	}
 
 

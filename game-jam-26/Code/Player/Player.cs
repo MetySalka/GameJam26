@@ -23,7 +23,6 @@ public partial class Player : CharacterBody2D
 	public Vector2 MovementArea;
 	public int Level { get;  set; } = 0;
 	public bool OnLand => Level >= 2;
-	public const float JumpVelocity = -400.0f;
 	private Rect2 _viewport;
 	private Rect2 _movementBounds;
 
@@ -31,31 +30,33 @@ public partial class Player : CharacterBody2D
 	private Vector2 _startingPosition;
 	private StringName _startingAnimation;
 	private Node2D _landStuff;
-	private CollisionShape2D _landCollider;
 
 	private FoodPickup _pickupArea;
 	private PlayerHitbox _hitbox;
 
 	private Vector2 _startingCameraPosition;
 
-	private void FollowCameraAtMovementEdge()
-	{
-		// Ignore the temporary shake offset when measuring the camera's follow area.
-		Vector2 screenPosition = GlobalPosition - _camera.GlobalPosition;
-		Vector2 overflow = screenPosition - Helpers.ClampToRect(screenPosition, _movementBounds);
-		_camera.GlobalPosition += overflow;
-		_camera.ForceUpdateScroll();
-		Background.SetCameraOffset(_camera.GlobalPosition - _startingCameraPosition);
-	}
+	private float _shakeMagnitude = 3f;
 
-	public void OnPlayerHit()
+	private const string HitFlashShaderPath = "res://Assets/Shaders/hit_flash.gdshader";
+	private ShaderMaterial _flashMaterial;
+	private int _flashFramesLeft = 0;
+	private int _flashFramesTotal = 1;
+	private static readonly Color DefaultFlashColor = new Color(1f, 0.2f, 0.2f);
+
+	public void OnPlayerHit(float intensity = 1f, Color? flashColor = null)
 	{
 		if (Invincible)
 			return;
 
 		GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer--;
-		cameraShakeCnt = 20 + (4 - GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer) * 5;
+		cameraShakeCnt = (int)((20 + (4 - GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer) * 5) * intensity);
+		_shakeMagnitude = 3f * intensity;
 
+		_flashMaterial.SetShaderParameter("flash_color", flashColor ?? DefaultFlashColor);
+		_flashMaterial.SetShaderParameter("flash_amount", 1f);
+		_flashFramesTotal = Mathf.Max(1, (int)(10 * intensity));
+		_flashFramesLeft = _flashFramesTotal;
 	}
 
 	public void LevelUp()
@@ -63,25 +64,29 @@ public partial class Player : CharacterBody2D
 		Level++;
 		UpdateLandState();
 		if (Level == 2)
-		{
 			_main.BeginLandPhase();
-			Velocity = new Vector2(Velocity.X, 0f);
-		}
 		_main.SpawnLevelUpFood();
-		if (Level != 1)
-			return;
+		if (Level == 1)
+			EvolveInto("PikeSprite");
+		else if (Level == 2)
+			EvolveInto("LizardSprite");
+	}
 
-		// Keep the current facing direction when evolving into the pike.
+	private void EvolveInto(string spriteName)
+	{
+		// Keep the current facing direction when evolving.
 		StringName animation = _sprite.Animation;
 		_sprite.Stop();
 		_sprite.Hide();
-		_sprite = GetNode<AnimatedSprite2D>("PikeSprite");
+		_sprite = GetNode<AnimatedSprite2D>(spriteName);
 		_sprite.Show();
-		_sprite.Play("Up");
+		_sprite.Play(animation);
 	}
 
 	private void OnPlayerDeath()
 	{
+		_main.HideSwordfishWarning();
+		_fihWarn.Hide();
 		GetTree().Paused = true;
 		Background.Hide();
 		Hide();
@@ -100,15 +105,31 @@ public partial class Player : CharacterBody2D
 		_pickupArea = GetNode<FoodPickup>("PickupRadius");
 		_hitbox = GetNode<PlayerHitbox>("Hitbox");
 		_landStuff = GetNode<Node2D>("../LandStuff");
-		_landCollider = GetNode<CollisionShape2D>("LandCollider");
+
+		_flashMaterial = new ShaderMaterial { Shader = GD.Load<Shader>(HitFlashShaderPath) };
+		_flashMaterial.SetShaderParameter("flash_amount", 0f);
+		GetNode<AnimatedSprite2D>("TadpoleSprite").Material = _flashMaterial;
+		GetNode<AnimatedSprite2D>("PikeSprite").Material = _flashMaterial;
+		GetNode<AnimatedSprite2D>("LizardSprite").Material = _flashMaterial;
+
 		UpdateLandState();
 	}
 
 	private void UpdateLandState()
 	{
-		bool onLand = OnLand;
-		_landStuff.Visible = onLand;
-		_landCollider.SetDeferred(CollisionShape2D.PropertyName.Disabled, !onLand);
+		_landStuff.Visible = OnLand;
+	}
+
+	// The rectangle the player can actually swim/walk within. Safe to call even
+	// while paused/before the first physics frame (e.g. when setting up a new run).
+	public Rect2 GetMovementBounds()
+	{
+		Rect2 viewport = new Rect2(Vector2.Zero, GetViewport().GetVisibleRect().Size);
+		Vector2 area = viewport.Size * (OnLand ? new Vector2(0.75f, 0.75f) : new Vector2(0.92f, 0.79f));
+		Vector2 center = viewport.GetCenter();
+		center.Y -= viewport.Size.Y * 0.045f;
+		Vector2 topLeft = center - area / 2f;
+		return new Rect2(topLeft, area);
 	}
 
 	public void ResetForNewRun()
@@ -126,6 +147,9 @@ public partial class Player : CharacterBody2D
 		AnimatedSprite2D pike = GetNode<AnimatedSprite2D>("PikeSprite");
 		pike.Stop();
 		pike.Hide();
+		AnimatedSprite2D lizard = GetNode<AnimatedSprite2D>("LizardSprite");
+		lizard.Stop();
+		lizard.Hide();
 		_sprite = GetNode<AnimatedSprite2D>("TadpoleSprite");
 		_sprite.Stop();
 		_sprite.Animation = _startingAnimation;
@@ -146,12 +170,19 @@ public partial class Player : CharacterBody2D
 	{
 		if(cameraShakeCnt > 0)
 		{
-			_camera.Offset = new Vector2(_rng.RandfRange(-3, 3), _rng.RandfRange(-3, 3));
+			_camera.Offset = new Vector2(_rng.RandfRange(-_shakeMagnitude, _shakeMagnitude), _rng.RandfRange(-_shakeMagnitude, _shakeMagnitude));
 			cameraShakeCnt--;
 		}
 		else
 		{
 			_camera.Offset = Vector2.Zero;
+		}
+
+		if (_flashFramesLeft > 0)
+		{
+			_flashFramesLeft--;
+			float flashAmount = (float)_flashFramesLeft / _flashFramesTotal;
+			_flashMaterial.SetShaderParameter("flash_amount", flashAmount);
 		}
 
 
@@ -161,34 +192,18 @@ public partial class Player : CharacterBody2D
 		}
 
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
-		MovementArea = _viewport.Size * (OnLand ? new Vector2(0.75f, 0.75f) : new Vector2(0.92f, 0.79f));
-		Vector2 center = _viewport.GetCenter();
-		center.Y = center.Y - _viewport.Size.Y * 0.045f; 
-		Vector2 topLeft = center - MovementArea / 2f;
-		_movementBounds = new Rect2(topLeft, MovementArea);
+		_movementBounds = GetMovementBounds();
+		MovementArea = _movementBounds.Size;
 
 		Vector2 velocity = Velocity;
 
 		// Ease toward the requested swimming speed on each axis.
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 
-		if (OnLand)
-		{
-			direction.X = Input.GetAxis("left", "right");
-			if (!IsOnFloor())
-				velocity += GetGravity() * (float)delta;
-			if (IsOnFloor() && (Input.IsActionJustPressed("ui_accept") || Input.IsActionJustPressed("jump")))
-				velocity.Y = JumpVelocity;
-		}
-		else
-		{
-			if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-				velocity.Y = JumpVelocity;
-			if (Input.IsActionJustPressed("jump"))
-				velocity.Y += 900.0f;
-			velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);
-		}
+		if (Input.IsActionJustPressed("jump"))
+			velocity.Y += 900.0f;
 
+		velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);
 		velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Speed / DecelFactor);
 
 		if (velocity.Y >= 0.2)
@@ -216,9 +231,6 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
-		if (OnLand)
-			FollowCameraAtMovementEdge();
-		else
-			Position = Helpers.ClampToRect(Position, _movementBounds);
+		Position = Helpers.ClampToRect(Position, _movementBounds);
 	}
 }

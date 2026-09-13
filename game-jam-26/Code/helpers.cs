@@ -11,6 +11,14 @@ public static class Helpers
 		return viewportToLocal * node.GetViewport().GetVisibleRect();
 	}
 
+	public static Rect2 GetLocalRect(Node2D node, Rect2 screenRect)
+	{
+		// Convert an arbitrary screen-space rect (e.g. the player's reachable area)
+		// into the node's local coordinates, including the camera.
+		Transform2D viewportToLocal = node.GetGlobalTransformWithCanvas().AffineInverse();
+		return viewportToLocal * screenRect;
+	}
+
 	public static Vector2 RandomPointInRect(Rect2 rect, RandomNumberGenerator rng)
 	{
 		return new Vector2(

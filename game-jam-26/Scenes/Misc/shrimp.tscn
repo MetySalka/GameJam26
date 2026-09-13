@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dt7vg3g60t6ib"]
+
+[ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="1_xwkda"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uraql"]
+radius = 13.038404
+
+[node name="Shrimp" type="Area2D" unique_id=385925231]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=789259720]
+texture = ExtResource("1_xwkda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015059385]
+shape = SubResource("CircleShape2D_uraql")

@@ -22,12 +22,12 @@ public partial class PlayerHitbox : Area2D
 	{
 		if (area is Stika stika || area is Swordfih swordfih)
 		{
-			_player.OnPlayerHit();
+			_player.OnPlayerHit(1f, new Color(1f, 0.15f, 0.15f));
 			//stika.KYS();
 		}
 		else if (area is Bubble bubble)
 		{
-			_player.OnPlayerHit();
+			_player.OnPlayerHit(0.4f, new Color(0.6f, 0.8f, 1f));
 			bubble.Consume(false);
 		}
 	}
