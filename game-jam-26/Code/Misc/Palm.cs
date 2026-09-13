@@ -17,6 +17,7 @@ public partial class Palm : Node2D
 
     public override void _Ready()
     {
+        DetectionArea ??= GetNode<Area2D>(".");
         DetectionArea.AreaEntered += OnAreaEntered;
         DetectionArea.AreaExited += OnAreaExited;
         Helpers.AttachShadow(this, new Vector2(0, 70), new Vector2(115, 31));

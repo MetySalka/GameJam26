@@ -80,6 +80,42 @@ visible = false
 Background = NodePath("../Background")
 _health = NodePath("../ScreenUI/Health")
 
+[node name="LandStuff" type="Node2D" parent="." unique_id=162671218]
+z_index = -1
+position = Vector2(46, -71)
+
+[node name="BeachBackground" parent="LandStuff" unique_id=786131746 instance=ExtResource("8_imbg2")]
+position = Vector2(-67, 53)
+scale = Vector2(0.96, 0.96)
+script = ExtResource("14_wliom")
+
+[node name="Palm" parent="LandStuff" unique_id=1093762877 instance=ExtResource("11_hfg1r")]
+position = Vector2(390, 102)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm2" parent="LandStuff" unique_id=1910936073 instance=ExtResource("11_hfg1r")]
+position = Vector2(11, 222)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm3" parent="LandStuff" unique_id=223511784 instance=ExtResource("11_hfg1r")]
+position = Vector2(837, 185)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm4" parent="LandStuff" unique_id=474367293 instance=ExtResource("11_hfg1r")]
+position = Vector2(276.00003, 450)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm5" parent="LandStuff" unique_id=798717761 instance=ExtResource("11_hfg1r")]
+position = Vector2(1095, 265)
+scale = Vector2(1.505, 1.505)
+
+[node name="Palm6" parent="LandStuff" unique_id=2124306296 instance=ExtResource("11_hfg1r")]
+position = Vector2(623, 271)
+scale = Vector2(1.505, 1.505)
+
+[node name="Coconut" parent="LandStuff" unique_id=1502605299 instance=ExtResource("12_4e4y2")]
+position = Vector2(410, 85)
+
 [node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_health", "_fihWarn", "_camera", "Background") instance=ExtResource("4_2a143")]
 visible = false
 position = Vector2(-101.999954, -54.99997)
@@ -116,41 +152,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(16.154625, 3.957517)
 color = Color(0.7411765, 0, 0, 0.14509805)
-
-[node name="LandStuff" type="Node2D" parent="." unique_id=162671218]
-z_index = -1
-position = Vector2(46, -71)
-
-[node name="Coconut" parent="LandStuff" unique_id=1502605299 instance=ExtResource("12_4e4y2")]
-position = Vector2(410, 85)
-
-[node name="BeachBackground" parent="LandStuff" unique_id=786131746 instance=ExtResource("8_imbg2")]
-position = Vector2(-67, 53)
-scale = Vector2(0.96, 0.96)
-script = ExtResource("14_wliom")
-
-[node name="Palm" parent="LandStuff" unique_id=1093762877 instance=ExtResource("11_hfg1r")]
-position = Vector2(390, 102)
-scale = Vector2(1.505, 1.505)
-
-[node name="Palm2" parent="LandStuff" unique_id=1910936073 instance=ExtResource("11_hfg1r")]
-position = Vector2(11, 222)
-scale = Vector2(1.505, 1.505)
-
-[node name="Palm3" parent="LandStuff" unique_id=223511784 instance=ExtResource("11_hfg1r")]
-position = Vector2(837, 185)
-scale = Vector2(1.505, 1.505)
-
-[node name="Palm4" parent="LandStuff" unique_id=474367293 instance=ExtResource("11_hfg1r")]
-position = Vector2(276.00003, 450)
-scale = Vector2(1.505, 1.505)
-
-[node name="Palm5" parent="LandStuff" unique_id=798717761 instance=ExtResource("11_hfg1r")]
-position = Vector2(1095, 265)
-scale = Vector2(1.505, 1.505)
-
-[node name="Palm6" parent="LandStuff" unique_id=2124306296 instance=ExtResource("11_hfg1r")]
-position = Vector2(623, 271)
-scale = Vector2(1.505, 1.505)
 
 [connection signal="pressed" from="ScreenUI/DebugCrab" to="ScreenUI/StartingMenu" method="OnClickDebugToggle"]
