@@ -35,6 +35,7 @@ public partial class Player : CharacterBody2D
 	private PlayerHitbox _hitbox;
 
 	private Vector2 _startingCameraPosition;
+	private Vector2 _startingCameraZoom;
 
 	private float _shakeMagnitude = 3f;
 
@@ -81,6 +82,8 @@ public partial class Player : CharacterBody2D
 		_sprite = GetNode<AnimatedSprite2D>(spriteName);
 		_sprite.Show();
 		_sprite.Play(animation);
+		if (OnLand && Velocity.IsZeroApprox())
+			_sprite.Stop();
 	}
 
 	private void OnPlayerDeath()
@@ -101,6 +104,7 @@ public partial class Player : CharacterBody2D
 		_sprite = GetNode<AnimatedSprite2D>("TadpoleSprite");
 		_startingPosition = Position;
 		_startingCameraPosition = _camera.GlobalPosition;
+		_startingCameraZoom = _camera.Zoom;
 		_startingAnimation = _sprite.Animation;
 		_pickupArea = GetNode<FoodPickup>("PickupRadius");
 		_hitbox = GetNode<PlayerHitbox>("Hitbox");
@@ -142,6 +146,7 @@ public partial class Player : CharacterBody2D
 		cameraShakeCnt = 0;
 		_camera.Offset = Vector2.Zero;
 		_camera.GlobalPosition = _startingCameraPosition;
+		_camera.Zoom = _startingCameraZoom;
 		_camera.ForceUpdateScroll();
 		Background.SetCameraOffset(Vector2.Zero);
 		AnimatedSprite2D pike = GetNode<AnimatedSprite2D>("PikeSprite");
@@ -206,6 +211,24 @@ public partial class Player : CharacterBody2D
 		velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);
 		velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Speed / DecelFactor);
 
+		if (!OnLand)
+			UpdateMovementAnimation(velocity);
+
+		Velocity = velocity;
+		Vector2 previousPosition = Position;
+		MoveAndSlide();
+		Position = Helpers.ClampToRect(Position, _movementBounds);
+		if (OnLand)
+		{
+			Vector2 movement = Position - previousPosition;
+			if (movement.IsZeroApprox())
+				_sprite.Stop();
+			else
+				UpdateMovementAnimation(movement.Normalized());
+		}
+	}
+	private void UpdateMovementAnimation(Vector2 velocity)
+	{
 		if (velocity.Y >= 0.2)
 		{
 			_sprite.Play("Down");
@@ -229,8 +252,6 @@ public partial class Player : CharacterBody2D
 			_hitbox.SetHitDir(3);
 		}
 
-		Velocity = velocity;
-		MoveAndSlide();
-		Position = Helpers.ClampToRect(Position, _movementBounds);
 	}
+
 }

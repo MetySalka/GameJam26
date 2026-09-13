@@ -232,6 +232,8 @@ public partial class Main : Node
 		}
 
 		camera.Zoom = new Vector2(1.1f, 1.1f);
+		camera.ForceUpdateScroll();
+		Background.Hide();
 
 	}
 

@@ -49,8 +49,10 @@ public partial class ScrollingBGsprite : Sprite2D
 	public Vector2 GetLevelSourceRange(int level)
 	{
 		float bottom = Mathf.Min(BottomRow, _sourceTexture.GetHeight());
+		// The beach is a separate scene. Rows above the water surface are blank white.
+		float surface = Mathf.Min(MiddleRow, _sourceTexture.GetHeight() - WindowHeight);
 		float top = Mathf.Clamp(bottom - Mathf.Max(0, level) * LevelStep - WindowHeight,
-			0f, _sourceTexture.GetHeight() - WindowHeight);
+			surface, _sourceTexture.GetHeight() - WindowHeight);
 		return new Vector2(top, top + WindowHeight);
 	}
 
