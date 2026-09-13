@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://fiexys8x4hhv" path="res://Assets/Sprites/Misc/hearts.png" id="2_tvysp"]
 
 [node name="Health" type="TextureProgressBar" unique_id=1868753401 node_paths=PackedStringArray("_healthStat")]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -112.0
@@ -15,9 +16,18 @@ _healthStat = NodePath("TextureProgressBar")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=616644132]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -0.528
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.312
+offset_left = -94.976
+offset_top = -3.999998
+offset_right = -94.0
+offset_bottom = -3.9680023
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
 max_value = 5.0
+value = 5.0
 fill_mode = 1
 texture_progress = ExtResource("2_tvysp")

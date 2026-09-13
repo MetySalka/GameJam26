@@ -1,57 +1,80 @@
 using Godot;
 
-public partial class CoconutSpawnersa : Area2D
+public partial class Palm : Node2D
 {
     [Export] public PackedScene CoconutScene;
-    [Export] public float SpawnDelay = 2f;
+    [Export] public float SpawnDelay = 3f;
     [Export] public int MaxCoconuts = 2;
-    [Export] public Node2D SpawnPoint;      // where coconuts appear (e.g. top of palm)
+    [Export] public Node2D SpawnPoint;
+    [Export] public Area2D DetectionArea;
+    [Export] public float RandomFallMinDelay = 5f;
+    [Export] public float RandomFallMaxDelay = 15f;
 
-    private int _alive;
+    private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
+    private int _activeCoconuts;
     private bool _playerInside;
-    private bool _cooldownRunning;
+    private bool _spawnLoopRunning;
 
     public override void _Ready()
     {
-        BodyEntered += OnBodyEntered;
-        BodyExited  += OnBodyExited;
+        DetectionArea.AreaEntered += OnAreaEntered;
+        DetectionArea.AreaExited += OnAreaExited;
+        RandomFallLoop();
     }
 
-    private void OnBodyEntered(Node2D body)
+    private async void RandomFallLoop()
     {
-        if (body is not Player) return;
+        while (IsInstanceValid(this))
+        {
+            float delay = _rng.RandfRange(RandomFallMinDelay, RandomFallMaxDelay);
+            await ToSignal(GetTree().CreateTimer(delay), SceneTreeTimer.SignalName.Timeout);
+            if (!IsInstanceValid(this)) return;
+
+            if (_activeCoconuts >= MaxCoconuts) continue;
+            if (!GetNode<Player>("/root/Main/Player").OnLand) continue;
+            SpawnCoconut();
+        }
+    }
+
+    private void OnAreaEntered(Area2D area)
+    {
+        if (area is not PlayerHitbox hitbox) return;
+        if (!hitbox.GetParent<Player>().OnLand) return;
         _playerInside = true;
-        TryStartCooldown();
+        TrySpawnLoop();
     }
 
-    private void OnBodyExited(Node2D body)
+    private void OnAreaExited(Area2D area)
     {
-        if (body is Player) _playerInside = false;
+        if (area is PlayerHitbox) _playerInside = false;
     }
 
-    private async void TryStartCooldown()
+    private async void TrySpawnLoop()
     {
-        if (_cooldownRunning || _alive >= MaxCoconuts) return;
-        _cooldownRunning = true;
+        if (_spawnLoopRunning) return;
+        _spawnLoopRunning = true;
 
-        await ToSignal(GetTree().CreateTimer(SpawnDelay), SceneTreeTimer.SignalName.Timeout);
-        if (!IsInstanceValid(this)) return;
-        _cooldownRunning = false;
+        while (_playerInside && _activeCoconuts < MaxCoconuts)
+        {
+            SpawnCoconut();
+            await ToSignal(GetTree().CreateTimer(SpawnDelay), SceneTreeTimer.SignalName.Timeout);
+            if (!IsInstanceValid(this)) return;
+        }
 
-        if (_alive >= MaxCoconuts) return;
-        Spawn();
-
-        // Player still standing under the tree? Keep dropping.
-        if (_playerInside) TryStartCooldown();
+        _spawnLoopRunning = false;
     }
 
-    private void Spawn()
+    private void SpawnCoconut()
     {
         var coconut = CoconutScene.Instantiate<Coconut>();
         coconut.GlobalPosition = SpawnPoint.GlobalPosition;
         GetParent().AddChild(coconut);
 
-        _alive++;
-        coconut.TreeExited += () => _alive--;   // freed → count drops
+        _activeCoconuts++;
+        coconut.TreeExited += () =>
+        {
+            _activeCoconuts--;
+            if (_playerInside) TrySpawnLoop();
+        };
     }
 }

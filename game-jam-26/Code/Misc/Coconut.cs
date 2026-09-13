@@ -2,31 +2,64 @@ using Godot;
 
 public partial class Coconut : Area2D
 {
-    [Export] public float Gravity = 400f;
+    [Export] public float FallSpeed = 250f;
     [Export] public float FallDistance = 800f;
-    [Export] public float LifeAfterLanding = 1.5f;
+    [Export] public float EmergeDistance = 40f;
+    [Export] public float RollSpeed = 120f;
+    [Export] public float RollDuration = 1.5f;
+    [Export] public float KnockbackForce = 220f;
 
-    private float _velocity;
+    private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
+    private float _startY;
     private float _groundY;
+    private float _rollDirection;
+    private float _rollTimeLeft;
+    private bool _emerged;
     private bool _landed;
 
     public override void _Ready()
     {
-        _groundY = GlobalPosition.Y + FallDistance;
+        _startY = GlobalPosition.Y;
+        _groundY = _startY + FallDistance;
+        _rollDirection = _rng.Randf() < 0.5f ? -1f : 1f;
+        ZIndex = -1;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("default");
+        AreaEntered += OnAreaEntered;
     }
 
     public override void _Process(double delta)
     {
-        if (_landed) return;
-
-        _velocity += Gravity * (float)delta;
-        GlobalPosition += new Vector2(0, _velocity * (float)delta);
-
-        if (GlobalPosition.Y >= _groundY)
+        if (!_landed)
         {
-            _landed = true;
-            GetTree().CreateTimer(LifeAfterLanding).Timeout += QueueFree;
+            GlobalPosition += new Vector2(0, FallSpeed * (float)delta);
+
+            if (!_emerged && GlobalPosition.Y - _startY >= EmergeDistance)
+            {
+                _emerged = true;
+                ZIndex = 0;
+            }
+
+            if (GlobalPosition.Y >= _groundY)
+            {
+                _landed = true;
+                _rollTimeLeft = RollDuration;
+            }
+            return;
         }
+
+        if (_rollTimeLeft <= 0) return;
+
+        GlobalPosition += new Vector2(_rollDirection * RollSpeed * (float)delta, 0);
+        _rollTimeLeft -= (float)delta;
+        if (_rollTimeLeft <= 0) QueueFree();
+    }
+
+    private void OnAreaEntered(Area2D area)
+    {
+        if (area is not PlayerHitbox hitbox) return;
+
+        Vector2 direction = (hitbox.GlobalPosition - GlobalPosition).Normalized();
+        hitbox.TakeCoconutHit(direction, KnockbackForce);
+        QueueFree();
     }
 }
