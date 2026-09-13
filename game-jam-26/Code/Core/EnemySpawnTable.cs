@@ -33,7 +33,7 @@ public static class EnemySpawnTable
         new(2,    EnemyKind.Pufferfish,   0,   2f,    5f, 1,1,          5f),
 
         // Crab only appears once the player reaches land (level 2, the beach).
-        new(2,    EnemyKind.Crab,         4,   3f,     7f,      1, 1,          2f),
+        new(2,    EnemyKind.Crab,         8,   3f,     7f,      1, 1,          2f),
 
     };
 

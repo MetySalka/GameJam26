@@ -67,7 +67,10 @@ public partial class ProgressBar : CanvasLayer
 		if (_displayedLevel == player.Level)
 			return;
 		_displayedLevel = player.Level;
-		_textureBar.MaxValue = Math.Pow(10.0, player.Level + 1);
+		// The first level (Tadpole, Level 0) is stretched well past the usual
+		// 10x-per-level curve so the run opens with much more time before the
+		// first evolution.
+		_textureBar.MaxValue = player.Level == 0 ? 40.0 : Math.Pow(10.0, player.Level + 1);
 	}
 
 	private void UpdatePivot()

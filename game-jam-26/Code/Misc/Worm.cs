@@ -6,7 +6,7 @@ public partial class Worm : Area2D
 {
 	public const float SimulationMargin = 0.1f;
 
-	[Export] public float FoodValue { get; set; } = 1.5f;
+	[Export] public float FoodValue { get; set; } = 50.0f;
 	[Export] public float MoveSpeed { get; set; } = 40f;
 
 	// Set by Main right after spawning, so the worm can stay inside the beach

@@ -83,6 +83,31 @@ public static class Helpers
 	}
 
 
+	// Pushes same-type siblings apart so they don't chase the player stacked on
+	// top of each other, which would let a whole cluster be dodged as if it
+	// were a single enemy. Returns a displacement to add straight onto
+	// GlobalPosition; the caller scales it by delta as needed.
+	public static Vector2 GetSeparationFromSiblings<T>(Node2D self, Node parent, float minDistance)
+		where T : Node2D
+	{
+		Vector2 push = Vector2.Zero;
+		foreach (Node child in parent.GetChildren())
+		{
+			if (child == self || child is not T other || other.IsQueuedForDeletion())
+				continue;
+			Vector2 diff = self.GlobalPosition - other.GlobalPosition;
+			float distance = diff.Length();
+			if (distance < minDistance)
+			{
+				// Nudge in a stable arbitrary direction instead of leaving two
+				// exactly-overlapping enemies stuck with a zero-length diff.
+				Vector2 direction = distance > 0.001f ? diff / distance : Vector2.Right;
+				push += direction * (minDistance - distance);
+			}
+		}
+		return push;
+	}
+
 	public static float GetAngleToObject(Vector2 Coords1, Vector2 Coords2)
 	{
 

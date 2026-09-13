@@ -1,47 +1,35 @@
 using Godot;
 
-public partial class Palm : Node2D
+public partial class Palm : Area2D
 {
     [Export] public PackedScene CoconutScene;
-    [Export] public float SpawnDelay = 3f;
+    [Export] public float SpawnDelay = 2f;
     [Export] public int MaxCoconuts = 2;
-    [Export] public Node2D SpawnPoint;
-    [Export] public Area2D DetectionArea;
-    [Export] public float RandomFallMinDelay = 5f;
-    [Export] public float RandomFallMaxDelay = 15f;
+    [Export] public Node2D SpawnPoint;      // where coconuts appear (e.g. top of palm)
+    // Distance from SpawnPoint down to the sand at the trunk base, measured in
+    // unscaled palm pixels; multiplied by this palm's scale when a coconut drops.
+    [Export] public float GroundFallDistance = 100f;
 
-    private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
-    private int _activeCoconuts;
+    private int _alive;
     private bool _playerInside;
-    private bool _spawnLoopRunning;
+    private bool _cooldownRunning;
 
     public override void _Ready()
     {
-        DetectionArea.AreaEntered += OnAreaEntered;
-        DetectionArea.AreaExited += OnAreaExited;
-        RandomFallLoop();
-    }
-
-    private async void RandomFallLoop()
-    {
-        while (IsInstanceValid(this))
-        {
-            float delay = _rng.RandfRange(RandomFallMinDelay, RandomFallMaxDelay);
-            await ToSignal(GetTree().CreateTimer(delay), SceneTreeTimer.SignalName.Timeout);
-            if (!IsInstanceValid(this)) return;
-
-            if (_activeCoconuts >= MaxCoconuts) continue;
-            if (!GetNode<Player>("/root/Main/Player").OnLand) continue;
-            SpawnCoconut();
-        }
+        // The player body has no collision shape of its own, so the palm
+        // watches the player's hitbox area entering this zone instead.
+        AreaEntered += OnAreaEntered;
+        AreaExited  += OnAreaExited;
     }
 
     private void OnAreaEntered(Area2D area)
     {
         if (area is not PlayerHitbox hitbox) return;
+        // Only the dodo walks the beach; while the player is still in the water
+        // the palms are hidden and must not drop anything.
         if (!hitbox.GetParent<Player>().OnLand) return;
         _playerInside = true;
-        TrySpawnLoop();
+        TryStartCooldown();
     }
 
     private void OnAreaExited(Area2D area)
@@ -49,32 +37,33 @@ public partial class Palm : Node2D
         if (area is PlayerHitbox) _playerInside = false;
     }
 
-    private async void TrySpawnLoop()
+    private async void TryStartCooldown()
     {
-        if (_spawnLoopRunning) return;
-        _spawnLoopRunning = true;
+        if (_cooldownRunning || _alive >= MaxCoconuts) return;
+        _cooldownRunning = true;
 
-        while (_playerInside && _activeCoconuts < MaxCoconuts)
-        {
-            SpawnCoconut();
-            await ToSignal(GetTree().CreateTimer(SpawnDelay), SceneTreeTimer.SignalName.Timeout);
-            if (!IsInstanceValid(this)) return;
-        }
+        await ToSignal(GetTree().CreateTimer(SpawnDelay), SceneTreeTimer.SignalName.Timeout);
+        if (!IsInstanceValid(this)) return;
+        _cooldownRunning = false;
 
-        _spawnLoopRunning = false;
+        if (_alive >= MaxCoconuts) return;
+        Spawn();
+
+        // Player still standing under the tree? Keep dropping.
+        if (_playerInside) TryStartCooldown();
     }
 
-    private void SpawnCoconut()
+    private void Spawn()
     {
         var coconut = CoconutScene.Instantiate<Coconut>();
-        coconut.GlobalPosition = SpawnPoint.GlobalPosition;
+        // Stop the fall at the sand under this palm instead of a fixed drop.
+        coconut.FallDistance = GroundFallDistance * GlobalScale.Y;
         GetParent().AddChild(coconut);
+        // Position it after it is in the tree: on a parentless node the value
+        // would be stored as a local offset and this palm's offset would stack.
+        coconut.GlobalPosition = SpawnPoint.GlobalPosition;
 
-        _activeCoconuts++;
-        coconut.TreeExited += () =>
-        {
-            _activeCoconuts--;
-            if (_playerInside) TrySpawnLoop();
-        };
+        _alive++;
+        coconut.TreeExited += () => _alive--;   // freed → count drops
     }
 }

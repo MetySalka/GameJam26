@@ -12,6 +12,10 @@ public partial class Crab : Area2D
 	[Export] public float AttackInterval { get; set; } = 1.1f;
 	// Fraction of AttackInterval into the swing where the claws actually connect.
 	[Export] public float AttackHitFraction { get; set; } = 0.5f;
+	// Minimum gap kept from other crabs so a whole group can't stack on the
+	// player's position and get dodged as if it were a single crab.
+	[Export] public float SeparationDistance { get; set; } = 90f;
+	[Export] public float SeparationStrength { get; set; } = 2.5f;
 
 	public Player Target { get; set; }
 
@@ -70,6 +74,8 @@ public partial class Crab : Area2D
 
 		FaceDirection(toPlayer);
 		GlobalPosition += toPlayer.Normalized() * MoveSpeed * seconds;
+		GlobalPosition += Helpers.GetSeparationFromSiblings<Crab>(this, GetParent(), SeparationDistance)
+			* SeparationStrength * seconds;
 	}
 
 	// Assumption: the art is drawn facing up (claws toward the top of the frame) at

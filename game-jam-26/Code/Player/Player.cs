@@ -93,6 +93,8 @@ public partial class Player : CharacterBody2D
 			EvolveInto("PikeSprite");
 		else if (Level == 2)
 			EvolveInto("LizardSprite");
+		else if (Level == 3)
+			EvolveInto("PigeonSprite");
 	}
 
 	private async void EvolveInto(string spriteName)
@@ -106,6 +108,11 @@ public partial class Player : CharacterBody2D
 		StringName animation = _sprite.Animation;
 		AnimatedSprite2D oldSprite = _sprite;
 		AnimatedSprite2D newSprite = GetNode<AnimatedSprite2D>(spriteName);
+		// A new form may not own the pose the old one happened to be in (the
+		// Pigeon has no Eat poses), so fall back to one it can actually play.
+		if (!newSprite.SpriteFrames.HasAnimation(animation)
+			|| newSprite.SpriteFrames.GetFrameCount(animation) == 0)
+			animation = "Right";
 		Vector2 oldScale = oldSprite.Scale;
 		Vector2 targetScale = newSprite.Scale;
 
@@ -197,6 +204,7 @@ public partial class Player : CharacterBody2D
 		GetNode<AnimatedSprite2D>("TadpoleSprite").Material = _flashMaterial;
 		GetNode<AnimatedSprite2D>("PikeSprite").Material = _flashMaterial;
 		GetNode<AnimatedSprite2D>("LizardSprite").Material = _flashMaterial;
+		GetNode<AnimatedSprite2D>("PigeonSprite").Material = _flashMaterial;
 
 		_evolveFlash = new ColorRect
 		{
@@ -267,6 +275,9 @@ public partial class Player : CharacterBody2D
 		AnimatedSprite2D lizard = GetNode<AnimatedSprite2D>("LizardSprite");
 		lizard.Stop();
 		lizard.Hide();
+		AnimatedSprite2D pigeon = GetNode<AnimatedSprite2D>("PigeonSprite");
+		pigeon.Stop();
+		pigeon.Hide();
 		_sprite = GetNode<AnimatedSprite2D>("TadpoleSprite");
 		_sprite.Stop();
 		_sprite.Animation = _startingAnimation;
@@ -350,26 +361,34 @@ public partial class Player : CharacterBody2D
 	{
 		if (velocity.X >= 0.2f)
 		{
-			_sprite.Play("Right");
+			PlayIfAvailable("Right", velocity.X >= 0 ? "Right" : "Left");
 			_hitbox.SetHitDir(2);
 		}
 		else if (velocity.X <= -0.2f)
 		{
-			_sprite.Play("Left");
+			PlayIfAvailable("Left", "Left");
 			_hitbox.SetHitDir(3);
 		}
 		else if (velocity.Y >= 0.2f)
 		{
-			_sprite.Play("Down");
+			PlayIfAvailable("Down", velocity.X >= 0 ? "Right" : "Left");
 			_hitbox.SetHitDir(0);
 		}
 		else if (velocity.Y <= -0.2f)
 		{
-			_sprite.Play("Up");
+			PlayIfAvailable("Up", velocity.X >= 0 ? "Right" : "Left");
 			_hitbox.SetHitDir(1);
 		}
 
 
+	}
+
+	// Some evolutions (e.g. Lizard) only have Left/Right poses, so fall back
+	// instead of erroring when Up/Down are requested but don't exist.
+	private void PlayIfAvailable(string animation, string fallback)
+	{
+		string toPlay = _sprite.SpriteFrames.HasAnimation(animation) ? animation : fallback;
+		_sprite.Play(toPlay);
 	}
 
 	// Dodo's bite: briefly swap to the Eat left/right pose facing whichever way
@@ -379,8 +398,12 @@ public partial class Player : CharacterBody2D
 		if (!OnLand || _isEvolving)
 			return;
 		bool facingLeft = _sprite.Animation == "Left" || _sprite.Animation == "Eat left";
+		string eatPose = facingLeft ? "Eat left" : "Eat right";
+		// Forms without a dedicated eating pose (the Pigeon) just face the bite.
+		if (!_sprite.SpriteFrames.HasAnimation(eatPose))
+			eatPose = facingLeft ? "Left" : "Right";
 		_isEating = true;
-		_sprite.Play(facingLeft ? "Eat left" : "Eat right");
+		_sprite.Play(eatPose);
 		await ToSignal(GetTree().CreateTimer(0.35), SceneTreeTimer.SignalName.Timeout);
 		_isEating = false;
 	}

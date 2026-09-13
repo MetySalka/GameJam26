@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://cexrq6ee11e54" path="res://Code/UI/Gameovermenu.cs" id="1_ujlsm"]
 [ext_resource type="Texture2D" uid="uid://cauown25trdf3" path="res://Assets/Sprites/Background/stika.jpg" id="2_7urxw"]
 [ext_resource type="Texture2D" uid="uid://bvqy7pwqtomyv" path="res://Assets/Sprites/Background/dodo.jpg" id="3_g2y2e"]
+[ext_resource type="FontFile" uid="uid://cygm3w4mgyyd1" path="res://Assets/BoldPixels.ttf" id="4_g2y2e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_td03i"]
+font = ExtResource("4_g2y2e")
 font_size = 35
 font_color = Color(0.9236471, 0.20141774, 0.20533076, 1)
 
@@ -57,7 +59,7 @@ label_settings = SubResource("LabelSettings_td03i")
 
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1243200011]
 layout_mode = 2
-text = "Try Again ?"
+text = "Try again?"
 
 [node name="Button2" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2109441246]
 layout_mode = 2

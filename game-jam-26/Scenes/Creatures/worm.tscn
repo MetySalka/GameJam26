@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://q8tlnbf4ea21"]
 
+[ext_resource type="Script" uid="uid://dn4vndwpa17xf" path="res://Code/Misc/Worm.cs" id="0_worm"]
 [ext_resource type="Texture2D" uid="uid://do0kmpvh1xgxr" path="res://Assets/Sprites/Creatures/Worm/Left/worm_scaled_0001.png" id="1_3x0e3"]
 [ext_resource type="Texture2D" uid="uid://b1ko8lw6we88k" path="res://Assets/Sprites/Creatures/Worm/Left/worm_scaled_0002.png" id="2_5am55"]
 [ext_resource type="Texture2D" uid="uid://dtwyke2xmn8ec" path="res://Assets/Sprites/Creatures/Worm/Left/worm_scaled_0003.png" id="3_mbdoy"]
@@ -51,6 +52,9 @@ radius = 6.0
 height = 60.0
 
 [node name="Worm" type="Area2D" unique_id=827422652]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("0_worm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1985346837]
 position = Vector2(2, -1)

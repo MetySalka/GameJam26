@@ -14,7 +14,7 @@ public partial class Startingmenu : Control
 	[Export] private Control _menuBackground;
 	[Export] private TextureButton _debugToggle;
 	[Export] private CanvasLayer _textureBarMain;
-	private TextureProgressBar _textureBar;
+	//private TextureProgressBar _textureBar;
 	private bool _debugScoreEnabled;
 	public void ShowMenu()
 	{
@@ -45,7 +45,7 @@ public partial class Startingmenu : Control
 	{
 		ProcessMode = Node.ProcessModeEnum.WhenPaused;
 		ShowMenu();
-		_textureBar = _textureBarMain.GetNode<TextureProgressBar>("TextureProgressBar");
+		//_textureBar = _textureBarMain.GetNode<TextureProgressBar>("TextureProgressBar");
 		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
 	}
 
