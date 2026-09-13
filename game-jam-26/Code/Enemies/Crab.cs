@@ -63,6 +63,7 @@ public partial class Crab : Area2D
 			_hasHitThisSwing = false;
 			_attackTimeLeft = AttackInterval;
 			FaceDirection(toPlayer);
+			GetNode<AudioStreamPlayer>("CrabClap").Play();
 			_sprite.Play("Attack");
 			return;
 		}

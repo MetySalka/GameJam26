@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ngm2koge5m6g" path="res://Scenes/Misc/coconut.tscn" id="12_4e4y2"]
 [ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="13_dbgcrab"]
 [ext_resource type="Script" uid="uid://derevn0xnc1qq" path="res://Code/Background/Beachbackground.cs" id="14_wliom"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/escapemenu.tscn" id="15_escmn"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
@@ -66,6 +67,8 @@ stretch_mode = 4
 
 [node name="Health" parent="ScreenUI" unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
 _player = NodePath("../../Player")
+
+[node name="EscapeMenu" parent="ScreenUI" unique_id=999888777 instance=ExtResource("15_escmn")]
 
 [node name="ProgressBar" parent="." unique_id=551622491 node_paths=PackedStringArray("Background", "_health") instance=ExtResource("5_p6jpk")]
 Background = NodePath("../Background")
