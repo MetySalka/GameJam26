@@ -35,7 +35,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_plrnn"]
-radius = 9.0
+radius = 25.019993
 
 [node name="Coconut" type="Area2D" unique_id=2000077475]
 collision_layer = 9
@@ -44,7 +44,7 @@ script = ExtResource("1_ckc1j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=807979002]
 rotation = 0.39444438
-scale = Vector2(0.45312497, 0.484375)
+scale = Vector2(1.1456915, 1.2299385)
 sprite_frames = SubResource("SpriteFrames_ho48w")
 frame_progress = 0.80573726
 

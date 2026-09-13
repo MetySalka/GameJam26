@@ -41,7 +41,6 @@ public partial class ProgressBar : CanvasLayer
 	{
 		if (_displayedLevel == player.Level)
 			return;
-		_health.HealthPlayer += 1;
 		_displayedLevel = player.Level;
 		_textureBar.MaxValue = Math.Pow(10.0, player.Level + 1);
 	}

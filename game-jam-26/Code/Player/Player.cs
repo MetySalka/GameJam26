@@ -37,6 +37,9 @@ public partial class Player : CharacterBody2D
 	private StringName _startingAnimation;
 	private Node2D _landStuff;
 
+	private bool _isEvolving;
+	private ColorRect _evolveFlash;
+
 	private FoodPickup _pickupArea;
 	private PlayerHitbox _hitbox;
 
@@ -84,17 +87,69 @@ public partial class Player : CharacterBody2D
 			EvolveInto("LizardSprite");
 	}
 
-	private void EvolveInto(string spriteName)
+	private async void EvolveInto(string spriteName)
 	{
+		if (_isEvolving)
+			return;
+		_isEvolving = true;
+		Velocity = Vector2.Zero;
+
 		// Keep the current facing direction when evolving.
 		StringName animation = _sprite.Animation;
-		_sprite.Stop();
-		_sprite.Hide();
-		_sprite = GetNode<AnimatedSprite2D>(spriteName);
-		_sprite.Show();
-		_sprite.Play(animation);
+		AnimatedSprite2D oldSprite = _sprite;
+		AnimatedSprite2D newSprite = GetNode<AnimatedSprite2D>(spriteName);
+		Vector2 oldScale = oldSprite.Scale;
+		Vector2 targetScale = newSprite.Scale;
+
+		PlayWhoosh();
+
+		Tween sparkle = CreateTween();
+		sparkle.TweenProperty(_evolveFlash, "color:a", 0.5f, 0.08);
+		sparkle.TweenProperty(_evolveFlash, "color:a", 0f, 0.15);
+
+		// Squash the old body down as if it's melting into the new form.
+		Tween squash = CreateTween();
+		squash.TweenProperty(oldSprite, "scale", new Vector2(oldScale.X * 1.35f, oldScale.Y * 0.1f), 0.14)
+			.SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.In);
+		await ToSignal(squash, Tween.SignalName.Finished);
+
+		// Cross-fade: old form finishes collapsing while the new form stretches up out of it.
+		oldSprite.Modulate = new Color(1f, 1f, 1f, 1f);
+		newSprite.Scale = new Vector2(targetScale.X * 1.35f, targetScale.Y * 0.1f);
+		newSprite.Modulate = new Color(1f, 1f, 1f, 0f);
+		newSprite.Show();
+		newSprite.Play(animation);
+		_sprite = newSprite;
+
+		Tween morph = CreateTween();
+		morph.SetParallel();
+		morph.TweenProperty(oldSprite, "modulate:a", 0f, 0.16)
+			.SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.In);
+		morph.TweenProperty(oldSprite, "scale:y", 0f, 0.16)
+			.SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.In);
+		morph.TweenProperty(newSprite, "modulate:a", 1f, 0.16)
+			.SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.Out);
+		morph.TweenProperty(newSprite, "scale", targetScale * 1.2f, 0.2)
+			.SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+		await ToSignal(morph, Tween.SignalName.Finished);
+
+		oldSprite.Stop();
+		oldSprite.Hide();
+		oldSprite.Scale = oldScale;
+		oldSprite.Modulate = new Color(1f, 1f, 1f, 1f);
+
+		Tween settle = CreateTween();
+		settle.TweenProperty(newSprite, "scale", targetScale, 0.1)
+			.SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+		await ToSignal(settle, Tween.SignalName.Finished);
+
+		cameraShakeCnt = 16;
+		_shakeMagnitude = 4f;
+
 		if (OnLand && Velocity.IsZeroApprox())
 			_sprite.Stop();
+
+		_isEvolving = false;
 	}
 
 	private void OnPlayerDeath()
@@ -127,6 +182,16 @@ public partial class Player : CharacterBody2D
 		GetNode<AnimatedSprite2D>("TadpoleSprite").Material = _flashMaterial;
 		GetNode<AnimatedSprite2D>("PikeSprite").Material = _flashMaterial;
 		GetNode<AnimatedSprite2D>("LizardSprite").Material = _flashMaterial;
+
+		_evolveFlash = new ColorRect
+		{
+			Color = new Color(1f, 1f, 1f, 0f),
+			MouseFilter = Control.MouseFilterEnum.Ignore,
+		};
+		_evolveFlash.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+		CanvasLayer evolveLayer = new CanvasLayer { Layer = 100 };
+		evolveLayer.AddChild(_evolveFlash);
+		AddChild(evolveLayer);
 
 		UpdateLandState();
 	}
@@ -164,9 +229,14 @@ public partial class Player : CharacterBody2D
 	{
 		_hitGraceSeconds = 0;
 		_externalInvincibility = false;
+		_isEvolving = false;
+		Engine.TimeScale = 1f;
+		if (_evolveFlash != null)
+			_evolveFlash.Color = new Color(1f, 1f, 1f, 0f);
 		Level = 0;
 		UpdateLandState();
-		GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer = 5;
+		Health health = GetNode<Health>("/root/Main/ScreenUI/Health");
+		health.HealthPlayer = health.MaxHealth;
 		Position = _startingPosition;
 		Velocity = Vector2.Zero;
 		cameraShakeCnt = 0;
@@ -227,6 +297,12 @@ public partial class Player : CharacterBody2D
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
 		_movementBounds = GetMovementBounds();
 		MovementArea = _movementBounds.Size;
+
+		if (_isEvolving)
+		{
+			Velocity = Vector2.Zero;
+			return;
+		}
 
 		Vector2 velocity = Velocity;
 

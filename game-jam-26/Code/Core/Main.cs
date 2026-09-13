@@ -15,6 +15,7 @@ public partial class Main : Node
 	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
 	private readonly PackedScene swordfihScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/swordfih.tscn");
 	private readonly PackedScene pufferScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/puffer.tscn");
+	private readonly PackedScene crabScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/crab.tscn");
 	private Player _Player;
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private readonly Dictionary<EnemyKind, double> _spawnTimers = new();
@@ -60,6 +61,9 @@ public partial class Main : Node
 		global::Background world = (global::Background)Background;
 		Helpers.ClearScene(world);
 		world.ResetForNewRun();
+		foreach (Node child in GetChildren())
+			if (child is Crab && !child.IsQueuedForDeletion())
+				child.QueueFree();
 		_Player.ResetForNewRun();
 		GetNode<GameJam26.Code.UI.ProgressBar>("ProgressBar").ResetForNewRun();
 		GetNode<Control>("ScreenUI/GameOver").Hide();
@@ -109,12 +113,16 @@ public partial class Main : Node
 			if (_spawnTimers[enemy] > 0)
 				continue;
 
-			int alive = Background.GetChildren().Count(child => !child.IsQueuedForDeletion() && (enemy switch
+			// Crab lives on the beach, as a direct child of Main, rather than in the
+			// scrolling water Background used by the swimming enemies.
+			var pool = enemy == EnemyKind.Crab ? GetChildren() : Background.GetChildren();
+			int alive = pool.Count(child => !child.IsQueuedForDeletion() && (enemy switch
 			{
 				EnemyKind.Pike => child is Stika,
 				EnemyKind.Swordfish => child is Swordfih,
 				EnemyKind.Bubble => child is Bubble,
 				EnemyKind.Pufferfish => child is Puffer,
+				EnemyKind.Crab => child is Crab,
 				_ => false
 			}));
 			int available = rule.MaxCount - alive;
@@ -128,6 +136,14 @@ public partial class Main : Node
 				Rect2 viewport = GetViewport().GetVisibleRect();
 				Rect2 targetArea = new Rect2(viewport.GetCenter() - viewport.Size * 0.35f, viewport.Size * 0.7f);
 				SwordFishStream(_rng.RandfRange(0, 360), count, Helpers.RandomPointInRect(targetArea, _rng));
+			}
+			else if (enemy == EnemyKind.Crab)
+			{
+				if (!_Player.OnLand)
+					continue;
+				Rect2 beachBounds = _Player.GetMovementBounds();
+				for (int i = 0; i < count; i++)
+					SpawnCrab(Helpers.RandomPointInMargin(beachBounds, Crab.SimulationMargin, _rng));
 			}
 			else
 			{
@@ -254,6 +270,15 @@ public partial class Main : Node
 		Background.AddChild(puffer);
 		return puffer;
 	}
+
+public Crab SpawnCrab(Vector2 position)
+{
+	Crab crab = crabScene.Instantiate<Crab>();
+	crab.Position = position;
+	crab.Target = _Player;
+	AddChild(crab);
+	return crab;
+}
 
 public void SpawnBubble(Vector2 position)
   {

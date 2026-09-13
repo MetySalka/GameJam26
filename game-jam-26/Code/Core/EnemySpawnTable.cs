@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-public enum EnemyKind { Pike, Swordfish, Bubble, Pufferfish }
+public enum EnemyKind { Pike, Swordfish, Bubble, Pufferfish, Crab }
 
 public sealed record EnemySpawnRule(
     int FromLevel, EnemyKind Enemy, int MaxCount,
@@ -31,6 +31,9 @@ public static class EnemySpawnTable
         new(0,    EnemyKind.Pufferfish,   0,   6f,    10f,      1, 1,          5f),
         new(1,    EnemyKind.Pufferfish,   7,   2f,    4f,      1, 1,          5f),
         new(2,    EnemyKind.Pufferfish,   0,   2f,    5f, 1,1,          5f),
+
+        // Crab only appears once the player reaches land (level 2, the beach).
+        new(2,    EnemyKind.Crab,         4,   3f,     7f,      1, 1,          2f),
 
     };
 

@@ -14,6 +14,8 @@ public partial class Startingmenu : Control
 	[Export] private Control _menuBackground;
 	[Export] private TextureButton _debugToggle;
 	[Export] private VBoxContainer _debugPanel;
+	[Export] private CanvasLayer _textureBarMain;
+	private TextureProgressBar _textureBar;
 	public void ShowMenu()
 	{
 		GetTree().Paused = true;
@@ -46,6 +48,7 @@ public partial class Startingmenu : Control
 	{
 		ProcessMode = Node.ProcessModeEnum.WhenPaused;
 		ShowMenu();
+		_textureBar = _textureBarMain.GetNode<TextureProgressBar>("TextureProgressBar");
 		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
 	}
 
@@ -67,11 +70,11 @@ public partial class Startingmenu : Control
 	}
 
 	// Skips straight to a given evolution level instead of playing from the start.
-	public void OnClickDebugLevel(int level)
+	public void OnClickDebugLand()
 	{
 		GetNode<Control>("/root/Main/ScreenUI/GameOver").Hide();
-		HideMenu();
-		_main.DebugSetLevel(level);
+		GetNode<TextureProgressBar>("/root/Main/ProgressBar/TextureProgressBar").Value += 100;
+		GD.Print("main=", _main, " player=", _player, " bg=", _background, " bar=", _progressBar, " gameOver=", _gameOver);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
