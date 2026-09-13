@@ -3,6 +3,26 @@
 [ext_resource type="Texture2D" uid="uid://c8ax0cgbqiqg7" path="res://Assets/Sprites/Misc/progressbar/bar.png" id="1_cobfb"]
 [ext_resource type="Script" uid="uid://ddm7cgc0gl30x" path="res://Code/UI/ProgressBar.cs" id="1_iwlb4"]
 [ext_resource type="Texture2D" uid="uid://4wybddva7dv2" path="res://Assets/Sprites/Misc/progressbar/bar_fill.png" id="3_edw7m"]
+[ext_resource type="Texture2D" uid="uid://c7w4maiqti6e5" path="res://Assets/Sprites/UI/Tutorial1.png" id="4_pbw3b"]
+[ext_resource type="Texture2D" uid="uid://d1aykq4uxlknm" path="res://Assets/Sprites/UI/Tutorial2.png" id="5_k6h4a"]
+[ext_resource type="Texture2D" uid="uid://clp0bxkoqfu0o" path="res://Assets/Sprites/UI/Tutorial3.png" id="6_1vb6u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8p22"]
+animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": ExtResource("4_pbw3b")
+}, {
+"duration": 6.0,
+"texture": ExtResource("5_k6h4a")
+}, {
+"duration": 8.0,
+"texture": ExtResource("6_1vb6u")
+}],
+"loop": 0,
+"name": &"show",
+"speed": 2.0
+}]
 
 [node name="ProgressBar" type="CanvasLayer" unique_id=1069249876 node_paths=PackedStringArray("_textureBar")]
 script = ExtResource("1_iwlb4")
@@ -25,3 +45,10 @@ max_value = 10.0
 step = 0.0
 texture_under = ExtResource("1_cobfb")
 texture_progress = ExtResource("3_edw7m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2011243179]
+position = Vector2(1103, 710)
+sprite_frames = SubResource("SpriteFrames_c8p22")
+animation = &"show"
+frame = 2
+frame_progress = 1.0

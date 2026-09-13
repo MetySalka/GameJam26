@@ -35,6 +35,7 @@ public partial class Startingmenu : Control
 		GetTree().Paused = false;
 		_player.Show();
 		_progressBar.Show();
+		_progressBar.PlayTutorialOnce();
 		GetNode<Control>("/root/Main/ScreenUI/StartingMenu").Hide();
 		_health.Show();
 		_menuBackground?.Hide();
