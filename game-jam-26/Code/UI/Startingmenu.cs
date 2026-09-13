@@ -40,11 +40,9 @@ public partial class Startingmenu : Control
 		GetNode<Control>("/root/Main/ScreenUI/StartingMenu").Hide();
 		_health.Show();
 		_menuBackground?.Hide();
-		_debugPanel.Show();
-		//_debugToggle?.Hide();
-		//if (_debugPanel != null)
-		//	_debugPanel.Visible = false;
-		
+		_debugToggle?.Hide();
+		if (_debugPanel != null)
+			_debugPanel.Visible = false;
 	}
 	public override void _Ready()
 	{
@@ -52,7 +50,6 @@ public partial class Startingmenu : Control
 		ShowMenu();
 		_textureBar = _textureBarMain.GetNode<TextureProgressBar>("TextureProgressBar");
 		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
-		_debugPanel.Show();
 	}
 
 	public void OnClickButtonStart()

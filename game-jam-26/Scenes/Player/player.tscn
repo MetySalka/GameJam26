@@ -35,8 +35,16 @@
 [ext_resource type="Texture2D" uid="uid://bbhifrv75knfj" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0002.png" id="32_8g0gh"]
 [ext_resource type="Texture2D" uid="uid://djvpm5crm1wt2" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0003.png" id="33_0a2xn"]
 [ext_resource type="Texture2D" uid="uid://csico608rjfmh" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0004.png" id="34_grehw"]
+[ext_resource type="Texture2D" uid="uid://c8dglkynxs1iu" path="res://Assets/Sprites/Creatures/Dodo/dodo eatleft_0001.png" id="36_m5eiq"]
+[ext_resource type="Texture2D" uid="uid://ctdyvs0e5p4yb" path="res://Assets/Sprites/Creatures/Dodo/dodo eatleft_0002.png" id="37_8g0gh"]
+[ext_resource type="Texture2D" uid="uid://cqia1cll13u6u" path="res://Assets/Sprites/Creatures/Dodo/dodo eatleft_0003.png" id="38_0a2xn"]
+[ext_resource type="Texture2D" uid="uid://bfh1p1lorudee" path="res://Assets/Sprites/Creatures/Dodo/dodo eatleft_0004.png" id="39_grehw"]
+[ext_resource type="Texture2D" uid="uid://d2xnv0m8bdu32" path="res://Assets/Sprites/Creatures/Dodo/dodo eatright_0001.png" id="40_8g0gh"]
+[ext_resource type="Texture2D" uid="uid://bl056q3nrq8ka" path="res://Assets/Sprites/Creatures/Dodo/dodo eatright_0002.png" id="40_vn8q6"]
 [ext_resource type="Texture2D" uid="uid://w7nxci6t54b4" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0001.png" id="41_0a2xn"]
+[ext_resource type="Texture2D" uid="uid://drxg2bkiqx7mi" path="res://Assets/Sprites/Creatures/Dodo/dodo eatright_0003.png" id="41_8vj0r"]
 [ext_resource type="Texture2D" uid="uid://dmyny1agkxy7t" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0002.png" id="42_grehw"]
+[ext_resource type="Texture2D" uid="uid://c88qsy86mdot6" path="res://Assets/Sprites/Creatures/Dodo/dodo eatright_0004.png" id="42_j7g5o"]
 [ext_resource type="Texture2D" uid="uid://c5xm4equm3vhh" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0003.png" id="43_vn8q6"]
 [ext_resource type="Texture2D" uid="uid://mvyv5kaflbeh" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0004.png" id="44_8vj0r"]
 [ext_resource type="Texture2D" uid="uid://bhlndlvvm8buh" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0005.png" id="45_j7g5o"]
@@ -206,9 +214,38 @@ height = 30.877254
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jf0tn"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_m5eiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_8g0gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_0a2xn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_grehw")
+}],
 "loop": 1,
-"name": &"Down",
+"name": &"Eat left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_8g0gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_vn8q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_8vj0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_j7g5o")
+}],
+"loop": 1,
+"name": &"Eat right",
 "speed": 5.0
 }, {
 "frames": [{
@@ -261,11 +298,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Right",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Up",
 "speed": 5.0
 }]
 
@@ -337,8 +369,7 @@ visible = false
 position = Vector2(0.7220217, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jf0tn")
-animation = &"Left"
-frame_progress = 0.2519481
+animation = &"Eat right"
 speed_scale = 2.5
 
 [node name="PigeonSprite" type="AnimatedSprite2D" parent="." unique_id=311430943]
@@ -346,7 +377,7 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_plrnn")
 animation = &"Idle"
 
-[connection signal="draw" from="LizardSprite" to="." method="LizardSpriteChange"]
-
 [node name="Hit" type="AudioStreamPlayer" parent="." unique_id=634647163]
 stream = ExtResource("56_huyyu")
+
+[connection signal="draw" from="LizardSprite" to="." method="LizardSpriteChange"]

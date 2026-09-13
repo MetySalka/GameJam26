@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cp081a54lgfj2"]
 
-[ext_resource type="Script" path="res://Code/Enemies/Crab.cs" id="0_crabsc"]
+[ext_resource type="Script" uid="uid://dr4pj34sc4aqy" path="res://Code/Enemies/Crab.cs" id="0_crabsc"]
 [ext_resource type="Texture2D" uid="uid://bmxyik021kqa" path="res://Assets/Sprites/Creatures/crab/Crab attack_0001.png" id="1_7ixyk"]
 [ext_resource type="Texture2D" uid="uid://n7fnp4fvejqv" path="res://Assets/Sprites/Creatures/crab/Crab attack_0002.png" id="2_mhcsf"]
 [ext_resource type="Texture2D" uid="uid://b2cirtr6opieb" path="res://Assets/Sprites/Creatures/crab/Crab attack_0003.png" id="3_xwvie"]

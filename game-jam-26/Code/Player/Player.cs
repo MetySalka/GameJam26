@@ -235,7 +235,8 @@ public partial class Player : CharacterBody2D
 			_evolveFlash.Color = new Color(1f, 1f, 1f, 0f);
 		Level = 0;
 		UpdateLandState();
-		GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer = 5;
+		Health health = GetNode<Health>("/root/Main/ScreenUI/Health");
+		health.HealthPlayer = health.MaxHealth;
 		Position = _startingPosition;
 		Velocity = Vector2.Zero;
 		cameraShakeCnt = 0;

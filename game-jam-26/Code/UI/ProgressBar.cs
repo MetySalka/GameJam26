@@ -31,7 +31,7 @@ public partial class ProgressBar : CanvasLayer
 	{
 		animationState = 0;
 		_drainPerFrame = 0;
-		_textureBar.Value = 100;
+		_textureBar.Value = 0;
 		_textureBar.Scale = _originalScale;
 		_displayedLevel = -1;
 		UpdateLevelRequirement();
