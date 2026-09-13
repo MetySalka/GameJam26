@@ -120,8 +120,47 @@ public static class Helpers
 	{
 		foreach (Node child in background.GetChildren())
 		{
-			if ((child is Fishfood || child is Stika || child is Swordfih || child is Bubble || child is Puffer) && !child.IsQueuedForDeletion())
+			if ((child is Fishfood || child is Stika || child is Swordfih || child is Bubble || child is Puffer || child is Heal) && !child.IsQueuedForDeletion())
 				child.QueueFree();
 		}
+	}
+
+	public static Sprite2D AttachShadow(Node2D owner, Vector2 offset, Vector2 size)
+	{
+		_shadowTexture ??= CreateShadowTexture();
+		Sprite2D shadow = new()
+		{
+			Texture = _shadowTexture,
+			Position = offset,
+			Scale = new Vector2(size.X / ShadowTextureSize.X, size.Y / ShadowTextureSize.Y),
+		};
+		owner.AddChild(shadow);
+		owner.MoveChild(shadow, 0);
+		return shadow;
+	}
+
+	private static readonly Vector2 ShadowTextureSize = new(128f, 64f);
+	private static GradientTexture2D _shadowTexture;
+
+	private static GradientTexture2D CreateShadowTexture()
+	{
+		return new GradientTexture2D
+		{
+			Width = (int)ShadowTextureSize.X,
+			Height = (int)ShadowTextureSize.Y,
+			Fill = GradientTexture2D.FillEnum.Radial,
+			FillFrom = new Vector2(0.5f, 0.5f),
+			FillTo = new Vector2(1f, 0.5f),
+			Gradient = new Gradient
+			{
+				Offsets = new[] { 0f, 0.65f, 1f },
+				Colors = new[]
+				{
+					new Color(0f, 0f, 0f, 0.34f),
+					new Color(0f, 0f, 0f, 0.26f),
+					new Color(0f, 0f, 0f, 0f),
+				},
+			},
+		};
 	}
 }

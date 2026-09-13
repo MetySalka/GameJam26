@@ -3,9 +3,7 @@ using Godot;
 public partial class Coconut : Area2D
 {
     [Export] public float FallSpeed = 250f;
-    // Distance from the spawn point (crown of the palm) down to the ground it
-    // rests on. The palm overrides this with its own scaled trunk length.
-    [Export] public float FallDistance = 150f;
+    [Export] public float FallDistance = 800f;
     [Export] public float EmergeDistance = 40f;
     [Export] public float RollSpeed = 120f;
     [Export] public float RollDuration = 1.5f;
@@ -18,27 +16,22 @@ public partial class Coconut : Area2D
     private float _rollTimeLeft;
     private bool _emerged;
     private bool _landed;
-    private bool _started;
+    private Sprite2D _shadow;
 
     public override void _Ready()
     {
+        _startY = GlobalPosition.Y;
+        _groundY = _startY + FallDistance;
         _rollDirection = _rng.Randf() < 0.5f ? -1f : 1f;
         ZIndex = -1;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("default");
+        _shadow = Helpers.AttachShadow(this, new Vector2(0, 24), new Vector2(62, 16));
+        _shadow.Hide();
         AreaEntered += OnAreaEntered;
     }
 
     public override void _Process(double delta)
     {
-        // The palm adds the coconut to the tree first and only then places it at
-        // the crown, so the drop target is anchored on the first frame we run.
-        if (!_started)
-        {
-            _started = true;
-            _startY = GlobalPosition.Y;
-            _groundY = _startY + FallDistance;
-        }
-
         if (!_landed)
         {
             GlobalPosition += new Vector2(0, FallSpeed * (float)delta);
@@ -53,6 +46,7 @@ public partial class Coconut : Area2D
             {
                 _landed = true;
                 _rollTimeLeft = RollDuration;
+                _shadow.Show();
             }
             return;
         }
