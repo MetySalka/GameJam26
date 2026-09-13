@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://117s6rjgmioj" path="res://Assets/Sprites/Background/Speakers.png" id="5_oobqv"]
 [ext_resource type="Texture2D" uid="uid://dtejdrkjph2sr" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0001.png" id="5_tadpole"]
 [ext_resource type="Texture2D" uid="uid://sr57qkg3tlhg" path="res://Assets/Sprites/Creatures/Stika player/stika right_0001.png" id="6_pike"]
-[ext_resource type="Texture2D" uid="uid://dd4avkn8h5fj3" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0001.png" id="7_lizard"]
+[ext_resource type="Texture2D" uid="uid://o5vg3fd3i5h5" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0001.png" id="7_dodo"]
+[ext_resource type="Texture2D" uid="uid://c7dcawykpjj60" path="res://Assets/Sprites/Creatures/Pigeon/Right/holub_scaled_0001.png" id="8_pigeon"]
 
 [sub_resource type="Gradient" id="Gradient_seablue"]
 colors = PackedColorArray(0.243137, 0.596078, 0.784314, 1, 0.019608, 0.14902, 0.294118, 1)
@@ -41,9 +42,9 @@ anchor_left = 0.5
 anchor_top = 0.88
 anchor_right = 0.5
 anchor_bottom = 0.88
-offset_left = -260.0
+offset_left = -360.0
 offset_top = -70.0
-offset_right = 260.0
+offset_right = 360.0
 offset_bottom = 70.0
 mouse_filter = 2
 
@@ -61,23 +62,36 @@ stretch_mode = 5
 [node name="SilhouettePike" type="TextureRect" parent="EvolutionRow" unique_id=1782090935]
 self_modulate = Color(0, 0, 0, 0.6)
 layout_mode = 0
-offset_left = 210.0
-offset_top = 40.0
-offset_right = 320.0
-offset_bottom = 140.0
+offset_left = 190.0
+offset_top = 36.400024
+offset_right = 340.0
+offset_bottom = 176.40002
 mouse_filter = 2
 texture = ExtResource("6_pike")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SilhouetteLizard" type="TextureRect" parent="EvolutionRow" unique_id=1602373685]
+[node name="SilhouetteDodo" type="TextureRect" parent="EvolutionRow" unique_id=1602373685]
 self_modulate = Color(0, 0, 0, 0.6)
 layout_mode = 0
 offset_left = 400.0
+offset_top = 60.0
 offset_right = 520.0
 offset_bottom = 140.0
 mouse_filter = 2
-texture = ExtResource("7_lizard")
+texture = ExtResource("7_dodo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SilhouettePigeon" type="TextureRect" parent="EvolutionRow" unique_id=1817144095]
+self_modulate = Color(0, 0, 0, 0.6)
+layout_mode = 0
+offset_left = 600.0
+offset_top = 20.0
+offset_right = 720.0
+offset_bottom = 140.0
+mouse_filter = 2
+texture = ExtResource("8_pigeon")
 expand_mode = 1
 stretch_mode = 5
 

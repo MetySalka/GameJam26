@@ -10,6 +10,8 @@ public partial class ProgressBar : CanvasLayer
 	[Export] private Health _health;
 
 	Player player;
+	private AnimatedSprite2D _tutorial;
+	private bool _tutorialShown;
 	int animationState;
 	private Vector2 _originalScale;
 	private int _displayedLevel = -1;
@@ -23,8 +25,31 @@ public partial class ProgressBar : CanvasLayer
 		_textureBar.Resized += UpdatePivot;
 		UpdatePivot();
 		player = GetNode<Player>("/root/Main/Player");
+		_tutorial = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_tutorial.AnimationFinished += OnTutorialAnimationFinished;
+		_tutorial.Stop();
+		_tutorial.Frame = 0;
+		_tutorial.FrameProgress = 0;
+		_tutorial.Hide();
 		_textureBar.Step = 0;
 		UpdateLevelRequirement();
+	}
+
+	public void PlayTutorialOnce()
+	{
+		if (_tutorialShown)
+			return;
+
+		_tutorialShown = true;
+		_tutorial.Frame = 0;
+		_tutorial.FrameProgress = 0;
+		_tutorial.Show();
+		_tutorial.Play("show");
+	}
+
+	private void OnTutorialAnimationFinished()
+	{
+		_tutorial.Hide();
 	}
 
 	public void ResetForNewRun()
@@ -42,7 +67,10 @@ public partial class ProgressBar : CanvasLayer
 		if (_displayedLevel == player.Level)
 			return;
 		_displayedLevel = player.Level;
-		_textureBar.MaxValue = Math.Pow(10.0, player.Level + 1);
+		// The first level (Tadpole, Level 0) is stretched well past the usual
+		// 10x-per-level curve so the run opens with much more time before the
+		// first evolution.
+		_textureBar.MaxValue = player.Level == 0 ? 40.0 : Math.Pow(10.0, player.Level + 1);
 	}
 
 	private void UpdatePivot()

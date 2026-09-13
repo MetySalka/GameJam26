@@ -7,6 +7,10 @@ public partial class Puffer : Area2D
 	[Export] public float PuffRadius { get; set; } = 60f;
 	[Export] public float BounceSpeed { get; set; } = 220f;
 	[Export] public float SpinSpeedDegrees { get; set; } = 140f;
+	// Minimum gap kept from other pufferfish so a whole group can't stack on
+	// the player's position and get dodged as if it were a single fish.
+	[Export] public float SeparationDistance { get; set; } = 60f;
+	[Export] public float SeparationStrength { get; set; } = 2.5f;
 	public Player Target { get; set; }
 	public bool HasPuffed { get; private set; }
 
@@ -50,6 +54,8 @@ public partial class Puffer : Area2D
 			// Stop at the trigger radius so even a long frame cannot overshoot the player.
 			float travel = Mathf.Min(     Mathf.Max(0f, toPlayer.Length() - PuffRadius * 0.3f), FollowSpeed * seconds);
 			GlobalPosition += toPlayer.Normalized() * travel;
+			GlobalPosition += Helpers.GetSeparationFromSiblings<Puffer>(this, GetParent(), SeparationDistance)
+				* SeparationStrength * seconds;
 			if (GlobalPosition.DistanceTo(Target.GlobalPosition) <= PuffRadius * 0.35f - 0.001f)
 				Puff();
 		}
