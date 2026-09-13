@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bc1rqiluttcsv"]
+
+[ext_resource type="Texture2D" uid="uid://dsi2vtfsf5s7u" path="res://Assets/Sprites/Background/sky.png" id="1_2aqau"]
+
+[node name="FinalScene" type="Node2D" unique_id=17457903]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1721009663]
+texture = ExtResource("1_2aqau")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=883393604]
+
+[node name="Label" type="Label" parent="." unique_id=258390017]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "THE END"

@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="13_dbgcrab"]
 [ext_resource type="Script" uid="uid://derevn0xnc1qq" path="res://Code/Background/Beachbackground.cs" id="14_wliom"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/escapemenu.tscn" id="15_escmn"]
+[ext_resource type="PackedScene" uid="uid://bc1rqiluttcsv" path="res://Scenes/Misc/final_scene.tscn" id="17_koken"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
@@ -102,7 +103,6 @@ pitch_scale = 1.23
 parameters/looping = false
 
 [node name="Background" parent="." unique_id=1858228470 instance=ExtResource("2_5yls4")]
-visible = false
 z_index = -1
 position = Vector2(1211, -225)
 scale = Vector2(2, 2)
@@ -152,5 +152,7 @@ scale = Vector2(1.505, 1.505)
 [node name="Palm6" parent="LandStuff" unique_id=2124306296 instance=ExtResource("11_hfg1r")]
 position = Vector2(623, 271)
 scale = Vector2(1.505, 1.505)
+
+[node name="FinalScene" parent="." unique_id=17457903 instance=ExtResource("17_koken")]
 
 [connection signal="pressed" from="ScreenUI/DebugCrab" to="ScreenUI/StartingMenu" method="OnClickDebugToggle"]
