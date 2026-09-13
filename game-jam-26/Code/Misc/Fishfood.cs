@@ -48,14 +48,35 @@ public partial class Fishfood : Area2D
 		// Sprites with up/down facing animations shouldn't also spin.
 		if (_animatedSprite == null || SpinWhileDrifting)
 			Rotation += _rotationSpeed;
-		Rect2 visibleBounds = Helpers.GetLocalViewport(_world);
-		Rect2 simulationBounds = Helpers.GetSimulationBounds(visibleBounds, SimulationMargin);
-		if (simulationBounds.HasPoint(Position))
-			return;
 
-		Vector2 respawnPosition = Helpers.RandomPointInMargin(visibleBounds, SimulationMargin, _rng);
-		Spawner.ExactFood(SourceScene, respawnPosition);
-		Consume(false);
+		Rect2 visibleBounds = Helpers.GetLocalViewport(_world);
+		Vector2 position = Position;
+		Vector2 moveVector = MoveVector;
+
+		if (position.X < visibleBounds.Position.X)
+		{
+			position.X = visibleBounds.Position.X;
+			moveVector.X = Mathf.Abs(moveVector.X);
+		}
+		else if (position.X > visibleBounds.End.X)
+		{
+			position.X = visibleBounds.End.X;
+			moveVector.X = -Mathf.Abs(moveVector.X);
+		}
+
+		if (position.Y < visibleBounds.Position.Y)
+		{
+			position.Y = visibleBounds.Position.Y;
+			moveVector.Y = Mathf.Abs(moveVector.Y);
+		}
+		else if (position.Y > visibleBounds.End.Y)
+		{
+			position.Y = visibleBounds.End.Y;
+			moveVector.Y = -Mathf.Abs(moveVector.Y);
+		}
+
+		Position = position;
+		MoveVector = moveVector;
 	}
 
 
