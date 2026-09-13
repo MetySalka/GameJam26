@@ -11,6 +11,15 @@ public partial class Swordfih : Area2D
 	private Node2D _world;
 	private bool? _facingRight;
 	private double _secondsRemaining = 15;
+	private double _ghostTimer;
+	private const double GhostInterval = 0.035;
+	private CpuParticles2D _wakeParticles;
+	private static readonly Texture2D[] BubbleTextures = new[]
+	{
+		GD.Load<Texture2D>("res://Assets/Sprites/Misc/Bubble/Bubble_0001.png"),
+		GD.Load<Texture2D>("res://Assets/Sprites/Misc/Bubble/Bubble_0002.png"),
+		GD.Load<Texture2D>("res://Assets/Sprites/Misc/Bubble/Bubble_0003.png"),
+	};
 
 	public float ScreenHeight => _sprite.SpriteFrames.GetFrameTexture(_sprite.Animation, _sprite.Frame)
 		.GetHeight() * _sprite.GetGlobalTransformWithCanvas().Y.Length();
@@ -32,6 +41,54 @@ public partial class Swordfih : Area2D
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_world = GetParent<Node2D>();
 		UpdateMotion();
+		SetupWakeParticles();
+	}
+
+	private void SetupWakeParticles()
+	{
+		_wakeParticles = new CpuParticles2D
+		{
+			Name = "WakeParticles",
+			Emitting = true,
+			Amount = 24,
+			Lifetime = 0.6,
+			Direction = Vector2.Right,
+			Spread = 25f,
+			InitialVelocityMin = 20f,
+			InitialVelocityMax = 60f,
+			ScaleAmountMin = 0.4f,
+			ScaleAmountMax = 1.1f,
+			Gravity = Vector2.Zero,
+			Texture = BubbleTextures[0],
+			Color = new Color(1f, 1f, 1f, 0.8f),
+			LocalCoords = false,
+		};
+		_wakeParticles.ColorRamp = BuildFadeGradient();
+		AddChild(_wakeParticles);
+	}
+
+	private static Gradient BuildFadeGradient()
+	{
+		Gradient gradient = new Gradient();
+		gradient.SetColor(0, new Color(1f, 1f, 1f, 0.8f));
+		gradient.SetColor(1, new Color(1f, 1f, 1f, 0f));
+		return gradient;
+	}
+
+	private void SpawnGhost()
+	{
+		Sprite2D ghost = new Sprite2D
+		{
+			Texture = _sprite.SpriteFrames.GetFrameTexture(_sprite.Animation, _sprite.Frame),
+			FlipH = _sprite.FlipH,
+			Modulate = new Color(0.6f, 0.85f, 1f, 0.5f),
+			ZIndex = ZIndex - 1,
+		};
+		_world.AddChild(ghost);
+		ghost.GlobalTransform = _sprite.GlobalTransform;
+		Tween tween = ghost.CreateTween();
+		tween.TweenProperty(ghost, "modulate:a", 0f, 0.25f);
+		tween.TweenCallback(Callable.From(ghost.QueueFree));
 	}
 
 	public void SpawnInStream(float angle, Vector2 targetPosition, float sidewaysOffset)
@@ -62,6 +119,9 @@ public partial class Swordfih : Area2D
 			_sprite.Play(facingRight ? "Right" : "Left");
 		}
 
+		if (_wakeParticles != null && Velocity.LengthSquared() > 0.01f)
+			_wakeParticles.GlobalRotation = Velocity.Angle() + Mathf.Pi;
+
 		// if (GetViewport().GetVisibleRect().HasPoint(Position * 1.3f))
 		// {
 		// 	GetNode<AudioStreamPlayer>("WhateverThatIs").Play();
@@ -72,6 +132,14 @@ public partial class Swordfih : Area2D
 	{
 		UpdateMotion();
 		Position += Velocity * (float)delta;
+
+		_ghostTimer += delta;
+		if (_ghostTimer >= GhostInterval)
+		{
+			_ghostTimer = 0;
+			SpawnGhost();
+		}
+
 		// Allow time to fly in from outside the screen before removing the fish.
 		_secondsRemaining -= delta;
 		if (_secondsRemaining <= 0)
