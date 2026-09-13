@@ -20,5 +20,12 @@ public partial class FoodPickup : Area2D
 			_player.PlayPlop();
 			food.Consume();
 		}
+		else if (area is Worm worm)
+		{
+			GD.Print("Yum Yum");
+			_player.PlayPlop();
+			_player.PlayEatAnimation();
+			worm.Consume();
+		}
 	}
 }
