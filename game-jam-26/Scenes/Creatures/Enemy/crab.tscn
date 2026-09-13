@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://btinwsjebrr7q" path="res://Assets/Sprites/Creatures/crab/Crab forward_0002.png" id="6_77dbi"]
 [ext_resource type="Texture2D" uid="uid://cvmm3xm7iidmq" path="res://Assets/Sprites/Creatures/crab/Crab forward_0003.png" id="7_d3qa2"]
 [ext_resource type="Texture2D" uid="uid://dkowps6kfw34s" path="res://Assets/Sprites/Creatures/crab/Crab forward_0004.png" id="8_vv82o"]
+[ext_resource type="AudioStream" uid="uid://c35eqpo6ucvfy" path="res://Assets/sfx/Crab.mp3" id="10_xwvie"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_crab"]
 radius = 20.0
@@ -63,3 +64,8 @@ shape = SubResource("CircleShape2D_crab")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=866381026]
 sprite_frames = SubResource("SpriteFrames_uraql")
 animation = &"Forward"
+
+[node name="CrabClap" type="AudioStreamPlayer" parent="." unique_id=612294728]
+stream = ExtResource("10_xwvie")
+volume_db = -7.803
+pitch_scale = 0.87
