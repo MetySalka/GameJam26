@@ -67,6 +67,7 @@ public partial class Puffer : Area2D
 
 	private void Puff()
 	{
+		GetNode<AudioStreamPlayer>("Bloop").Play();
 		HasPuffed = true;
 		_bounceDirection = (GlobalPosition - Target.GlobalPosition).Normalized();
 		if (_bounceDirection.IsZeroApprox())

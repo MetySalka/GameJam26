@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cvw726kr2pglw" path="res://Assets/Sprites/Creatures/puffer/puffer.png_0005.png" id="5_liyif"]
 [ext_resource type="Texture2D" uid="uid://k225nhqmgxk" path="res://Assets/Sprites/Creatures/puffer/puffer.png_0006.png" id="6_qdb1u"]
 [ext_resource type="Script" uid="uid://cyqih0df1wehd" path="res://Code/Enemies/Puffer.cs" id="7_script"]
+[ext_resource type="AudioStream" uid="uid://b0lf26vybm1rg" path="res://Assets/sfx/Puffer.mp3" id="8_74mp8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uraql"]
 radius = 13.0
@@ -52,3 +53,8 @@ sprite_frames = SubResource("SpriteFrames_6vwj1")
 animation = &"Bloat"
 frame = 1
 speed_scale = 2.5
+
+[node name="Bloop" type="AudioStreamPlayer" parent="." unique_id=597278154]
+stream = ExtResource("8_74mp8")
+volume_db = 3.537
+pitch_scale = 1.65
