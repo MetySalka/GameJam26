@@ -18,21 +18,21 @@ grow_vertical = 2
 script = ExtResource("1_ujlsm")
 
 [node name="Death1" type="Sprite2D" parent="." unique_id=384308827]
+visible = false
 position = Vector2(600.00006, 317.00003)
 scale = Vector2(4.299, 4.299)
 texture = ExtResource("2_7urxw")
 
 [node name="Death2" type="Sprite2D" parent="." unique_id=513121069]
-visible = false
-position = Vector2(327, 328)
+position = Vector2(946.00006, 339)
 scale = Vector2(3.555, 3.555)
 texture = ExtResource("3_g2y2e")
 
 [node name="ColorRect" type="ColorRect" parent="Death2" unique_id=716142894]
-offset_left = 95.639946
-offset_top = -120.3938
-offset_right = 135.64001
-offset_bottom = -80.3938
+offset_left = -294.23343
+offset_top = -126.30098
+offset_right = -254.23337
+offset_bottom = -86.30098
 scale = Vector2(5.179247, 6.2859526)
 color = Color(0, 0, 0, 1)
 

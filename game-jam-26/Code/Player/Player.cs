@@ -48,6 +48,8 @@ public partial class Player : CharacterBody2D
 	private Vector2 _startingCameraZoom;
 
 	private float _shakeMagnitude = 4f;
+	private AudioStreamPlayer _hitSound;
+	private bool _deathHandled;
 
 	private const string HitFlashShaderPath = "res://Assets/Shaders/hit_flash.gdshader";
 	private ShaderMaterial _flashMaterial;
@@ -62,7 +64,7 @@ public partial class Player : CharacterBody2D
 		_hitGraceSeconds = 0.2;
 
 
-		GetNode<AudioStreamPlayer>("Hit").Play();
+		_hitSound.Play();
 
 		GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer--;
 		cameraShakeCnt = (int)((40 + (4 - GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer) * 5) * intensity);
@@ -155,9 +157,10 @@ public partial class Player : CharacterBody2D
 
 	private void OnPlayerDeath()
 	{
-		
-
-		GetNode<AudioStreamPlayer>("Hit").Play();
+		if (_deathHandled)
+			return;
+		_deathHandled = true;
+		_hitSound.Play();
 
 		_main.HideSwordfishWarning();
 		_fihWarn.Hide();
@@ -180,6 +183,9 @@ public partial class Player : CharacterBody2D
 		_pickupArea = GetNode<FoodPickup>("PickupRadius");
 		_hitbox = GetNode<PlayerHitbox>("Hitbox");
 		_landStuff = GetNode<Node2D>("../LandStuff");
+		_hitSound = GetNode<AudioStreamPlayer>("Hit");
+		// The death sound must finish after the gameplay tree pauses.
+		_hitSound.ProcessMode = Node.ProcessModeEnum.Always;
 
 		_flashMaterial = new ShaderMaterial { Shader = GD.Load<Shader>(HitFlashShaderPath) };
 		_flashMaterial.SetShaderParameter("flash_amount", 0f);
@@ -234,6 +240,7 @@ public partial class Player : CharacterBody2D
 		_hitGraceSeconds = 0;
 		_externalInvincibility = false;
 		_isEvolving = false;
+		_deathHandled = false;
 		Engine.TimeScale = 1f;
 		if (_evolveFlash != null)
 			_evolveFlash.Color = new Color(1f, 1f, 1f, 0f);
