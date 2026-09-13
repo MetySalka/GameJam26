@@ -29,6 +29,7 @@ public partial class Main : Node
 	private int Wait;
 	private int _framesSinceSpawn;
 	private ColorRect _fihWarn;
+	private Node2D _finalScene;
 
 	private Camera2D camera;
 	private sealed class SwordfishWarning
@@ -47,6 +48,8 @@ public partial class Main : Node
 		_fihWarn.MouseFilter = Control.MouseFilterEnum.Ignore;
 		_fihWarn.Hide();
 		_availableSwordfishWarnings.Push(_fihWarn);
+		_finalScene = GetNode<Node2D>("FinalScene");
+		_finalScene.Hide();
 		camera = GetNode<Camera2D>("Camera2D");
 
 	}
@@ -60,6 +63,8 @@ public partial class Main : Node
 
 	public void prepareLevel()
 	{
+		SetProcess(true);
+		_finalScene.Hide();
 		_levelStarted = false;
 		HideSwordfishWarning();
 		global::Background world = (global::Background)Background;
@@ -79,6 +84,13 @@ public partial class Main : Node
 		Wait = 100;
 		ResetEnemySpawnTimers();
 		_levelStarted = true;
+	}
+
+	public void ShowFinalScene()
+	{
+		_levelStarted = false;
+		SetProcess(false);
+		_finalScene.Show();
 	}
 
 	public override void _Process(double delta)

@@ -153,4 +153,8 @@ offset_bottom = 40.0
 scale = Vector2(16.154625, 3.957517)
 color = Color(0.7411765, 0, 0, 0.14509805)
 
+[node name="FinalScene" parent="." instance=ExtResource("17_koken")]
+visible = false
+z_index = 4
+
 [connection signal="pressed" from="ScreenUI/DebugCrab" to="ScreenUI/StartingMenu" method="OnClickDebugToggle"]

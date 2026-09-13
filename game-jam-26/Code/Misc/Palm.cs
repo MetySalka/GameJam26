@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Palm : Node2D
+public partial class Palm : Area2D
 {
     [Export] public PackedScene CoconutScene;
     [Export] public float SpawnDelay = 3f;
@@ -17,7 +17,7 @@ public partial class Palm : Node2D
 
     public override void _Ready()
     {
-        DetectionArea ??= GetNode<Area2D>(".");
+        DetectionArea ??= this;
         DetectionArea.AreaEntered += OnAreaEntered;
         DetectionArea.AreaExited += OnAreaExited;
         Helpers.AttachShadow(this, new Vector2(0, 70), new Vector2(115, 31));

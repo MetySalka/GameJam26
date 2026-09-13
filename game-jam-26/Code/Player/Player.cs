@@ -38,6 +38,9 @@ public partial class Player : CharacterBody2D
 	private Node2D _landStuff;
 
 	private bool _isEvolving;
+	private bool _finalFlight;
+	private bool _finalSceneShown;
+	private double _finalFlightElapsed;
 	private ColorRect _evolveFlash;
 	private bool _isEating;
 
@@ -166,6 +169,17 @@ public partial class Player : CharacterBody2D
 			_sprite.Stop();
 
 		_isEvolving = false;
+		if (Level == 3)
+			BeginFinalFlight();
+	}
+
+	private void BeginFinalFlight()
+	{
+		_finalFlight = true;
+		_finalFlightElapsed = 0;
+		Invincible = true;
+		ZIndex = 5;
+		_sprite.Play("Right");
 	}
 
 	private void OnPlayerDeath()
@@ -256,6 +270,10 @@ public partial class Player : CharacterBody2D
 		_hitGraceSeconds = 0;
 		_externalInvincibility = false;
 		_isEvolving = false;
+		_finalFlight = false;
+		_finalSceneShown = false;
+		_finalFlightElapsed = 0;
+		ZIndex = 0;
 		_deathHandled = false;
 		Engine.TimeScale = 1f;
 		if (_evolveFlash != null)
@@ -317,6 +335,17 @@ public partial class Player : CharacterBody2D
 			_flashMaterial.SetShaderParameter("flash_amount", flashAmount);
 		}
 
+		if (_finalFlight)
+		{
+			_finalFlightElapsed += delta;
+			Position += Vector2.Up * 150f * (float)delta;
+			if (!_finalSceneShown && _finalFlightElapsed >= 0.9)
+			{
+				_finalSceneShown = true;
+				_main.ShowFinalScene();
+			}
+			return;
+		}
 
 
 		if (GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer <= 0)
