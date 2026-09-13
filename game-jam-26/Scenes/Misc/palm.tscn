@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmedgaomtdpn6"]
 
-[ext_resource type="Script" uid="uid://c7t7swy8los6y" path="res://Scenes/Misc/Palm.cs" id="1_33huk"]
+[ext_resource type="Script" uid="uid://c7t7swy8los6y" path="res://Code/Misc/Palm.cs" id="1_33huk"]
 [ext_resource type="Texture2D" uid="uid://bap8tk2vwfche" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0001.png" id="1_mbky3"]
 [ext_resource type="PackedScene" uid="uid://ngm2koge5m6g" path="res://Scenes/Misc/coconut.tscn" id="2_0wg4j"]
 [ext_resource type="Texture2D" uid="uid://dwvbrx5bcs6cr" path="res://Assets/Sprites/Palm/PalmCoconut/palm_coconut_Scaled_0002.png" id="2_fv4ua"]
