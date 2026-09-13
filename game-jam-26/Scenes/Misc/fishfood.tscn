@@ -1,21 +1,46 @@
 [gd_scene format=3 uid="uid://d36l82tk6f6kw"]
 
 [ext_resource type="Script" uid="uid://b7hcewpd1hsoy" path="res://Code/Misc/Fishfood.cs" id="1_e1506"]
-[ext_resource type="Texture2D" uid="uid://dgyx7qok71eig" path="res://Assets/Sprites/Misc/SeaPickle.png" id="2_e1506"]
+[ext_resource type="Texture2D" uid="uid://c4sve5rflhndd" path="res://Assets/Sprites/Misc/plankthon_0001.png" id="2_mbly7"]
+[ext_resource type="Texture2D" uid="uid://dtoskv2rdo0co" path="res://Assets/Sprites/Misc/plankthon_0002.png" id="3_407m7"]
+[ext_resource type="Texture2D" uid="uid://ck8xdw0emmb7c" path="res://Assets/Sprites/Misc/plankthon_0003.png" id="4_n31qr"]
+[ext_resource type="Texture2D" uid="uid://r6qwg2iym6hp" path="res://Assets/Sprites/Misc/plankthon_0004.png" id="5_3oqgw"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejxfg"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_s024u"]
 radius = 4.0
-height = 18.0
 
-[node name="SeaPickle" type="Area2D" unique_id=1622472229]
+[sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mbly7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_407m7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n31qr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3oqgw")
+}],
+"loop": 1,
+"name": &"Types",
+"speed": 5.0
+}]
+
+[node name="Plankton" type="Area2D" unique_id=1622472229]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_e1506")
 FoodValue = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=684635245]
-texture = ExtResource("2_e1506")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818271321]
-shape = SubResource("CapsuleShape2D_ejxfg")
+shape = SubResource("CircleShape2D_s024u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=102158458]
+sprite_frames = SubResource("SpriteFrames_uraql")
+animation = &"Types"
+frame = 3
+frame_progress = 0.5528139
