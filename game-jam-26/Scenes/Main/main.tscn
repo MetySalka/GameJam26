@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
+[ext_resource type="AudioStream" uid="uid://dm2vrandop1cf" path="res://Assets/sfx/plop.mp3" id="7_4e4y2"]
+[ext_resource type="AudioStream" uid="uid://dild3chw6mdp7" path="res://Assets/sfx/levelUpWhoosh.mp3" id="7_hfg1r"]
 [ext_resource type="PackedScene" uid="uid://dtcmil0bvorsx" path="res://Scenes/Background/beachbackground.tscn" id="8_imbg2"]
 [ext_resource type="PackedScene" uid="uid://bgtrs5ol1nvq5" path="res://Scenes/UI/health.tscn" id="8_y3v7k"]
 [ext_resource type="PackedScene" uid="uid://dmedgaomtdpn6" path="res://Scenes/Misc/palm.tscn" id="11_hfg1r"]
@@ -56,6 +58,16 @@ _health = NodePath("../ScreenUI/Health")
 _fihWarn = NodePath("../FihWarn")
 _camera = NodePath("../Camera2D")
 Background = NodePath("../Background")
+
+[node name="FoodPlop" type="AudioStreamPlayer" parent="Player" unique_id=1985407860]
+stream = ExtResource("7_4e4y2")
+pitch_scale = 1.3
+
+[node name="LevelUpWhoosh" type="AudioStreamPlayer" parent="Player" unique_id=982161483]
+stream = ExtResource("7_hfg1r")
+volume_db = 4.47
+pitch_scale = 1.23
+parameters/looping = false
 
 [node name="Background" parent="." unique_id=1858228470 instance=ExtResource("2_5yls4")]
 z_index = -1

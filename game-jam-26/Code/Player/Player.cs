@@ -62,6 +62,7 @@ public partial class Player : CharacterBody2D
 
 	public void LevelUp()
 	{
+
 		Level++;
 		UpdateLandState();
 		if (Level == 2)
@@ -88,6 +89,7 @@ public partial class Player : CharacterBody2D
 
 	private void OnPlayerDeath()
 	{
+
 		_main.HideSwordfishWarning();
 		_fihWarn.Hide();
 		GetTree().Paused = true;
@@ -253,5 +255,18 @@ public partial class Player : CharacterBody2D
 		}
 
 	}
+
+	public void PlayPlop()
+	{
+		GetNode<AudioStreamPlayer>("FoodPlop").Play();
+	}
+
+	public void PlayWhoosh()
+	{
+				GetNode<AudioStreamPlayer>("LevelUpWhoosh").Play();
+
+	}
+
+
 
 }

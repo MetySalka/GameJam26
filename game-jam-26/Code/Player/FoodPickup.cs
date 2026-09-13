@@ -17,6 +17,7 @@ public partial class FoodPickup : Area2D
 		if (area is Fishfood food)
 		{
 			GD.Print("Yum Yum");
+			_player.PlayPlop();
 			food.Consume();
 		}
 	}

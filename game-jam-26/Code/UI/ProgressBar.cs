@@ -108,6 +108,7 @@ public partial class ProgressBar : CanvasLayer
 			// Empty the bar over the same 99 animation frames at every level.
 			_drainPerFrame = _textureBar.Value / 99.0;
 			animationState = 1;
+			player.PlayWhoosh();
 		}
 	}
 }
