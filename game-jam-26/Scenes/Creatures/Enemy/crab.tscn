@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cp081a54lgfj2"]
+
+[ext_resource type="Script" path="res://Code/Enemies/Crab.cs" id="0_crabsc"]
+[ext_resource type="Texture2D" uid="uid://bmxyik021kqa" path="res://Assets/Sprites/Creatures/crab/Crab attack_0001.png" id="1_7ixyk"]
+[ext_resource type="Texture2D" uid="uid://n7fnp4fvejqv" path="res://Assets/Sprites/Creatures/crab/Crab attack_0002.png" id="2_mhcsf"]
+[ext_resource type="Texture2D" uid="uid://b2cirtr6opieb" path="res://Assets/Sprites/Creatures/crab/Crab attack_0003.png" id="3_xwvie"]
+[ext_resource type="Texture2D" uid="uid://bhxjtsmcl1adq" path="res://Assets/Sprites/Creatures/crab/Crab attack_0004.png" id="4_e73iq"]
+[ext_resource type="Texture2D" uid="uid://dhgrh6tbg8ib5" path="res://Assets/Sprites/Creatures/crab/Crab forward_0001.png" id="5_g8rp4"]
+[ext_resource type="Texture2D" uid="uid://btinwsjebrr7q" path="res://Assets/Sprites/Creatures/crab/Crab forward_0002.png" id="6_77dbi"]
+[ext_resource type="Texture2D" uid="uid://cvmm3xm7iidmq" path="res://Assets/Sprites/Creatures/crab/Crab forward_0003.png" id="7_d3qa2"]
+[ext_resource type="Texture2D" uid="uid://dkowps6kfw34s" path="res://Assets/Sprites/Creatures/crab/Crab forward_0004.png" id="8_vv82o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crab"]
+radius = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7ixyk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mhcsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xwvie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e73iq")
+}],
+"loop": 1,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_g8rp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_77dbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d3qa2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vv82o")
+}],
+"loop": 1,
+"name": &"Forward",
+"speed": 5.0
+}]
+
+[node name="Crab" type="Area2D" unique_id=1491992894]
+scale = Vector2(2.6, 2.6)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("0_crabsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=368515426]
+shape = SubResource("CircleShape2D_crab")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=866381026]
+sprite_frames = SubResource("SpriteFrames_uraql")
+animation = &"Forward"
