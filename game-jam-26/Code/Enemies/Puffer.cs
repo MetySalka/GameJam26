@@ -7,8 +7,6 @@ public partial class Puffer : Area2D
 	[Export] public float PuffRadius { get; set; } = 60f;
 	[Export] public float BounceSpeed { get; set; } = 220f;
 	[Export] public float SpinSpeedDegrees { get; set; } = 140f;
-	[Export] public float WarnRadiusMultiplier { get; set; } = 0.6f;
-	[Export] public float WarnDuration { get; set; } = 0.35f;
 	public Player Target { get; set; }
 	public bool HasPuffed { get; private set; }
 
@@ -16,9 +14,6 @@ public partial class Puffer : Area2D
 	private Vector2 _bounceDirection;
 	private float _spinDirection;
 	private bool _hasEnteredViewport;
-	private bool _isWarning;
-	private float _warnTimeLeft;
-	private double _warnPulseClock;
 
 	public override void _Ready()
 	{
@@ -52,40 +47,11 @@ public partial class Puffer : Area2D
 			float angle = Mathf.Wrap(toPlayer.Angle() + Mathf.Pi, -Mathf.Pi, Mathf.Pi);
 			_sprite.FlipV = Mathf.Abs(angle) > Mathf.Pi / 2f;
 			_sprite.Rotation = angle;
-
-			float distanceToPlayer = toPlayer.Length();
-			float warnRadius = PuffRadius * WarnRadiusMultiplier;
-
-			if (!_isWarning && distanceToPlayer <= warnRadius)
-			{
-				_isWarning = true;
-				_warnTimeLeft = WarnDuration;
-				_warnPulseClock = 0;
-			}
-			else if (_isWarning && distanceToPlayer > warnRadius)
-			{
-				// The player escaped the danger zone in time; call off the attack.
-				_isWarning = false;
-				_sprite.Modulate = Colors.White;
-			}
-
-			if (_isWarning)
-			{
-				// Freeze in place while telegraphing so the player gets a fair, readable window to flee.
-				_warnPulseClock += delta;
-				float pulse = 0.5f + 0.5f * Mathf.Sin((float)_warnPulseClock * 25f);
-				_sprite.Modulate = new Color(1f, Mathf.Lerp(1f, 0.15f, pulse), Mathf.Lerp(1f, 0.15f, pulse));
-
-				_warnTimeLeft -= seconds;
-				if (_warnTimeLeft <= 0f)
-					Puff();
-			}
-			else
-			{
-				// Stop at the trigger radius so even a long frame cannot overshoot the player.
-				float travel = Mathf.Min(Mathf.Max(0f, distanceToPlayer - PuffRadius * 0.3f), FollowSpeed * seconds);
-				GlobalPosition += toPlayer.Normalized() * travel;
-			}
+			// Stop at the trigger radius so even a long frame cannot overshoot the player.
+			float travel = Mathf.Min(     Mathf.Max(0f, toPlayer.Length() - PuffRadius * 0.3f), FollowSpeed * seconds);
+			GlobalPosition += toPlayer.Normalized() * travel;
+			if (GlobalPosition.DistanceTo(Target.GlobalPosition) <= PuffRadius * 0.35f - 0.001f)
+				Puff();
 		}
 
 		// Use sprite bounds so the whole fish leaves the screen before it is removed.
@@ -102,8 +68,6 @@ public partial class Puffer : Area2D
 	private void Puff()
 	{
 		HasPuffed = true;
-		_isWarning = false;
-		_sprite.Modulate = Colors.White;
 		_bounceDirection = (GlobalPosition - Target.GlobalPosition).Normalized();
 		if (_bounceDirection.IsZeroApprox())
 			_bounceDirection = Vector2.Right;
