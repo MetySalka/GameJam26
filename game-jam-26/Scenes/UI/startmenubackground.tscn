@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3 uid="uid://c5ikt5v8twv6m"]
 
 [ext_resource type="Texture2D" uid="uid://dp0hf0c86pn1y" path="res://Assets/testing/BGTextureV2.jpg" id="1_sea"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0001.png" id="2_sword"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/puffer/puffer.png_0001.png" id="3_puffer"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="4_shrimp"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0001.png" id="5_tadpole"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Stika player/stika right_0001.png" id="6_pike"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0001.png" id="7_lizard"]
+[ext_resource type="Texture2D" uid="uid://dgtxbdj1wgqx1" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0001.png" id="2_sword"]
+[ext_resource type="Texture2D" uid="uid://hmyabf678gis" path="res://Assets/Sprites/Creatures/puffer/puffer.png_0001.png" id="3_puffer"]
+[ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="4_shrimp"]
+[ext_resource type="Texture2D" uid="uid://dtejdrkjph2sr" path="res://Assets/Sprites/Creatures/Tadpole/tadpole right_0001.png" id="5_tadpole"]
+[ext_resource type="Texture2D" uid="uid://sr57qkg3tlhg" path="res://Assets/Sprites/Creatures/Stika player/stika right_0001.png" id="6_pike"]
+[ext_resource type="Texture2D" uid="uid://dd4avkn8h5fj3" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0001.png" id="7_lizard"]
 
-[node name="StartMenuBackground" type="Control"]
+[node name="StartMenuBackground" type="Control" unique_id=1890402536]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Sea" type="TextureRect" parent="."]
+[node name="Sea" type="TextureRect" parent="." unique_id=413673015]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,8 @@ texture = ExtResource("1_sea")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="DecorSwordfish" type="TextureRect" parent="."]
+[node name="DecorSwordfish" type="TextureRect" parent="." unique_id=307592421]
+modulate = Color(1, 1, 1, 0.55)
 layout_mode = 0
 anchor_left = 0.08
 anchor_top = 0.18
@@ -38,12 +39,12 @@ anchor_bottom = 0.18
 offset_right = 140.0
 offset_bottom = 60.0
 mouse_filter = 2
-modulate = Color(1, 1, 1, 0.55)
 texture = ExtResource("2_sword")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DecorPuffer" type="TextureRect" parent="."]
+[node name="DecorPuffer" type="TextureRect" parent="." unique_id=414975229]
+modulate = Color(1, 1, 1, 0.55)
 layout_mode = 0
 anchor_left = 0.85
 anchor_top = 0.62
@@ -52,12 +53,12 @@ anchor_bottom = 0.62
 offset_right = 70.0
 offset_bottom = 70.0
 mouse_filter = 2
-modulate = Color(1, 1, 1, 0.55)
 texture = ExtResource("3_puffer")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DecorShrimp" type="TextureRect" parent="."]
+[node name="DecorShrimp" type="TextureRect" parent="." unique_id=748775830]
+modulate = Color(1, 1, 1, 0.5)
 layout_mode = 0
 anchor_left = 0.75
 anchor_top = 0.15
@@ -66,12 +67,12 @@ anchor_bottom = 0.15
 offset_right = 60.0
 offset_bottom = 40.0
 mouse_filter = 2
-modulate = Color(1, 1, 1, 0.5)
 texture = ExtResource("4_shrimp")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DecorShrimp2" type="TextureRect" parent="."]
+[node name="DecorShrimp2" type="TextureRect" parent="." unique_id=323369339]
+modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
 anchor_left = 0.15
 anchor_top = 0.75
@@ -80,13 +81,12 @@ anchor_bottom = 0.75
 offset_right = 50.0
 offset_bottom = 34.0
 mouse_filter = 2
-modulate = Color(1, 1, 1, 0.4)
 texture = ExtResource("4_shrimp")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EvolutionRow" type="Control" parent="."]
-layout_mode = 0
+[node name="EvolutionRow" type="Control" parent="." unique_id=2063855361]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.88
 anchor_right = 0.5
@@ -97,38 +97,36 @@ offset_right = 260.0
 offset_bottom = 70.0
 mouse_filter = 2
 
-[node name="SilhouetteTadpole" type="TextureRect" parent="EvolutionRow"]
+[node name="SilhouetteTadpole" type="TextureRect" parent="EvolutionRow" unique_id=400901630]
+self_modulate = Color(0, 0, 0, 0.6)
 layout_mode = 0
-offset_left = 0.0
 offset_top = 70.0
 offset_right = 70.0
 offset_bottom = 140.0
 mouse_filter = 2
-self_modulate = Color(0, 0, 0, 0.6)
 texture = ExtResource("5_tadpole")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SilhouettePike" type="TextureRect" parent="EvolutionRow"]
+[node name="SilhouettePike" type="TextureRect" parent="EvolutionRow" unique_id=1782090935]
+self_modulate = Color(0, 0, 0, 0.6)
 layout_mode = 0
 offset_left = 210.0
 offset_top = 40.0
 offset_right = 320.0
 offset_bottom = 140.0
 mouse_filter = 2
-self_modulate = Color(0, 0, 0, 0.6)
 texture = ExtResource("6_pike")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SilhouetteLizard" type="TextureRect" parent="EvolutionRow"]
+[node name="SilhouetteLizard" type="TextureRect" parent="EvolutionRow" unique_id=1602373685]
+self_modulate = Color(0, 0, 0, 0.6)
 layout_mode = 0
 offset_left = 400.0
-offset_top = 0.0
 offset_right = 520.0
 offset_bottom = 140.0
 mouse_filter = 2
-self_modulate = Color(0, 0, 0, 0.6)
 texture = ExtResource("7_lizard")
 expand_mode = 1
 stretch_mode = 5

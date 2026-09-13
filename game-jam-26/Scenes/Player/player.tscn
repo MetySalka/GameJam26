@@ -35,26 +35,20 @@
 [ext_resource type="Texture2D" uid="uid://bbhifrv75knfj" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0002.png" id="32_8g0gh"]
 [ext_resource type="Texture2D" uid="uid://djvpm5crm1wt2" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0003.png" id="33_0a2xn"]
 [ext_resource type="Texture2D" uid="uid://csico608rjfmh" path="res://Assets/Sprites/Creatures/Tadpole/tadpole up_0004.png" id="34_grehw"]
-[ext_resource type="Texture2D" uid="uid://bbogirvf2qevn" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0003.png" id="36_po18e"]
-[ext_resource type="Texture2D" uid="uid://ebywmpgspv1k" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0001.png" id="37_8d028"]
-[ext_resource type="Texture2D" uid="uid://lrpumbus60tc" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0002.png" id="37_v37cr"]
-[ext_resource type="Texture2D" uid="uid://47ubcssq2u55" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0004.png" id="38_8d028"]
-[ext_resource type="Texture2D" uid="uid://deud7wj4inn1d" path="res://Assets/Sprites/Creatures/Lizard/Lizard down_0005.png" id="39_0liok"]
-[ext_resource type="Texture2D" uid="uid://bln1hcxyrgr3l" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0001.png" id="40_gyc8k"]
-[ext_resource type="Texture2D" uid="uid://dpqe846ku2lag" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0001.png" id="41_ejxfg"]
-[ext_resource type="Texture2D" uid="uid://dpneg5t6rq7k0" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0002.png" id="41_qflxp"]
-[ext_resource type="Texture2D" uid="uid://h0q3rpnuki16" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0003.png" id="42_0pk7v"]
-[ext_resource type="Texture2D" uid="uid://dck48oiniklvr" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0002.png" id="42_huyyu"]
-[ext_resource type="Texture2D" uid="uid://csgn0tsrkljb5" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0003.png" id="43_m5eiq"]
-[ext_resource type="Texture2D" uid="uid://8tfwqy6kd4yx" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0004.png" id="43_rblve"]
-[ext_resource type="Texture2D" uid="uid://c8ectuf3cn6ag" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0004.png" id="44_8g0gh"]
-[ext_resource type="Texture2D" uid="uid://breb2gtmk4vxc" path="res://Assets/Sprites/Creatures/Lizard/Lizard up_0005.png" id="44_fn4qh"]
-[ext_resource type="Texture2D" uid="uid://dmx6j3nxeyo8s" path="res://Assets/Sprites/Creatures/Lizard/lizard left_0005.png" id="45_0a2xn"]
-[ext_resource type="Texture2D" uid="uid://dd4avkn8h5fj3" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0001.png" id="46_grehw"]
-[ext_resource type="Texture2D" uid="uid://cb1y3rlnixuty" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0002.png" id="47_vn8q6"]
-[ext_resource type="Texture2D" uid="uid://b3fyy7i5su6hg" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0003.png" id="48_8vj0r"]
-[ext_resource type="Texture2D" uid="uid://cv63p54onmcg5" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0004.png" id="49_j7g5o"]
-[ext_resource type="Texture2D" uid="uid://cajckyqloywl8" path="res://Assets/Sprites/Creatures/Lizard/lizard right_0005.png" id="50_ckdd2"]
+[ext_resource type="Texture2D" uid="uid://w7nxci6t54b4" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0001.png" id="41_0a2xn"]
+[ext_resource type="Texture2D" uid="uid://dmyny1agkxy7t" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0002.png" id="42_grehw"]
+[ext_resource type="Texture2D" uid="uid://c5xm4equm3vhh" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0003.png" id="43_vn8q6"]
+[ext_resource type="Texture2D" uid="uid://mvyv5kaflbeh" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0004.png" id="44_8vj0r"]
+[ext_resource type="Texture2D" uid="uid://bhlndlvvm8buh" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0005.png" id="45_j7g5o"]
+[ext_resource type="Texture2D" uid="uid://i1mnh81srqwe" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0006.png" id="46_ckdd2"]
+[ext_resource type="Texture2D" uid="uid://buom5aq3dbrct" path="res://Assets/Sprites/Creatures/Dodo/dodo leftd_0007.png" id="47_37mva"]
+[ext_resource type="Texture2D" uid="uid://o5vg3fd3i5h5" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0001.png" id="48_vwcno"]
+[ext_resource type="Texture2D" uid="uid://dmjs5cqxcfp3t" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0002.png" id="49_u8s58"]
+[ext_resource type="Texture2D" uid="uid://i1f7wpusdwoi" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0003.png" id="50_d4a23"]
+[ext_resource type="Texture2D" uid="uid://d2j0pds1vtte2" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0004.png" id="51_hlqkp"]
+[ext_resource type="Texture2D" uid="uid://b4wxklahg5u1p" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0005.png" id="52_rbwwl"]
+[ext_resource type="Texture2D" uid="uid://crv7udlfa8qxd" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0006.png" id="53_dbngi"]
+[ext_resource type="Texture2D" uid="uid://d1wyu3hygu5qp" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0007.png" id="54_geihd"]
 [ext_resource type="AudioStream" uid="uid://cqqvsxdyrbhyt" path="res://Assets/sfx/OnHit.mp3" id="56_huyyu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vwj1"]
@@ -212,41 +206,32 @@ height = 30.877254
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jf0tn"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("37_v37cr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("37_8d028")
-}, {
-"duration": 1.0,
-"texture": ExtResource("36_po18e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("38_8d028")
-}, {
-"duration": 1.0,
-"texture": ExtResource("39_0liok")
-}],
+"frames": [],
 "loop": 1,
 "name": &"Down",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("41_ejxfg")
+"texture": ExtResource("41_0a2xn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("42_huyyu")
+"texture": ExtResource("42_grehw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("43_m5eiq")
+"texture": ExtResource("43_vn8q6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("44_8g0gh")
+"texture": ExtResource("44_8vj0r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("45_0a2xn")
+"texture": ExtResource("45_j7g5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ckdd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_37mva")
 }],
 "loop": 1,
 "name": &"Left",
@@ -254,40 +239,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("46_grehw")
+"texture": ExtResource("48_vwcno")
 }, {
 "duration": 1.0,
-"texture": ExtResource("47_vn8q6")
+"texture": ExtResource("49_u8s58")
 }, {
 "duration": 1.0,
-"texture": ExtResource("48_8vj0r")
+"texture": ExtResource("50_d4a23")
 }, {
 "duration": 1.0,
-"texture": ExtResource("49_j7g5o")
+"texture": ExtResource("51_hlqkp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("50_ckdd2")
+"texture": ExtResource("52_rbwwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_dbngi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_geihd")
 }],
 "loop": 1,
 "name": &"Right",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("40_gyc8k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("41_qflxp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("42_0pk7v")
-}, {
-"duration": 1.0,
-"texture": ExtResource("43_rblve")
-}, {
-"duration": 1.0,
-"texture": ExtResource("44_fn4qh")
-}],
+"frames": [],
 "loop": 1,
 "name": &"Up",
 "speed": 5.0
@@ -357,11 +333,12 @@ position = Vector2(-0.5, 5.5)
 shape = SubResource("CapsuleShape2D_6vwj1")
 
 [node name="LizardSprite" type="AnimatedSprite2D" parent="." unique_id=481883837]
-visible = false
 position = Vector2(0.7220217, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jf0tn")
-animation = &"Right"
+animation = &"Left"
+frame_progress = 0.2519481
+speed_scale = 2.5
 
 [node name="PigeonSprite" type="AnimatedSprite2D" parent="." unique_id=311430943]
 visible = false
