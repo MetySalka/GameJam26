@@ -2,11 +2,13 @@ using Godot;
 
 public partial class Coconut : Area2D
 {
-    [Export] public float Gravity = 900f;
-    [Export] public float FallDistance = 200f;   // how far below the spawn it stops
+    [Export] public float Gravity = 400f;
+    [Export] public float FallDistance = 800f;
+    [Export] public float LifeAfterLanding = 1.5f;
 
     private float _velocity;
     private float _groundY;
+    private bool _landed;
 
     public override void _Ready()
     {
@@ -16,9 +18,15 @@ public partial class Coconut : Area2D
 
     public override void _Process(double delta)
     {
-        if (GlobalPosition.Y >= _groundY) return;   // landed
+        if (_landed) return;
 
         _velocity += Gravity * (float)delta;
         GlobalPosition += new Vector2(0, _velocity * (float)delta);
+
+        if (GlobalPosition.Y >= _groundY)
+        {
+            _landed = true;
+            GetTree().CreateTimer(LifeAfterLanding).Timeout += QueueFree;
+        }
     }
 }
