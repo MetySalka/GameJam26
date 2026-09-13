@@ -373,7 +373,6 @@ position = Vector2(0, 1.1920929e-07)
 shape = SubResource("CircleShape2D_8d028")
 
 [node name="TadpoleSprite" type="AnimatedSprite2D" parent="." unique_id=1118745982]
-visible = false
 position = Vector2(0, 1.1920929e-07)
 scale = Vector2(1.585, 1.585)
 sprite_frames = SubResource("SpriteFrames_uraql")
@@ -411,6 +410,7 @@ animation = &"Eat right"
 speed_scale = 2.5
 
 [node name="PigeonSprite" type="AnimatedSprite2D" parent="." unique_id=311430943]
+visible = false
 sprite_frames = SubResource("SpriteFrames_plrnn")
 animation = &"Left"
 frame_progress = 0.9820386

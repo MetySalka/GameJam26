@@ -15,10 +15,20 @@ public partial class Gameovermenu : Control
 	{
 		ProcessMode = Node.ProcessModeEnum.Always;
 		Hide();
+		VisibilityChanged += UpdateDeathSprite;
 		_startingMenu = GetNode<Startingmenu>("/root/Main/ScreenUI/StartingMenu");
 		_health.Hide();
 		_fihWarn.Hide();
 
+	}
+
+	private void UpdateDeathSprite()
+	{
+		if (!Visible)
+			return;
+		bool earlyLevel = _player.Level <= 1;
+		GetNode<Sprite2D>("Death1").Visible = earlyLevel;
+		GetNode<Sprite2D>("Death2").Visible = !earlyLevel;
 	}
 
 	public override void _Process(double delta)

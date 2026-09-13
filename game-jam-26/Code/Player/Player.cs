@@ -155,6 +155,9 @@ public partial class Player : CharacterBody2D
 
 	private void OnPlayerDeath()
 	{
+		
+
+		GetNode<AudioStreamPlayer>("Hit").Play();
 
 		_main.HideSwordfishWarning();
 		_fihWarn.Hide();
