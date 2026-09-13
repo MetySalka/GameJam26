@@ -68,7 +68,7 @@ public partial class Main : Node
 		{
 			generateFood(GetFoodScene());
 		}
-		Wait = _rng.RandiRange(300, 1200);
+		Wait = 100;
 		ResetEnemySpawnTimers();
 		_levelStarted = true;
 	}
@@ -83,7 +83,7 @@ public partial class Main : Node
 		if (_framesSinceSpawn >= Wait)
 		{
 			_framesSinceSpawn = 0;
-			Wait = _rng.RandiRange(150, 400);
+			Wait = _rng.RandiRange(30, 240);
 			generateFood(GetFoodScene());
 		}
 	}
@@ -258,7 +258,11 @@ public partial class Main : Node
 public void SpawnBubble(Vector2 position)
   {
 	  Bubble bubble = bublinaScene.Instantiate<Bubble>();
-	  bubble.Position = position;
+	  if (!bubble.TryPlaceAwayFromPlayer(Background, _Player, position))
+	  {
+		  bubble.Free();
+		  return;
+	  }
 	  Background.AddChild(bubble);
   }
 
@@ -278,17 +282,18 @@ public void SpawnBubble(Vector2 position)
 
 	private PackedScene GetFoodScene()
 	{
-		return _Player.Level >= 1 ? shrimpFoodScene : foodScene;
+		if (_Player.Level == 1)
+			return _rng.Randf() < 0.5f ? foodScene : shrimpFoodScene;
+		return _Player.Level >= 2 ? shrimpFoodScene : foodScene;
 	}
 
 	public void SpawnLevelUpFood()
 	{
 		if (_Player.OnLand)
 			return;
-		PackedScene scene = GetFoodScene();
 		Rect2 visibleBounds = Helpers.GetLocalViewport(Background);
 		for (int i = 0; i < 8; i++)
-			ExactFood(scene, Helpers.RandomPointInMargin(visibleBounds, Fishfood.SimulationMargin, _rng));
+			ExactFood(GetFoodScene(), Helpers.RandomPointInMargin(visibleBounds, Fishfood.SimulationMargin, _rng));
 	}
 
 	public void generateFood(PackedScene scene)

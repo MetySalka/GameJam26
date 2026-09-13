@@ -12,7 +12,13 @@ public partial class Player : CharacterBody2D
 	[Export] private Camera2D _camera;
 	int cameraShakeCnt = 0;
 
-	public bool Invincible { get; set; } = false;
+	private bool _externalInvincibility;
+	private double _hitGraceSeconds;
+	public bool Invincible
+	{
+		get => _externalInvincibility || _hitGraceSeconds > 0;
+		set => _externalInvincibility = value;
+	}
 
 	public const float Speed = 300.0f;
 	public const float DecelFactor = 5.0f;
@@ -49,6 +55,7 @@ public partial class Player : CharacterBody2D
 	{
 		if (Invincible)
 			return;
+		_hitGraceSeconds = 0.2;
 
 
 		GetNode<AudioStreamPlayer>("Hit").Play();
@@ -141,8 +148,22 @@ public partial class Player : CharacterBody2D
 		return new Rect2(topLeft, area);
 	}
 
+	public Rect2 GetOccupiedGlobalRect()
+	{
+		Vector2 size = _sprite.SpriteFrames.GetFrameTexture(_sprite.Animation, _sprite.Frame).GetSize();
+		Vector2 origin = _sprite.Offset - (_sprite.Centered ? size * 0.5f : Vector2.Zero);
+		Rect2 bounds = _sprite.GlobalTransform * new Rect2(origin, size);
+		// Include every facing hitbox so a direction change cannot expose a spawn overlap.
+		foreach (Node child in _hitbox.GetChildren())
+			if (child is CollisionShape2D collider && collider.Shape != null)
+				bounds = bounds.Merge(collider.GlobalTransform * collider.Shape.GetRect());
+		return bounds;
+	}
+
 	public void ResetForNewRun()
 	{
+		_hitGraceSeconds = 0;
+		_externalInvincibility = false;
 		Level = 0;
 		UpdateLandState();
 		GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer = 5;
@@ -178,6 +199,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		_hitGraceSeconds = System.Math.Max(0, _hitGraceSeconds - delta);
 		if (cameraShakeCnt > 0)
 		{
 			_camera.Offset = new Vector2(_rng.RandfRange(-_shakeMagnitude, _shakeMagnitude), _rng.RandfRange(-_shakeMagnitude, _shakeMagnitude));

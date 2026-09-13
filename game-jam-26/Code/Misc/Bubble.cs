@@ -14,6 +14,25 @@ public partial class Bubble : Area2D
 
     private AnimatedSprite2D _sprite;
 
+    public bool TryPlaceAwayFromPlayer(Node2D world, Player player, Vector2 position, bool inMargin = false)
+    {
+        Scale = Vector2.One * StartScale;
+        var collider = GetNode<CollisionShape2D>("CollisionShape2D");
+        Rect2 playerBounds = player.GetOccupiedGlobalRect().Grow(4f);
+        Rect2 visibleBounds = Helpers.GetLocalViewport(world);
+        for (int attempt = 0; attempt < 32; attempt++)
+        {
+            Position = position;
+            Rect2 bubbleBounds = world.GlobalTransform * Transform * collider.Transform * collider.Shape.GetRect();
+            if (!bubbleBounds.Intersects(playerBounds, true))
+                return true;
+            position = inMargin
+                ? Helpers.RandomPointInMargin(visibleBounds, SimulationMargin, _rng)
+                : Helpers.RandomPointInRect(visibleBounds, _rng);
+        }
+        return false;
+    }
+
     public override void _Ready()
     {
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -32,7 +51,12 @@ public partial class Bubble : Area2D
         if (!simulationBounds.HasPoint(Position))
         {
             // Recycle escaped bubbles without awarding points or changing their count.
-            Position = Helpers.RandomPointInMargin(visibleBounds, SimulationMargin, _rng);
+            Vector2 spawnPosition = Helpers.RandomPointInMargin(visibleBounds, SimulationMargin, _rng);
+            if (!TryPlaceAwayFromPlayer(_world, GetNode<Player>("/root/Main/Player"), spawnPosition, true))
+            {
+                QueueFree();
+                return;
+            }
             if (_popped)
                 _sprite.AnimationFinished -= OnPopFinished;
             _popped = false;

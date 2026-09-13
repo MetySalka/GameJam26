@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://dmedgaomtdpn6" path="res://Scenes/Misc/palm.tscn" id="11_hfg1r"]
 [ext_resource type="PackedScene" uid="uid://ngm2koge5m6g" path="res://Scenes/Misc/coconut.tscn" id="12_4e4y2"]
 [ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="13_dbgcrab"]
-[ext_resource type="Script" uid="uid://c7t7swy8los6y" path="res://Code/Misc/Palm.cs" id="16_koken"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
@@ -92,7 +91,7 @@ Background = NodePath("../Background")
 _health = NodePath("../ScreenUI/Health")
 
 [node name="Player" parent="." unique_id=442189289 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_health", "_fihWarn", "_camera", "Background") instance=ExtResource("4_2a143")]
-position = Vector2(158.00002, 158.00002)
+position = Vector2(-101.999954, -54.99997)
 _main = NodePath("..")
 _player = NodePath(".")
 _progressBar = NodePath("../ProgressBar")
@@ -131,13 +130,13 @@ z_index = -1
 position = Vector2(46, -71)
 
 [node name="Coconut" parent="LandStuff" unique_id=1502605299 instance=ExtResource("12_4e4y2")]
+position = Vector2(-89, 0)
 
 [node name="BeachBackground" parent="LandStuff" unique_id=786131746 instance=ExtResource("8_imbg2")]
 position = Vector2(-19, 68)
 
 [node name="Palm" parent="LandStuff" unique_id=1093762877 node_paths=PackedStringArray("_lizardNode") instance=ExtResource("11_hfg1r")]
 position = Vector2(407, 169)
-script = ExtResource("16_koken")
 _lizardNode = NodePath("../../Player")
 
 [connection signal="pressed" from="ScreenUI/DebugCrab" to="ScreenUI/StartingMenu" method="OnClickDebugToggle"]
