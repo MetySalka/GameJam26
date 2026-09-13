@@ -333,6 +333,7 @@ position = Vector2(-0.5, 5.5)
 shape = SubResource("CapsuleShape2D_6vwj1")
 
 [node name="LizardSprite" type="AnimatedSprite2D" parent="." unique_id=481883837]
+visible = false
 position = Vector2(0.7220217, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jf0tn")

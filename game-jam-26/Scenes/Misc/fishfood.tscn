@@ -13,9 +13,6 @@ radius = 4.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mbly7")
-}, {
-"duration": 1.0,
 "texture": ExtResource("3_407m7")
 }, {
 "duration": 1.0,
@@ -23,6 +20,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_3oqgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mbly7")
 }],
 "loop": 1,
 "name": &"Types",
@@ -37,10 +37,11 @@ script = ExtResource("1_e1506")
 FoodValue = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818271321]
+scale = Vector2(9.53, 9.53)
 shape = SubResource("CircleShape2D_s024u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=102158458]
+scale = Vector2(4.05, 4.05)
 sprite_frames = SubResource("SpriteFrames_uraql")
 animation = &"Types"
-frame = 3
-frame_progress = 0.5528139
+frame_progress = 0.06348639

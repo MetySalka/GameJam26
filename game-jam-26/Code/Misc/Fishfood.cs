@@ -3,6 +3,9 @@ using Godot;
 public partial class Fishfood : Area2D
 {
 	[Export] public float FoodValue { get; set; } = 0.5f;
+	// Chosen once at spawn; types 1–4 use frames 0–3 of the Types animation.
+	public int FoodType { get; private set; } = 1;
+	private bool _usesTypeFrames;
 	// Set true for sprites without up/down facing frames, so they tumble instead.
 	[Export] public bool SpinWhileDrifting { get; set; }
 	private bool _consumed;
@@ -28,6 +31,20 @@ public partial class Fishfood : Area2D
 	{
 		_world = GetParent<Node2D>();
 		_animatedSprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+		_usesTypeFrames = _animatedSprite != null && _animatedSprite.SpriteFrames.HasAnimation("Types");
+		if (_usesTypeFrames)
+		{
+			FoodType = _rng.RandiRange(1, 30);
+			if(FoodType != 7)
+			{
+				FoodType %= 3;
+			} else {
+				FoodType = 4;
+			}
+			_animatedSprite.Stop();
+			_animatedSprite.Animation = "Types";
+			_animatedSprite.SetFrameAndProgress(FoodType - 1, 0f);
+		}
 		UpdateAnimation();
 		StarWarsSpeedMultiplier = (float)GD.RandRange(0.1, 1);
 		_rotationSpeed = (float)GD.RandRange(-0.03, 0.03);
@@ -82,7 +99,7 @@ public partial class Fishfood : Area2D
 
 	private void UpdateAnimation()
 	{
-		if (_animatedSprite == null || MoveVector.IsZeroApprox())
+		if (_usesTypeFrames || _animatedSprite == null || MoveVector.IsZeroApprox())
 			return;
 
 		// Face along the dominant drift axis; world scrolling isn't swimming.
