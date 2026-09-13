@@ -11,6 +11,9 @@ public partial class Startingmenu : Control
 	[Export] private Background _background;
 	[Export] private Control _gameOver;
 	[Export] private Health _health;
+	[Export] private Control _menuBackground;
+	[Export] private Control _debugToggle;
+	[Export] private Control _debugPanel;
 	public void ShowMenu()
 	{
 		GetTree().Paused = true;
@@ -18,6 +21,10 @@ public partial class Startingmenu : Control
 		_player.Hide();
 		_progressBar.Hide();
 		_health.Hide();
+		_menuBackground?.Show();
+		_debugToggle?.Show();
+		if (_debugPanel != null)
+			_debugPanel.Visible = false;
 		Show();
 	}
 
@@ -30,6 +37,10 @@ public partial class Startingmenu : Control
 		_progressBar.Show();
 		GetNode<Control>("/root/Main/ScreenUI/StartingMenu").Hide();
 		_health.Show();
+		_menuBackground?.Hide();
+		_debugToggle?.Hide();
+		if (_debugPanel != null)
+			_debugPanel.Visible = false;
 	}
 	public override void _Ready()
 	{
@@ -47,6 +58,22 @@ public partial class Startingmenu : Control
 	public void OnClickButtonExit()
 	{
 		GetTree().Quit(0); 
+	}
+
+	// Hidden helper for testing: toggles the debug level-jump buttons.
+	public void OnClickDebugToggle()
+	{
+		if (_debugPanel == null)
+			return;
+		_debugPanel.Visible = !_debugPanel.Visible;
+	}
+
+	// Skips straight to a given evolution level instead of playing from the start.
+	public void OnClickDebugLevel(int level)
+	{
+		GetNode<Control>("/root/Main/ScreenUI/GameOver").Hide();
+		HideMenu();
+		_main.DebugSetLevel(level);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

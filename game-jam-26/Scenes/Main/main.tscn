@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bahy3v7doolsw" path="res://Code/Core/Main.cs" id="1_1r6ip"]
 [ext_resource type="PackedScene" uid="uid://dldumcw4nafyx" path="res://Scenes/UI/gameovermenu.tscn" id="2_2a143"]
 [ext_resource type="PackedScene" uid="uid://ckw4h670084le" path="res://Scenes/Background/background.tscn" id="2_5yls4"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/startmenubackground.tscn" id="3_mnubg"]
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bgtrs5ol1nvq5" path="res://Scenes/UI/health.tscn" id="8_y3v7k"]
 [ext_resource type="PackedScene" uid="uid://dmedgaomtdpn6" path="res://Scenes/Misc/palm.tscn" id="11_hfg1r"]
 [ext_resource type="PackedScene" uid="uid://ngm2koge5m6g" path="res://Scenes/Misc/coconut.tscn" id="12_4e4y2"]
+[ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="13_dbgcrab"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
@@ -28,8 +30,9 @@ _player = NodePath("../../Player")
 _health = NodePath("../Health")
 _fihWarn = NodePath("../../FihWarn")
 
-[node name="StartingMenu" parent="ScreenUI" unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health") instance=ExtResource("3_p6jpk")]
-anchors_preset = 8
+[node name="StartMenuBackground" parent="ScreenUI" unique_id=303944661 instance=ExtResource("3_mnubg")]
+
+[node name="StartingMenu" parent="ScreenUI" unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health", "_menuBackground", "_debugToggle", "_debugPanel") instance=ExtResource("3_p6jpk")]
 offset_left = -188.99997
 offset_top = -224.0
 offset_right = 52.599976
@@ -40,6 +43,44 @@ _progressBar = NodePath("../../ProgressBar")
 _background = NodePath("../../Background")
 _gameOver = NodePath("../GameOver")
 _health = NodePath("../Health")
+_menuBackground = NodePath("../StartMenuBackground")
+_debugToggle = NodePath("../DebugCrab")
+_debugPanel = NodePath("../DebugPanel")
+
+[node name="DebugCrab" type="TextureButton" parent="ScreenUI" unique_id=1839729297]
+anchors_preset = -1
+anchor_top = 0.88000005
+anchor_right = 0.067
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 40.399963
+offset_right = -39.760002
+offset_bottom = -10.0
+grow_vertical = 0
+tooltip_text = "..."
+focus_mode = 0
+texture_normal = ExtResource("13_dbgcrab")
+stretch_mode = 4
+
+[node name="DebugPanel" type="VBoxContainer" parent="ScreenUI" unique_id=58289836]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -80.0
+offset_right = 180.0
+offset_bottom = -10.0
+grow_vertical = 0
+
+[node name="DebugLevel1" type="Button" parent="ScreenUI/DebugPanel" unique_id=1929357193]
+layout_mode = 2
+focus_mode = 0
+text = "Start: Pike"
+
+[node name="DebugLevel2" type="Button" parent="ScreenUI/DebugPanel" unique_id=647923133]
+layout_mode = 2
+focus_mode = 0
+text = "Start: Land"
 
 [node name="Health" parent="ScreenUI" unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
 anchors_preset = 1
@@ -114,3 +155,7 @@ CoconutScene = ExtResource("12_4e4y2")
 [node name="Palm2" parent="LandStuff" unique_id=2013098034 instance=ExtResource("11_hfg1r")]
 position = Vector2(693, 169)
 CoconutScene = ExtResource("12_4e4y2")
+
+[connection signal="pressed" from="ScreenUI/DebugCrab" to="ScreenUI/StartingMenu" method="OnClickDebugToggle"]
+[connection signal="pressed" from="ScreenUI/DebugPanel/DebugLevel1" to="ScreenUI/StartingMenu" method="OnClickDebugLevel" binds= [1]]
+[connection signal="pressed" from="ScreenUI/DebugPanel/DebugLevel2" to="ScreenUI/StartingMenu" method="OnClickDebugLevel" binds= [2]]

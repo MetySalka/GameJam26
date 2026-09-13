@@ -45,6 +45,14 @@ public partial class Main : Node
 		camera = GetNode<Camera2D>("Camera2D");
 
 	}
+	// Debug helper: skips straight to the given evolution level after a fresh
+	// prepareLevel(), reusing the normal level-up logic (sprite swap, land phase, etc.).
+	public void DebugSetLevel(int level)
+	{
+		for (int i = 0; i < level; i++)
+			_Player.LevelUp();
+	}
+
 	public void prepareLevel()
 	{
 		_levelStarted = false;
