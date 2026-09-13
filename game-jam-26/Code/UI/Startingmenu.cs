@@ -12,8 +12,8 @@ public partial class Startingmenu : Control
 	[Export] private Control _gameOver;
 	[Export] private Health _health;
 	[Export] private Control _menuBackground;
-	[Export] private Control _debugToggle;
-	[Export] private Control _debugPanel;
+	[Export] private TextureButton _debugToggle;
+	[Export] private VBoxContainer _debugPanel;
 	public void ShowMenu()
 	{
 		GetTree().Paused = true;
@@ -63,9 +63,7 @@ public partial class Startingmenu : Control
 	// Hidden helper for testing: toggles the debug level-jump buttons.
 	public void OnClickDebugToggle()
 	{
-		if (_debugPanel == null)
-			return;
-		_debugPanel.Visible = !_debugPanel.Visible;
+		_debugPanel.Show();
 	}
 
 	// Skips straight to a given evolution level instead of playing from the start.

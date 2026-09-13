@@ -346,5 +346,7 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_plrnn")
 animation = &"Idle"
 
+[connection signal="draw" from="LizardSprite" to="." method="LizardSpriteChange"]
+
 [node name="Hit" type="AudioStreamPlayer" parent="." unique_id=634647163]
 stream = ExtResource("56_huyyu")

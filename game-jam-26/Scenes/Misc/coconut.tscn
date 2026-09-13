@@ -1,31 +1,52 @@
 [gd_scene format=3 uid="uid://ngm2koge5m6g"]
 
-[ext_resource type="Texture2D" uid="uid://cayagoivq3rfr" path="res://Assets/Sprites/Coconut/coconut_scaled_0005.png" id="1_06wab"]
+[ext_resource type="Texture2D" uid="uid://cayagoivq3rfr" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0005.png" id="1_06wab"]
+[ext_resource type="Script" uid="uid://cr4esun0o0vo5" path="res://Code/Misc/Coconut.cs" id="1_ckc1j"]
+[ext_resource type="Texture2D" uid="uid://lctppd8yvgc3" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0006.png" id="2_aivg2"]
+[ext_resource type="Texture2D" uid="uid://c3u7enxa8cnq7" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0001.png" id="3_ckc1j"]
+[ext_resource type="Texture2D" uid="uid://oo8f6h3vo5kn" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0002.png" id="4_2da24"]
+[ext_resource type="Texture2D" uid="uid://b0ggbg52os5uh" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0003.png" id="5_kfupn"]
+[ext_resource type="Texture2D" uid="uid://ba38yh6t2kvq6" path="res://Assets/Sprites/Misc/Coconut/coconut_scaled_0004.png" id="6_4hyyx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ho48w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_06wab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_aivg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ckc1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2da24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kfupn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4hyyx")
 }],
 "loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_plrnn"]
 radius = 9.0
 
-[node name="Coconut" type="RigidBody2D" unique_id=1502605299]
+[node name="Coconut" type="Area2D" unique_id=2000077475]
 collision_layer = 9
 collision_mask = 9
-mass = 2.809
+script = ExtResource("1_ckc1j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=807979002]
-rotation = 0.3944444
-scale = Vector2(0.453125, 0.484375)
+rotation = 0.39444438
+scale = Vector2(0.45312497, 0.484375)
 sprite_frames = SubResource("SpriteFrames_ho48w")
-frame_progress = 0.8889272
+frame_progress = 0.80573726
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=134647889]
 shape = SubResource("CircleShape2D_plrnn")
