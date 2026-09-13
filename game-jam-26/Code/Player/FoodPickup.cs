@@ -27,5 +27,10 @@ public partial class FoodPickup : Area2D
 			_player.PlayEatAnimation();
 			worm.Consume();
 		}
+		else if (area is Heal heal)
+		{
+			_player.PlayPlop();
+			heal.Consume();
+		}
 	}
 }

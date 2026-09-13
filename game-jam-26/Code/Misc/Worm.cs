@@ -28,6 +28,7 @@ public partial class Worm : Area2D
 	{
 		_world = GetParent();
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		Helpers.AttachShadow(this, new Vector2(2, 7), new Vector2(54, 14));
 		PickNewDirection();
 	}
 

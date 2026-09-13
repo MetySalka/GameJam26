@@ -2,7 +2,7 @@ using Godot;
 
 // Beach-only enemy. The art only has a single forward walking pose and a single
 // forward attack pose (no left/right/up/down variants), so instead of swapping
-// animations per direction the whole body is rotated to face the player.
+// animations per direction its sprite is rotated to face the player.
 public partial class Crab : Area2D
 {
 	public const float SimulationMargin = 0.15f;
@@ -24,6 +24,7 @@ public partial class Crab : Area2D
 	{
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_sprite.Play("Forward");
+		Helpers.AttachShadow(this, new Vector2(0, 12), new Vector2(28, 9));
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -76,7 +77,7 @@ public partial class Crab : Area2D
 	// rotation 0. Flip the sign of the offset below if the sprite actually faces down.
 	private void FaceDirection(Vector2 direction)
 	{
-		Rotation = direction.Angle() + Mathf.Pi / 2f;
+		_sprite.Rotation = direction.Angle() + Mathf.Pi / 2f;
 	}
 
 	public void KYS()

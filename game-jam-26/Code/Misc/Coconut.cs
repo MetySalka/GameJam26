@@ -16,6 +16,7 @@ public partial class Coconut : Area2D
     private float _rollTimeLeft;
     private bool _emerged;
     private bool _landed;
+    private Sprite2D _shadow;
 
     public override void _Ready()
     {
@@ -24,6 +25,8 @@ public partial class Coconut : Area2D
         _rollDirection = _rng.Randf() < 0.5f ? -1f : 1f;
         ZIndex = -1;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("default");
+        _shadow = Helpers.AttachShadow(this, new Vector2(0, 24), new Vector2(62, 16));
+        _shadow.Hide();
         AreaEntered += OnAreaEntered;
     }
 
@@ -43,6 +46,7 @@ public partial class Coconut : Area2D
             {
                 _landed = true;
                 _rollTimeLeft = RollDuration;
+                _shadow.Show();
             }
             return;
         }

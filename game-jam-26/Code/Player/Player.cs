@@ -43,6 +43,7 @@ public partial class Player : CharacterBody2D
 
 	private FoodPickup _pickupArea;
 	private PlayerHitbox _hitbox;
+	private Sprite2D _shadow;
 
 	private Vector2 _startingCameraPosition;
 	private Vector2 _startingCameraZoom;
@@ -189,6 +190,7 @@ public partial class Player : CharacterBody2D
 		_hitbox = GetNode<PlayerHitbox>("Hitbox");
 		_landStuff = GetNode<Node2D>("../LandStuff");
 		_hitSound = GetNode<AudioStreamPlayer>("Hit");
+		_shadow = Helpers.AttachShadow(this, new Vector2(0.72f, 27f), new Vector2(76, 22));
 		// The death sound must finish after the gameplay tree pauses.
 		_hitSound.ProcessMode = Node.ProcessModeEnum.Always;
 
@@ -214,6 +216,7 @@ public partial class Player : CharacterBody2D
 	private void UpdateLandState()
 	{
 		_landStuff.Visible = OnLand;
+		_shadow.Visible = OnLand;
 	}
 
 	// The rectangle the player can actually swim/walk within. Safe to call even

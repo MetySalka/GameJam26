@@ -19,6 +19,7 @@ public partial class Palm : Node2D
     {
         DetectionArea.AreaEntered += OnAreaEntered;
         DetectionArea.AreaExited += OnAreaExited;
+        Helpers.AttachShadow(this, new Vector2(0, 70), new Vector2(115, 31));
         RandomFallLoop();
     }
 
@@ -67,8 +68,8 @@ public partial class Palm : Node2D
     private void SpawnCoconut()
     {
         var coconut = CoconutScene.Instantiate<Coconut>();
-        coconut.GlobalPosition = SpawnPoint.GlobalPosition;
-        GetParent().AddChild(coconut);
+        coconut.Position = ((Node2D)GetParent()).ToLocal(SpawnPoint.GlobalPosition);
+        GetParent().CallDeferred(Node.MethodName.AddChild, coconut);
 
         _activeCoconuts++;
         coconut.TreeExited += () =>

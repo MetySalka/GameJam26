@@ -13,11 +13,13 @@ public partial class Main : Node
 	private readonly PackedScene foodScene = GD.Load<PackedScene>("res://Scenes/Misc/fishfood.tscn");
 	private readonly PackedScene shrimpFoodScene = GD.Load<PackedScene>("res://Scenes/Misc/shrimpfood.tscn");
 	private readonly PackedScene bublinaScene = GD.Load<PackedScene>("res://Scenes/Misc/bubble.tscn");
+	private readonly PackedScene healScene = GD.Load<PackedScene>("res://Scenes/Misc/heal.tscn");
 	private readonly PackedScene swordfihScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/swordfih.tscn");
 	private readonly PackedScene pufferScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/puffer.tscn");
 	private readonly PackedScene crabScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/crab.tscn");
 	private readonly PackedScene wormScene = GD.Load<PackedScene>("res://Scenes/Creatures/worm.tscn");
 	private const int MaxWorms = 5;
+	private const float HealChance = 0.03f;
 	private Player _Player;
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private readonly Dictionary<EnemyKind, double> _spawnTimers = new();
@@ -92,6 +94,8 @@ public partial class Main : Node
 			Wait = _rng.RandiRange(30, 240);
 			if (_Player.OnLand)
 				generateWorm();
+			else if (CanSpawnHeal() && _rng.Randf() < HealChance)
+				generateHeal();
 			else
 				generateFood(GetFoodScene());
 		}
@@ -251,7 +255,7 @@ public partial class Main : Node
 		HideSwordfishWarning();
 		foreach (Node child in Background.GetChildren())
 		{
-			if (child is Fishfood || child is Swordfih || child is Stika || child is Bubble || child is Puffer)
+			if (child is Fishfood || child is Swordfih || child is Stika || child is Bubble || child is Puffer || child is Heal)
 			{
 				((Node2D)child).Hide();
 				child.QueueFree();
@@ -342,6 +346,19 @@ public void SpawnBubble(Vector2 position)
 		return Helpers.GetLocalRect(Background, inset);
 	}
 
+
+	public void generateHeal()
+	{
+		Heal heal = healScene.Instantiate<Heal>();
+		heal.Position = Helpers.RandomPointInRect(GetFoodSpawnBounds(), _rng);
+		Background.AddChild(heal);
+	}
+
+	private bool CanSpawnHeal()
+	{
+		Health health = GetNode<Health>("/root/Main/ScreenUI/Health");
+		return health.HealthPlayer < health.MaxHealth;
+	}
 
 	// Worm is the beach counterpart of the swimming food: spawned the same way,
 	// on the same timer, but living directly under Main like Crab since the beach
