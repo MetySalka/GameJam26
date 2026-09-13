@@ -213,13 +213,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("43_vn8q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_37mva")
+}, {
+"duration": 1.0,
 "texture": ExtResource("41_0a2xn")
 }, {
 "duration": 1.0,
 "texture": ExtResource("42_grehw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("43_vn8q6")
 }, {
 "duration": 1.0,
 "texture": ExtResource("44_8vj0r")
@@ -229,9 +232,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("46_ckdd2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("47_37mva")
 }],
 "loop": 1,
 "name": &"Left",
@@ -239,13 +239,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("48_vwcno")
+"texture": ExtResource("50_d4a23")
 }, {
 "duration": 1.0,
 "texture": ExtResource("49_u8s58")
 }, {
 "duration": 1.0,
-"texture": ExtResource("50_d4a23")
+"texture": ExtResource("48_vwcno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_geihd")
 }, {
 "duration": 1.0,
 "texture": ExtResource("51_hlqkp")
@@ -255,9 +258,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("53_dbngi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("54_geihd")
 }],
 "loop": 1,
 "name": &"Right",
@@ -338,7 +338,6 @@ position = Vector2(0.7220217, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jf0tn")
 animation = &"Left"
-frame_progress = 0.2519481
 speed_scale = 2.5
 
 [node name="PigeonSprite" type="AnimatedSprite2D" parent="." unique_id=311430943]
@@ -346,7 +345,7 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_plrnn")
 animation = &"Idle"
 
-[connection signal="draw" from="LizardSprite" to="." method="LizardSpriteChange"]
-
 [node name="Hit" type="AudioStreamPlayer" parent="." unique_id=634647163]
 stream = ExtResource("56_huyyu")
+
+[connection signal="draw" from="LizardSprite" to="." method="LizardSpriteChange"]

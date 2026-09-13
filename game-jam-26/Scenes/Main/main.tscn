@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dmedgaomtdpn6" path="res://Scenes/Misc/palm.tscn" id="11_hfg1r"]
 [ext_resource type="PackedScene" uid="uid://ngm2koge5m6g" path="res://Scenes/Misc/coconut.tscn" id="12_4e4y2"]
 [ext_resource type="Texture2D" uid="uid://bjuxdeyi4w2ky" path="res://Assets/Sprites/Creatures/Shrimp/shrimp right.png" id="13_dbgcrab"]
+[ext_resource type="Script" uid="uid://derevn0xnc1qq" path="res://Code/Background/Beachbackground.cs" id="14_wliom"]
 
 [node name="Main" type="Node" unique_id=372516350 node_paths=PackedStringArray("Background")]
 script = ExtResource("1_1r6ip")
@@ -133,7 +134,9 @@ position = Vector2(46, -71)
 position = Vector2(-89, 0)
 
 [node name="BeachBackground" parent="LandStuff" unique_id=786131746 instance=ExtResource("8_imbg2")]
-position = Vector2(-19, 68)
+position = Vector2(-67, 53)
+scale = Vector2(0.96, 0.96)
+script = ExtResource("14_wliom")
 
 [node name="Palm" parent="LandStuff" unique_id=1093762877 node_paths=PackedStringArray("_lizardNode") instance=ExtResource("11_hfg1r")]
 position = Vector2(407, 169)
