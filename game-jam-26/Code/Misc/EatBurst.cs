@@ -6,7 +6,7 @@ public partial class EatBurst : Node2D
 {
 	private const float Lifetime = 0.4f;
 
-	public static void SpawnAt(Node2D world, Vector2 globalPosition, Color color)
+	public static void SpawnAt(Node world, Vector2 globalPosition, Color color)
 	{
 		EatBurst burst = new EatBurst();
 		world.AddChild(burst);

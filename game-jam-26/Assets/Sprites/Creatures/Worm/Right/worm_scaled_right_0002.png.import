@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb2bnftls0d13"
-path="res://.godot/imported/worm_scaled_left_0004.png-c0b86279a4ac874eed2d56d9548d9ef3.ctex"
+uid="uid://mw4tw0gonwo6"
+path="res://.godot/imported/worm_scaled_right_0002.png-7286934ec2f7b0e81e2e9b799c67434a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Creatures/Worm/Left/worm_scaled_left_0004.png"
-dest_files=["res://.godot/imported/worm_scaled_left_0004.png-c0b86279a4ac874eed2d56d9548d9ef3.ctex"]
+source_file="res://Assets/Sprites/Creatures/Worm/Right/worm_scaled_right_0002.png"
+dest_files=["res://.godot/imported/worm_scaled_right_0002.png-7286934ec2f7b0e81e2e9b799c67434a.ctex"]
 
 [params]
 

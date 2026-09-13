@@ -39,6 +39,7 @@ public partial class Player : CharacterBody2D
 
 	private bool _isEvolving;
 	private ColorRect _evolveFlash;
+	private bool _isEating;
 
 	private FoodPickup _pickupArea;
 	private PlayerHitbox _hitbox;
@@ -322,7 +323,7 @@ public partial class Player : CharacterBody2D
 		Vector2 previousPosition = Position;
 		MoveAndSlide();
 		Position = Helpers.ClampToRect(Position, _movementBounds);
-		if (OnLand)
+		if (OnLand && !_isEating)
 		{
 			Vector2 movement = Position - previousPosition;
 			if (movement.IsZeroApprox())
@@ -355,6 +356,19 @@ public partial class Player : CharacterBody2D
 		}
 
 
+	}
+
+	// Dodo's bite: briefly swap to the Eat left/right pose facing whichever way
+	// it was last walking, then hand animation control back to movement.
+	public async void PlayEatAnimation()
+	{
+		if (!OnLand || _isEvolving)
+			return;
+		bool facingLeft = _sprite.Animation == "Left" || _sprite.Animation == "Eat left";
+		_isEating = true;
+		_sprite.Play(facingLeft ? "Eat left" : "Eat right");
+		await ToSignal(GetTree().CreateTimer(0.35), SceneTreeTimer.SignalName.Timeout);
+		_isEating = false;
 	}
 
 	public void PlayPlop()

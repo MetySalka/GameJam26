@@ -16,6 +16,8 @@ public partial class Main : Node
 	private readonly PackedScene swordfihScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/swordfih.tscn");
 	private readonly PackedScene pufferScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/puffer.tscn");
 	private readonly PackedScene crabScene = GD.Load<PackedScene>("res://Scenes/Creatures/Enemy/crab.tscn");
+	private readonly PackedScene wormScene = GD.Load<PackedScene>("res://Scenes/Creatures/worm.tscn");
+	private const int MaxWorms = 5;
 	private Player _Player;
 	private PackedScene stikaScene = GD.Load<PackedScene>("res://Scenes/Creatures/stika.tscn");
 	private readonly Dictionary<EnemyKind, double> _spawnTimers = new();
@@ -62,7 +64,7 @@ public partial class Main : Node
 		Helpers.ClearScene(world);
 		world.ResetForNewRun();
 		foreach (Node child in GetChildren())
-			if (child is Crab && !child.IsQueuedForDeletion())
+			if ((child is Crab || child is Worm) && !child.IsQueuedForDeletion())
 				child.QueueFree();
 		_Player.ResetForNewRun();
 		GetNode<GameJam26.Code.UI.ProgressBar>("ProgressBar").ResetForNewRun();
@@ -88,7 +90,10 @@ public partial class Main : Node
 		{
 			_framesSinceSpawn = 0;
 			Wait = _rng.RandiRange(30, 240);
-			generateFood(GetFoodScene());
+			if (_Player.OnLand)
+				generateWorm();
+			else
+				generateFood(GetFoodScene());
 		}
 	}
 
@@ -337,6 +342,26 @@ public void SpawnBubble(Vector2 position)
 		return Helpers.GetLocalRect(Background, inset);
 	}
 
+
+	// Worm is the beach counterpart of the swimming food: spawned the same way,
+	// on the same timer, but living directly under Main like Crab since the beach
+	// isn't part of the scrolling water Background.
+	public void generateWorm()
+	{
+		int alive = GetChildren().Count(child => child is Worm && !child.IsQueuedForDeletion());
+		if (alive >= MaxWorms)
+			return;
+		SpawnWorm(Helpers.RandomPointInRect(_Player.GetMovementBounds(), _rng));
+	}
+
+	public Worm SpawnWorm(Vector2 position)
+	{
+		Worm worm = wormScene.Instantiate<Worm>();
+		worm.Position = position;
+		worm.Target = _Player;
+		AddChild(worm);
+		return worm;
+	}
 
 	public void ExactFood(PackedScene scene, Vector2 position)
 	{

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bahy3v7doolsw" path="res://Code/Core/Main.cs" id="1_1r6ip"]
 [ext_resource type="PackedScene" uid="uid://dldumcw4nafyx" path="res://Scenes/UI/gameovermenu.tscn" id="2_2a143"]
 [ext_resource type="PackedScene" uid="uid://ckw4h670084le" path="res://Scenes/Background/background.tscn" id="2_5yls4"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/startmenubackground.tscn" id="3_mnubg"]
+[ext_resource type="PackedScene" uid="uid://c5ikt5v8twv6m" path="res://Scenes/UI/startmenubackground.tscn" id="3_mnubg"]
 [ext_resource type="PackedScene" uid="uid://w1fbm1glln6p" path="res://Scenes/UI/startingmenu.tscn" id="3_p6jpk"]
 [ext_resource type="PackedScene" uid="uid://dtn54nq4lmoom" path="res://Scenes/Player/player.tscn" id="4_2a143"]
 [ext_resource type="PackedScene" uid="uid://csxqenyycsk2b" path="res://Scenes/UI/progressbar.tscn" id="5_p6jpk"]
@@ -32,6 +32,7 @@ _health = NodePath("../Health")
 _fihWarn = NodePath("../../FihWarn")
 
 [node name="StartMenuBackground" parent="ScreenUI" unique_id=303944661 instance=ExtResource("3_mnubg")]
+visible = false
 
 [node name="StartingMenu" parent="ScreenUI" unique_id=1066928608 node_paths=PackedStringArray("_main", "_player", "_progressBar", "_background", "_gameOver", "_health", "_menuBackground", "_debugToggle", "_debugPanel") instance=ExtResource("3_p6jpk")]
 offset_left = -188.99997
@@ -46,7 +47,7 @@ _gameOver = NodePath("../GameOver")
 _health = NodePath("../Health")
 _menuBackground = NodePath("../StartMenuBackground")
 _debugToggle = NodePath("../DebugCrab")
-_debugPanel = NodePath("../DebugPanel")
+_debugPanel = NodePath("")
 
 [node name="DebugCrab" type="TextureButton" parent="ScreenUI" unique_id=1839729297]
 anchors_preset = -1
@@ -62,26 +63,6 @@ tooltip_text = "..."
 focus_mode = 0
 texture_normal = ExtResource("13_dbgcrab")
 stretch_mode = 4
-
-[node name="DebugPanel" type="VBoxContainer" parent="ScreenUI" unique_id=58289836]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 52.0
-offset_top = -80.0
-offset_right = 180.0
-offset_bottom = -10.0
-grow_vertical = 0
-
-[node name="DebugLevel1" type="Button" parent="ScreenUI/DebugPanel" unique_id=1929357193]
-layout_mode = 2
-focus_mode = 0
-text = "Start: Pike"
-
-[node name="DebugLevel2" type="Button" parent="ScreenUI/DebugPanel" unique_id=647923133]
-layout_mode = 2
-focus_mode = 0
-text = "Start: Land"
 
 [node name="Health" parent="ScreenUI" unique_id=1868753401 node_paths=PackedStringArray("_player") instance=ExtResource("8_y3v7k")]
 anchors_preset = 1
@@ -131,7 +112,7 @@ z_index = -1
 position = Vector2(46, -71)
 
 [node name="Coconut" parent="LandStuff" unique_id=1502605299 instance=ExtResource("12_4e4y2")]
-position = Vector2(-89, 0)
+position = Vector2(410, 85)
 
 [node name="BeachBackground" parent="LandStuff" unique_id=786131746 instance=ExtResource("8_imbg2")]
 position = Vector2(-67, 53)
@@ -139,9 +120,8 @@ scale = Vector2(0.96, 0.96)
 script = ExtResource("14_wliom")
 
 [node name="Palm" parent="LandStuff" unique_id=1093762877 node_paths=PackedStringArray("_lizardNode") instance=ExtResource("11_hfg1r")]
-position = Vector2(407, 169)
+position = Vector2(390, 102)
+scale = Vector2(1.505, 1.505)
 _lizardNode = NodePath("../../Player")
 
 [connection signal="pressed" from="ScreenUI/DebugCrab" to="ScreenUI/StartingMenu" method="OnClickDebugToggle"]
-[connection signal="pressed" from="ScreenUI/DebugPanel/DebugLevel1" to="ScreenUI/StartingMenu" method="OnClickDebugLevel" binds= [1]]
-[connection signal="pressed" from="ScreenUI/DebugPanel/DebugLevel2" to="ScreenUI/StartingMenu" method="OnClickDebugLevel" binds= [2]]

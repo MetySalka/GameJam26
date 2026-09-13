@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv7ssicm04ck5"
-path="res://.godot/imported/worm_scaled_0002.png-0aa1b799bffd8c3cbf9847dbfa2b0afd.ctex"
+uid="uid://p58envwfnaek"
+path="res://.godot/imported/holub_scaled_left.png-e8936ab9315a7d443083041b182d41cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Creatures/Worm/Right/worm_scaled_0002.png"
-dest_files=["res://.godot/imported/worm_scaled_0002.png-0aa1b799bffd8c3cbf9847dbfa2b0afd.ctex"]
+source_file="res://Assets/Sprites/Creatures/Pigeon/Left/holub_scaled_left.png"
+dest_files=["res://.godot/imported/holub_scaled_left.png-e8936ab9315a7d443083041b182d41cd.ctex"]
 
 [params]
 

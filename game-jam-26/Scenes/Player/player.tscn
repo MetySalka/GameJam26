@@ -58,6 +58,14 @@
 [ext_resource type="Texture2D" uid="uid://crv7udlfa8qxd" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0006.png" id="53_dbngi"]
 [ext_resource type="Texture2D" uid="uid://d1wyu3hygu5qp" path="res://Assets/Sprites/Creatures/Dodo/dodo right_0007.png" id="54_geihd"]
 [ext_resource type="AudioStream" uid="uid://cqqvsxdyrbhyt" path="res://Assets/sfx/OnHit.mp3" id="56_huyyu"]
+[ext_resource type="Texture2D" uid="uid://byotiyp8a0w1x" path="res://Assets/Sprites/Creatures/Pigeon/Left/holub_scaled_left_0001.png" id="58_vwcno"]
+[ext_resource type="Texture2D" uid="uid://dyocq1jw5p2l7" path="res://Assets/Sprites/Creatures/Pigeon/Left/holub_scaled_left_0002.png" id="59_u8s58"]
+[ext_resource type="Texture2D" uid="uid://p58envwfnaek" path="res://Assets/Sprites/Creatures/Pigeon/Left/holub_scaled_left.png" id="60_d4a23"]
+[ext_resource type="Texture2D" uid="uid://bir1habqa2lj0" path="res://Assets/Sprites/Creatures/Pigeon/Left/holub_scaled_left_0004.png" id="61_hlqkp"]
+[ext_resource type="Texture2D" uid="uid://c7dcawykpjj60" path="res://Assets/Sprites/Creatures/Pigeon/Right/holub_scaled_0001.png" id="62_rbwwl"]
+[ext_resource type="Texture2D" uid="uid://4t23j1vxsihj" path="res://Assets/Sprites/Creatures/Pigeon/Right/holub_scaled_0002.png" id="63_dbngi"]
+[ext_resource type="Texture2D" uid="uid://dt086xu4tk01j" path="res://Assets/Sprites/Creatures/Pigeon/Right/holub_scaled.png" id="64_geihd"]
+[ext_resource type="Texture2D" uid="uid://dfqeju5iyb8dc" path="res://Assets/Sprites/Creatures/Pigeon/Right/holub_scaled_0004.png" id="65_gs43p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vwj1"]
 animations = [{
@@ -308,7 +316,36 @@ animations = [{
 "name": &"Idle",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("58_vwcno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_u8s58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_d4a23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_hlqkp")
+}],
+"loop": 1,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("62_rbwwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_dbngi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_geihd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_gs43p")
+}],
 "loop": 1,
 "name": &"Right",
 "speed": 5.0
@@ -336,6 +373,7 @@ position = Vector2(0, 1.1920929e-07)
 shape = SubResource("CircleShape2D_8d028")
 
 [node name="TadpoleSprite" type="AnimatedSprite2D" parent="." unique_id=1118745982]
+visible = false
 position = Vector2(0, 1.1920929e-07)
 scale = Vector2(1.585, 1.585)
 sprite_frames = SubResource("SpriteFrames_uraql")
@@ -373,9 +411,9 @@ animation = &"Eat right"
 speed_scale = 2.5
 
 [node name="PigeonSprite" type="AnimatedSprite2D" parent="." unique_id=311430943]
-visible = false
 sprite_frames = SubResource("SpriteFrames_plrnn")
-animation = &"Idle"
+animation = &"Left"
+frame_progress = 0.9820386
 
 [node name="Hit" type="AudioStreamPlayer" parent="." unique_id=634647163]
 stream = ExtResource("56_huyyu")
