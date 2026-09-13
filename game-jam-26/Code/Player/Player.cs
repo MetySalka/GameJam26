@@ -21,7 +21,7 @@ public partial class Player : CharacterBody2D
 
 	RandomNumberGenerator _rng = new RandomNumberGenerator();
 	public Vector2 MovementArea;
-	public int Level { get;  set; } = 0;
+	public int Level { get; set; } = 0;
 	public bool OnLand => Level >= 2;
 	private Rect2 _viewport;
 	private Rect2 _movementBounds;
@@ -51,7 +51,7 @@ public partial class Player : CharacterBody2D
 			return;
 
 
-						GetNode<AudioStreamPlayer>("Hit").Play();
+		GetNode<AudioStreamPlayer>("Hit").Play();
 
 		GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer--;
 		cameraShakeCnt = (int)((40 + (4 - GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer) * 5) * intensity);
@@ -178,7 +178,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(cameraShakeCnt > 0)
+		if (cameraShakeCnt > 0)
 		{
 			_camera.Offset = new Vector2(_rng.RandfRange(-_shakeMagnitude, _shakeMagnitude), _rng.RandfRange(-_shakeMagnitude, _shakeMagnitude));
 			cameraShakeCnt--;
@@ -198,7 +198,8 @@ public partial class Player : CharacterBody2D
 
 
 		if (GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer <= 0)
-		{	OnPlayerDeath();
+		{
+			OnPlayerDeath();
 		}
 
 		_viewport = new Rect2(new Vector2(0, 0), GetViewport().GetVisibleRect().Size);
@@ -234,28 +235,27 @@ public partial class Player : CharacterBody2D
 	}
 	private void UpdateMovementAnimation(Vector2 velocity)
 	{
-		if (velocity.Y >= 0.2)
+		if (velocity.X >= 0.2f)
+		{
+			_sprite.Play("Right");
+			_hitbox.SetHitDir(2);
+		}
+		else if (velocity.X <= -0.2f)
+		{
+			_sprite.Play("Left");
+			_hitbox.SetHitDir(3);
+		}
+		else if (velocity.Y >= 0.2f)
 		{
 			_sprite.Play("Down");
 			_hitbox.SetHitDir(0);
 		}
-		else if (velocity.Y <= -0.2)
+		else if (velocity.Y <= -0.2f)
 		{
 			_sprite.Play("Up");
 			_hitbox.SetHitDir(1);
 		}
 
-		if (velocity.X >= 0.2)
-		{
-			_sprite.Play("Right");
-			_hitbox.SetHitDir(2);
-		}
-		else if (velocity.X <= -0.2)
-		{
-
-			_sprite.Play("Left");
-			_hitbox.SetHitDir(3);
-		}
 
 	}
 
@@ -266,7 +266,7 @@ public partial class Player : CharacterBody2D
 
 	public void PlayWhoosh()
 	{
-				GetNode<AudioStreamPlayer>("LevelUpWhoosh").Play();
+		GetNode<AudioStreamPlayer>("LevelUpWhoosh").Play();
 
 	}
 
