@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dsi2vtfsf5s7u" path="res://Assets/Sprites/Background/sky.png" id="1_2aqau"]
 
 [node name="FinalScene" type="Node2D" unique_id=17457903]
+position = Vector2(641, 367)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1721009663]
 scale = Vector2(5, 5)
