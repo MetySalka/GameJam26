@@ -325,8 +325,7 @@ public partial class Player : CharacterBody2D
 		// Ease toward the requested swimming speed on each axis.
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 
-		if (Input.IsActionJustPressed("jump"))
-			velocity.Y += 900.0f;
+
 
 		velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * Speed, Speed / DecelFactor);
 		velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Speed / DecelFactor);

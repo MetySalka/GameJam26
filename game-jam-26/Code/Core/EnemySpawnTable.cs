@@ -21,7 +21,7 @@ public static class EnemySpawnTable
         new(0,    EnemyKind.Pike,        10,   3f,     8f,      1, 1,          7f),
         new(1,    EnemyKind.Pike,         0,   3f,     8f),
 
-        new(1,    EnemyKind.Swordfish,   12,   0.2f,   2f,      2, 5),
+        new(1,    EnemyKind.Swordfish,   10,   0.2f,   2f,      2, 4),
         new(2,    EnemyKind.Swordfish,   0,   0.2f,   2f),
 
         new(0,    EnemyKind.Bubble,       10,   0.5f,     7f),
