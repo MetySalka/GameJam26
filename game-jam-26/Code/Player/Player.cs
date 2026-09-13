@@ -37,7 +37,7 @@ public partial class Player : CharacterBody2D
 	private Vector2 _startingCameraPosition;
 	private Vector2 _startingCameraZoom;
 
-	private float _shakeMagnitude = 3f;
+	private float _shakeMagnitude = 4f;
 
 	private const string HitFlashShaderPath = "res://Assets/Shaders/hit_flash.gdshader";
 	private ShaderMaterial _flashMaterial;
@@ -50,8 +50,11 @@ public partial class Player : CharacterBody2D
 		if (Invincible)
 			return;
 
+
+						GetNode<AudioStreamPlayer>("Hit").Play();
+
 		GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer--;
-		cameraShakeCnt = (int)((20 + (4 - GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer) * 5) * intensity);
+		cameraShakeCnt = (int)((40 + (4 - GetNode<Health>("/root/Main/ScreenUI/Health").HealthPlayer) * 5) * intensity);
 		_shakeMagnitude = 3f * intensity;
 
 		_flashMaterial.SetShaderParameter("flash_color", flashColor ?? DefaultFlashColor);

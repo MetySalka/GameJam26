@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dbat5h8u5xp0m" path="res://Assets/Sprites/Creatures/Stika/left/stika_sprite_left_0002.png" id="6_yflbg"]
 [ext_resource type="Texture2D" uid="uid://bixodlk6lywlq" path="res://Assets/Sprites/Creatures/Stika/left/stika_sprite_left_0003.png" id="7_5tnxm"]
 [ext_resource type="Texture2D" uid="uid://b2eypxrsicdie" path="res://Assets/Sprites/Creatures/Stika/left/stika_sprite_left_0004.png" id="8_3e1nt"]
+[ext_resource type="AudioStream" uid="uid://x1w7pnur80fn" path="res://Assets/sfx/laserfih.mp3" id="10_py8um"]
+[ext_resource type="AudioStream" uid="uid://b5upuh8uq6xbb" path="res://Assets/sfx/Launch.mp3" id="11_5mjoe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_plrnn"]
 animations = [{
@@ -80,3 +82,12 @@ offset_right = 41.305206
 offset_bottom = 38.18594
 scale = Vector2(-7.3147225, 0.08706242)
 color = Color(1, 0, 0, 0.14901961)
+
+[node name="LaserRay" type="AudioStreamPlayer" parent="." unique_id=1173134041]
+stream = ExtResource("10_py8um")
+volume_db = -5.99
+pitch_scale = 1.48
+
+[node name="Launch" type="AudioStreamPlayer" parent="." unique_id=834567120]
+stream = ExtResource("11_5mjoe")
+pitch_scale = 1.2

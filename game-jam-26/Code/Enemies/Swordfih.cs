@@ -21,7 +21,10 @@ public partial class Swordfih : Area2D
 		Vector2 size = _sprite.SpriteFrames.GetFrameTexture(_sprite.Animation, _sprite.Frame).GetSize();
 		Vector2 origin = _sprite.Offset - (_sprite.Centered ? size * 0.5f : Vector2.Zero);
 		Rect2 screenBounds = _sprite.GetGlobalTransformWithCanvas() * new Rect2(origin, size);
+
+
 		return screenBounds.Intersects(GetViewport().GetVisibleRect().Grow(Mathf.Abs(Speed) * 0.1f));
+
 	}
 
 	public override void _Ready()
@@ -38,6 +41,8 @@ public partial class Swordfih : Area2D
 		Vector2 sideways = new Vector2(-heading.Y, heading.X);
 		Vector2 screenPosition = targetPosition - heading * SpawnDistance + sideways * sidewaysOffset;
 		Position = _world.GetGlobalTransformWithCanvas().AffineInverse() * screenPosition;
+		GetNode<AudioStreamPlayer>("LaserRay").Play();
+
 		UpdateMotion();
 	}
 
@@ -56,6 +61,11 @@ public partial class Swordfih : Area2D
 			_facingRight = facingRight;
 			_sprite.Play(facingRight ? "Right" : "Left");
 		}
+
+		// if (GetViewport().GetVisibleRect().HasPoint(Position * 1.3f))
+		// {
+		// 	GetNode<AudioStreamPlayer>("WhateverThatIs").Play();
+		// }
 	}
 
 	public override void _Process(double delta)

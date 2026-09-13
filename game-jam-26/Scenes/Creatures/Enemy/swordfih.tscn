@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://ds2i5g74vm7t3" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0002.png" id="6_relbv"]
 [ext_resource type="Texture2D" uid="uid://i3pxu4gu8c5x" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0003.png" id="7_oq2ms"]
 [ext_resource type="Texture2D" uid="uid://1d6n3yxvb7en" path="res://Assets/Sprites/Creatures/Swordfih/swordfish_scaled_0004.png" id="8_66hu6"]
+[ext_resource type="AudioStream" uid="uid://bool45y7h4ovy" path="res://Assets/sfx/swordfih.mp3" id="10_d8nrg"]
+[ext_resource type="AudioStream" uid="uid://x1w7pnur80fn" path="res://Assets/sfx/laserfih.mp3" id="11_kx0ou"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uraql"]
 animations = [{
@@ -62,3 +64,12 @@ frame_progress = 0.4096124
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=103279496]
 shape = SubResource("RectangleShape2D_c8p22")
+
+[node name="WhateverThatIs" type="AudioStreamPlayer" parent="." unique_id=1686168602]
+stream = ExtResource("10_d8nrg")
+pitch_scale = 0.83
+
+[node name="LaserRay" type="AudioStreamPlayer" parent="." unique_id=708150901]
+stream = ExtResource("11_kx0ou")
+volume_db = -5.99
+pitch_scale = 1.48

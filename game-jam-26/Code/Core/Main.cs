@@ -199,6 +199,7 @@ public partial class Main : Node
 			warning.Fish.RemoveAll(fish => !GodotObject.IsInstanceValid(fish) || fish.IsQueuedForDeletion());
 			if (warning.Fish.Count == 0 || warning.Fish.Any(fish => fish.IsAboutToEnterViewport()))
 			{
+				warning.Fish.ForEach(fish => fish.GetNode<AudioStreamPlayer>("WhateverThatIs").Play());
 				warning.Rect.Hide();
 				_availableSwordfishWarnings.Push(warning.Rect);
 				_swordfishWarnings.RemoveAt(i);

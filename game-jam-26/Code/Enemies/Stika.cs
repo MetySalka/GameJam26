@@ -42,7 +42,7 @@ public partial class Stika : Area2D
 		if (!Seek)
 		{
 			if (countDown > 0)
-			{
+			{	
 				_WarnRay.Visible = true;
 				countDown--;
 				if (countDown <= 0)
@@ -80,6 +80,8 @@ public partial class Stika : Area2D
 				Seek = false;
 				countDown = _rng.RandiRange(40, 160);
 				targetLock = Target.Position;
+				GetNode<AudioStreamPlayer>("LaserRay").Play();
+
 
 			}
 		}
@@ -107,6 +109,8 @@ public partial class Stika : Area2D
 
 	public void Launch(Vector2 Target)
 	{
+				GetNode<AudioStreamPlayer>("Launch").Play();
+
 		int v = _rng.RandiRange(450, 950);
 		float angle = Helpers.GetAngleToObject(GlobalPosition, Target);
 		Velocity = new Vector2(Mathf.Cos(Mathf.DegToRad(angle)) * v, Mathf.Sin(Mathf.DegToRad(angle)) * v);
