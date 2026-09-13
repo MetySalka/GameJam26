@@ -47,9 +47,7 @@ texture_under = ExtResource("1_cobfb")
 texture_progress = ExtResource("3_edw7m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2011243179]
-position = Vector2(1080, 732.00006)
+position = Vector2(644, 713)
 scale = Vector2(1.23, 1.23)
 sprite_frames = SubResource("SpriteFrames_c8p22")
 animation = &"show"
-frame = 2
-frame_progress = 1.0
